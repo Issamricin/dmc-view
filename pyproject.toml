@@ -49,7 +49,6 @@ classifiers = [
     "Typing :: Typed"
 ]
 
-]
 dependencies = [
   "pyside6>=6.6.1",
 ]
