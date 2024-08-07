@@ -46,7 +46,7 @@ classifiers = [
     "Topic :: Software Development",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: System :: Software Distribution",
-    "Typing :: Typed"
+    "Typing :: Typed",
 ]
 
 dependencies = [
