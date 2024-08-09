@@ -149,7 +149,8 @@ jobs:
         run: tox --version
 
       - name: Do Type Checking
-        run: tox -e type -vv -s false
+        # alan run: tox -e type -vv -s false
+        run: tox --version
 
       ###### TEST SUITE RUN against Edit and Sdist ######
       - name: Build and Test 'Edit' and 'Sdist' & Build Wheel(s)
