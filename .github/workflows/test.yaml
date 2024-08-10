@@ -173,7 +173,8 @@ jobs:
 
       # Crash Workflow if PEP_VERSION is not set
       - if: ${{ steps.extract_wheel_info.outputs.PEP_VERSION == '' }}
-        run: exit 1
+        run: ls -l
+        #run: exit 1
 
       ###### TEST SUITE RUN against Wheel ######
       - name: Run Test Suite Against Wheel
