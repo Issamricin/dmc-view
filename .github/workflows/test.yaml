@@ -169,24 +169,7 @@ jobs:
       - name: Extract Wheel Name and Size
         id: extract_wheel_info
         shell: bash
-        run: |
-          WHEEL_INFO=$(grep -E "Created wheel for" test_output.log | sed -E "s/.*filename=([^ ]+) size=([^ ]+) .*/\1 \2/")
-
-          # extract file name
-          WHEEL_NAME=$(echo $WHEEL_INFO | cut -d ' ' -f 1)
-          echo "WHEEL_NAME=$WHEEL_NAME" >> $GITHUB_ENV
-
-          # extract file size
-          WHEEL_SIZE=$(echo $WHEEL_INFO | cut -d ' ' -f 2)
-          echo "WHEEL_SIZE=$WHEEL_SIZE" >> $GITHUB_ENV
-
-          # extract '1.12.5.dev0' from 'dmc_view-1.12.5.dev0-py3-none-any.whl'
-          PEP_VERSION=$(echo $WHEEL_NAME | sed -E "s/dmc_view-([^ ]+)-py3-none-any.whl/\1/")
-
-          echo "PEP_VERSION=${PEP_VERSION}" >> $GITHUB_OUTPUT
-
-      - run: 'echo "WHEEL_NAME: $WHEEL_NAME SIZE: $WHEEL_SIZE"'
-      - run: 'echo "PEP_VERSION: $PEP_VERSION"'
+        run: ls -l 
 
       # Crash Workflow if PEP_VERSION is not set
       - if: ${{ steps.extract_wheel_info.outputs.PEP_VERSION == '' }}
@@ -208,8 +191,9 @@ jobs:
 
       - name: Rename Coverage Files
         shell: bash
-        run: |
-          mv ./.tox/coverage.xml ./coverage-${{ matrix.platform }}-${{ matrix.python-version }}.xml
+        run: ls -l
+
+        #mv ./.tox/coverage.xml ./coverage-${{ matrix.platform }}-${{ matrix.python-version }}.xml
 
       ## UPLOAD CI ARTIFACTS - Coverage Reports ##
       - name: "Upload Test Coverage as Artifacts"
