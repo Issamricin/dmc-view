@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import *
-from PySide6.QtGui import *
-from PySide6.QtCore import *
+from PySide6.QtWidgets import QWidget, QMainWindow, QApplication, QGridLayout, QLineEdit, QBoxLayout, QVBoxLayout
+from PySide6.QtGui import QMouseEvent, QPaintEvent, QPainter, QImage, QShortcut, QKeySequence, QPen, QColor, QBrush, QPolygonF,QTransform
+from PySide6.QtCore import QTimer,QPointF, Qt
 
 class Widget(QWidget):
 
@@ -12,15 +12,15 @@ class Widget(QWidget):
     def paintEvent(self,event):
 
         painter = QPainter(self)
-        painter.setPen(QPen(Qt.black,4,Qt.SolidLine))
-        painter.setRenderHint(QPainter.Antialiasing)
+        painter.setPen(QPen(QColor.black,4,Qt.PenCapStyle))
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         center = self.rect().center()
         radius = min(self.height(),self.width())//2 -20
         painter.drawEllipse(center,radius,radius)
 
-        painter.setPen(QPen(Qt.red))
-        painter.setBrush(QBrush(Qt.red))
+        painter.setPen(QPen(QColor.red))
+        painter.setBrush(QBrush(QColor.red))
         arrow_length = radius * 0.9
         
 

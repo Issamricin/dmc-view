@@ -16,17 +16,20 @@ description = "Digital Magnatic Compass Viewer"
 readme = "README.rst"
 license = "MIT"
 requires-python = ">=3.8"
-authors = ["Amed Mehio <alan.xxxxx@gmail.com>","Isso Hass<isso@gmail.com>"]
-maintainers = ["Amed Mehio <alan.xxxxx@gmail.com>","Isso Hass<isso@gmail.com>"]
+authors = [
+  {name = "Alan", email = "alan@holm.com"},
+  {name = "Iso", email = "isog@holm.com"},
+]
+maintainers = [
+  {name = "alan", email = "alan@holm.com"}
+]
 keywords = [
     "Compass","Azimuth", "Bank", "Elevation", "Inclination",
     "Declination", "Magnatic Compass"
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Intended Audience :: Aviation",
-    "Intended Audience :: End Users/Desktop",
-    "Intended Audience :: Hardware Product",
+    "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU Affero General Public License v3",
     "Natural Language :: English",
     "Operating System :: Unix",
@@ -148,3 +151,23 @@ skips = [
 
 [tool.software-release]
 version_variable = "src/dmc_view/__about__.py:__version__"
+
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    min_version = 4.0
+    env_list =
+        py312
+        py311
+        py310
+        py39
+        type
+
+    [testenv]
+    deps = pytest
+    commands = pytest tests
+
+    [testenv:type]
+    deps = mypy
+    commands = mypy src
+"""

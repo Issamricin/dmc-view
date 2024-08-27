@@ -11,7 +11,6 @@ This is an alternative to directly invoking the cli that uses python as the
 
 from __future__ import absolute_import
 
-from dmc_view.cli import main
 
 if __name__ == "__main__":  # pragma: no cover
-    main(prog_name="dmc-view")  # pylint: disable=unexpected-keyword-arg
+    value = 1
