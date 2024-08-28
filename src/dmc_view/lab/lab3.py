@@ -12,17 +12,27 @@ class Widget(QWidget):
     def paintEvent(self,event):
 
         painter = QPainter(self)
-        painter.setPen(QPen(QColor.black,4,Qt.PenCapStyle))
+        pen = QPen(Qt.PenStyle.SolidLine)
+        pen.setColor("black")
+        pen.setWidth(4)
+        pen.setCapStyle(Qt.PenCapStyle.RoundCap)
+        painter.setPen(pen)
+        #painter.setPen(QPen(QColor.black,4,Qt.PenCapStyle))
+        #QPen(Qt.green, 3, Qt.DashDotLine, Qt.RoundCap, Qt.RoundJoin)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         center = self.rect().center()
         radius = min(self.height(),self.width())//2 -20
         painter.drawEllipse(center,radius,radius)
-
-        painter.setPen(QPen(QColor.red))
-        painter.setBrush(QBrush(QColor.red))
+        pen = QPen(Qt.PenStyle.SolidLine)
+        pen.setColor("red")
+        pen.setWidth(4)
+        pen.setCapStyle(Qt.PenCapStyle.FlatCap)
+        painter.setPen(pen)
+        painter.setBrush(QBrush("red"))
         arrow_length = radius * 0.9
         
+
 
         traingle = QPolygonF([
                 QPointF(-20,10),
