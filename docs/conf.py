@@ -28,7 +28,7 @@ def get_templated_vars():
         dict(
             project_slug='dmc-view',
             package_name='dmc_view',
-            author_name='Amed Mehio',
+            author_name='Alan Mehio',
             year='2024',
             version='0.0.1',
             github_username='alanmehio',
