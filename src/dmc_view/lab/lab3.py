@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import *
-from PySide6.QtGui import *
-from PySide6.QtCore import *
+from PySide6.QtWidgets import QWidget, QMainWindow, QApplication, QGridLayout, QLineEdit, QBoxLayout, QVBoxLayout
+from PySide6.QtGui import QMouseEvent, QPaintEvent, QPainter, QImage, QShortcut, QKeySequence, QPen, QColor, QBrush, QPolygonF,QTransform
+from PySide6.QtCore import QTimer,QPointF, Qt
 
 class Widget(QWidget):
 
@@ -12,17 +12,27 @@ class Widget(QWidget):
     def paintEvent(self,event):
 
         painter = QPainter(self)
-        painter.setPen(QPen(Qt.black,4,Qt.SolidLine))
-        painter.setRenderHint(QPainter.Antialiasing)
+        pen = QPen(Qt.PenStyle.SolidLine)
+        pen.setColor("black")
+        pen.setWidth(4)
+        pen.setCapStyle(Qt.PenCapStyle.RoundCap)
+        painter.setPen(pen)
+        #painter.setPen(QPen(QColor.black,4,Qt.PenCapStyle))
+        #QPen(Qt.green, 3, Qt.DashDotLine, Qt.RoundCap, Qt.RoundJoin)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         center = self.rect().center()
         radius = min(self.height(),self.width())//2 -20
         painter.drawEllipse(center,radius,radius)
-
-        painter.setPen(QPen(Qt.red))
-        painter.setBrush(QBrush(Qt.red))
+        pen = QPen(Qt.PenStyle.SolidLine)
+        pen.setColor("red")
+        pen.setWidth(4)
+        pen.setCapStyle(Qt.PenCapStyle.FlatCap)
+        painter.setPen(pen)
+        painter.setBrush(QBrush("red"))
         arrow_length = radius * 0.9
         
+
 
         traingle = QPolygonF([
                 QPointF(-20,10),

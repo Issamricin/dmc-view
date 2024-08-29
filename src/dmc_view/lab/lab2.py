@@ -9,7 +9,7 @@ class Circle(QWidget):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        painter.setRenderHint(QPainter.Antialiasing)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         painter.setPen(QPen(Qt.black, 4, Qt.SolidLine))
 
         # Draw the circle

@@ -1,7 +1,7 @@
 import sys, os
-from PySide6.QtWidgets import *
-from PySide6.QtCore import *
-from PySide6.QtGui import *
+from PySide6.QtWidgets import QWidget, QMainWindow, QApplication, QGridLayout
+from PySide6.QtGui import QMouseEvent, QPaintEvent, QPainter, QImage, QShortcut, QKeySequence
+from PySide6.QtCore import Qt
 
 class Canvas(QWidget):
 

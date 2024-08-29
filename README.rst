@@ -20,8 +20,10 @@ Features
 
 1. **dmc_viewr** `python package`
 
-   a. TODO Document a **Great Feature**
-   b. TODO Document another **Nice Feature**
+   a. View Azimuth with respect to Magnatic and Real North
+   b. View Object Inclination angle
+   c. View Declination angle
+   d. Nice to have **Feature** Bank angle  
 2. Tested against multiple `platforms` and `python` versions
 
 
@@ -32,7 +34,7 @@ Development
 
 .. code-block:: shell
 
-    python3 -m pip install --user 'tox<4'
+    python3 -m pip install 
 
 OR: **`pipx install tox`**
 
@@ -94,7 +96,7 @@ Using `pip` is the approved way for installing `dmc_view`.
     python3 -m pip install dmc_view
 
 
-TODO Document a use case
+Use case: Part of bigger application
 
 
 License
@@ -189,7 +191,7 @@ License
 
 .. |gh-lic| image:: https://img.shields.io/github/license/alanmehio/dmc-view
     :alt: GitHub
-    :target: https://github.com/alanmehio/dmc-viewr/blob/main/LICENSE
+    :target: https://github.com/alanmehio/dmc-view/blob/main/LICENSE
 
 
 .. CODE QUALITY
