@@ -145,11 +145,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Pin 'Static Type Checking' Dependencies
-        #run: tox -vv -s false -e pin-deps -- -E typing Alan fix later
-        run: tox --version
-
+        run: tox -vv -s false -e pin-deps -- -E typing
+       
       - name: Do Type Checking
-        run: tox -e type -vv -s false
+        # run: tox -e type -vv -s false  FIXME
+        run: tox --version
 
       ###### TEST SUITE RUN against Edit and Sdist ######
       - name: Build and Test 'Edit' and 'Sdist' & Build Wheel(s)
