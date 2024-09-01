@@ -23,5 +23,4 @@ uml-diagrams/
 pydoer-graphs/
 
 # LOGS
-
-cookie-py.log
+*.log
