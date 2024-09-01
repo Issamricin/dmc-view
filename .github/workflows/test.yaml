@@ -57,14 +57,14 @@ env:
   ALWAYS_LINT: "false"
   LINT_JOB_POLICY: '2'  # {2, 3}
   ## Python Runtime version to set the Job runner with ##
-  STATIC_ANALYSIS_PY: "3.10"
+  STATIC_ANALYSIS_PY: "3.12"
   ## Pylint Minimum Acceptance Rating/Score ##
   PYLINT_SCORE_THRESHOLD: "8.2"
 
   #### DOCS Build/Test ####
   ALWAYS_DOCS: "false"
   DOCS_JOB_POLICY: '2'  # {2, 3}
-  DOCS_BUILDER_RUNTIME: "3.10"
+  DOCS_BUILDER_RUNTIME: "3.12"
 
   #### CODE VISUALIZATION Job ####
   ALWAYS_CODE_VIZ: "false"
