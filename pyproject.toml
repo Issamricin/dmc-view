@@ -135,7 +135,7 @@ sphinxcontrib-mermaid = { version = "^0.9.2", optional = true, python = ">=3.7,<
 ### see https://stackoverflow.com/questions/72345536/how-to-avoid-mypy-checking-explicitly-excluded-but-imported-modules-without-ma
 ### see https://mypy.readthedocs.io/en/stable/config_file.html#using-a-pyproject-toml-file
 [[tool.mypy.overrides]]
-module = "importedmodule"
+module = "PySide6"
 ignore_errors = true
 
 ### EXTRAS ###
