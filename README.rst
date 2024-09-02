@@ -18,12 +18,10 @@ Digital Magnatic Compass View
 Features
 ========
 
-1. **dmc_viewr** `python package`
+1. **dmc_view** `python package`
 
-   a. View Azimuth with respect to Magnatic and Real North
-   b. View Object Inclination angle
-   c. View Declination angle
-   d. Nice to have **Feature** Bank angle  
+   a. TODO Document a **Great Feature**
+   b. TODO Document another **Nice Feature**
 2. Tested against multiple `platforms` and `python` versions
 
 
@@ -34,7 +32,7 @@ Development
 
 .. code-block:: shell
 
-    python3 -m pip install 
+    python3 -m pip install --user 'tox<4'
 
 OR: **`pipx install tox`**
 
@@ -96,7 +94,7 @@ Using `pip` is the approved way for installing `dmc_view`.
     python3 -m pip install dmc_view
 
 
-Use case: Part of bigger application
+TODO Document a use case
 
 
 License
