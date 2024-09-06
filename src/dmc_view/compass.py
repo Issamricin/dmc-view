@@ -197,7 +197,7 @@ class Compass(QWidget):
 
     def __animate_declination(self) -> None:
         if self.current_declination != self.target_declination:
-            diff = self.target_declination - self.current_declination # Iso : float here stick to to decimal place as a diff result
+            diff = round (self.target_declination - self.current_declination,2) # Iso : float here stick to to decimal place as a diff result
             step = 1 if diff > 0 else -1
 
             if abs(diff) > 180:
