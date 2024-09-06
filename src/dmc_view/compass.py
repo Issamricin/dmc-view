@@ -146,7 +146,7 @@ class Compass(QWidget):
 
         self.draw_rotating_magnetic_north(painter, center, radius, self.current_angle, self.current_declination)
 
-    def draw_rotating_magnetic_north(self, painter: QPainter, center: QPointF, radius: int, compass_angle: int, declination:float) -> None:
+    def draw_rotating_magnetic_north(self, painter: QPainter, center: QPointF, radius: int, compass_angle: float, declination:float) -> None:
         
         painter.setBrush(QBrush(Qt.green))
         painter.setPen(QPen(Qt.green, 2))
@@ -188,7 +188,7 @@ class Compass(QWidget):
             self.current_angle = (self.current_angle + step) % 360
             self.update()
 
-    def update_angle(self, target_angle:int) -> None:
+    def update_angle(self, target_angle:float) -> None:
         self.target_angle = target_angle % 360
 
     def update_declination(self, target_declination:float):
@@ -214,7 +214,7 @@ class Compass(QWidget):
         self.rotation = rotation
         self.update()
 
-    def draw_red_line(self, painter: QPainter, center:QPointF, radius:int):
+    def draw_red_line(self, painter: QPainter, center:QPointF, radius:int) -> None:
         painter.setPen(QPen(Qt.red, 2))
 
         
