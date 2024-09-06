@@ -146,7 +146,7 @@ class Compass(QWidget):
 
         self.draw_rotating_magnetic_north(painter, center, radius, self.current_angle, self.current_declination)
 
-    def draw_rotating_magnetic_north(self, painter: QPainter, center: QPointF, radius: int, compass_angle: int, declination:float) -> None:
+    def draw_rotating_magnetic_north(self, painter: QPainter, center: QPointF, radius: int, compass_angle: float, declination:float) -> None:
         
         painter.setBrush(QBrush(Qt.green))
         painter.setPen(QPen(Qt.green, 2))
@@ -171,16 +171,16 @@ class Compass(QWidget):
     def start_animation_timer(self)->None:
         self.azimuth_timer = QTimer(self)
         self.azimuth_timer.timeout.connect(self.__rotate_angle)
-        self.azimuth_timer.start(10)  # Adjust the speed of azimuth animation
+        self.azimuth_timer.start(1)  # Adjust the speed of azimuth animation
 
         self.declination_timer = QTimer(self)
         self.declination_timer.timeout.connect(self.__animate_declination)
-        self.declination_timer.start(30)  #  Adjust the speed of declination animation
+        self.declination_timer.start(2)  #  Adjust the speed of declination animation
 
     def __rotate_angle(self)->None:
         if self.current_angle != self.target_angle:
-            diff = self.target_angle - self.current_angle
-            step = 1 if diff > 0 else -1
+            diff = round(self.target_angle - self.current_angle,2) # Here is for the azimuth
+            step = 0.1 if diff > 0 else -0.1
 
             if abs(diff) > 180:
                 step *= -1
@@ -188,7 +188,7 @@ class Compass(QWidget):
             self.current_angle = (self.current_angle + step) % 360
             self.update()
 
-    def update_angle(self, target_angle:int) -> None:
+    def update_angle(self, target_angle:float) -> None:
         self.target_angle = target_angle % 360
 
     def update_declination(self, target_declination:float):
@@ -198,7 +198,7 @@ class Compass(QWidget):
     def __animate_declination(self) -> None:
         if self.current_declination != self.target_declination:
             diff = round (self.target_declination - self.current_declination,2) # Iso : float here stick to to decimal place as a diff result
-            step = 1 if diff > 0 else -1
+            step = 0.1 if diff > 0 else -0.1
 
             if abs(diff) > 180:
                 step *= -1
@@ -214,7 +214,7 @@ class Compass(QWidget):
         self.rotation = rotation
         self.update()
 
-    def draw_red_line(self, painter: QPainter, center:QPointF, radius:int):
+    def draw_red_line(self, painter: QPainter, center:QPointF, radius:int) -> None:
         painter.setPen(QPen(Qt.red, 2))
 
         
