@@ -199,7 +199,7 @@ License
 .. LICENSE (eg AGPL, MIT)
 .. Github License
 
-.. |gh-lic| image:: https://img.shields.io/github/license/alanmehio/dmc-view
+.. |gh-lic| image:: https://img.shields.io/badge/license-GNU_Affero-orange
     :alt: GitHub
     :target: https://github.com/alanmehio/dmc-view/blob/main/LICENSE
 
