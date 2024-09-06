@@ -201,7 +201,7 @@ License
 
 .. |gh-lic| image:: https://img.shields.io/github/license/alanmehio/dmc-view
     :alt: GitHub
-    :target: https://github.com/alanmehio/dmc-view/LICENSE
+    :target: https://github.com/alanmehio/dmc-view/blob/main/LICENSE
 
 
 .. CODE QUALITY
