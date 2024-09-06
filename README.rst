@@ -20,21 +20,33 @@ Features
 
 1. **dmc_view** `python package`
 
-   a. TODO Document a **Great Feature**
-   b. TODO Document another **Nice Feature**
+   a. View Object Azimuth and Inclindation; also View Declination(Offset from real North)  **Create Feature**
+   b. Circule view animation  **Nice Feature**
 2. Tested against multiple `platforms` and `python` versions
 
 
 Development
 -----------
 
-| Get started:
+| Get started: 
+| Insall `pip` 
+ 
+.. code-block:: shell
+
+    python3 -m pip install 
+
+
+Install `Pyside6` 
 
 .. code-block:: shell
 
-    python3 -m pip install --user 'tox<4'
+    pip install  Py
 
-OR: **`pipx install tox`**
+Install `tox` 
+
+.. code-block:: shell
+
+    pip install  tox
 
 Then, to see all out-of-the-box available `tox` commands:
 
@@ -82,7 +94,7 @@ Testing, Documentation Building, Scripts, CI/CD, Static Code Analysis for this p
 Prerequisites
 =============
 
-You need to have `Python` installed.
+You need to have `Python` and  `PySide6`  installed.
 
 Quickstart
 ==========
@@ -94,7 +106,7 @@ Using `pip` is the approved way for installing `dmc_view`.
     python3 -m pip install dmc_view
 
 
-TODO Document a use case
+TODO Document a use case TODO Alan usage here 
 
 
 License
@@ -189,14 +201,14 @@ License
 
 .. |gh-lic| image:: https://img.shields.io/github/license/alanmehio/dmc-view
     :alt: GitHub
-    :target: https://github.com/alanmehio/dmc-view/blob/main/LICENSE
+    :target: https://github.com/alanmehio/dmc-view/LICENSE
 
 
 .. CODE QUALITY
 
 .. Ruff linter for Fast Python Linting
 
-.. |ruff| image:: https://img.shields.io/badge/code%20style-ruff-000000.svg
+.. |ruff| image:: https://img.shields.io/badge/codestyle-ruff-000000.svg
     :alt: Ruff
     :target: https://docs.astral.sh/ruff/
 
