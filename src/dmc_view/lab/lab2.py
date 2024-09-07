@@ -1,6 +1,6 @@
 # Drawing a circle that remains at the center of the widget/screen
-from PySide6.QtWidgets import QWidget,QApplication
-from PySide6.QtGui import QPainter,QPen,Qt
+from PySide6.QtGui import QPainter, QPen, Qt
+from PySide6.QtWidgets import QApplication, QWidget
 
 
 class Circle(QWidget):

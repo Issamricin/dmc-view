@@ -24,3 +24,5 @@ pydoer-graphs/
 
 # LOGS
 *.log
+# LOCK files
+*.lock
