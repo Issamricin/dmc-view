@@ -10,12 +10,12 @@ class Compass(QWidget):
         super().__init__()
         self.setWindowTitle("Digital Magnetic Compass")
         self.setMinimumSize(400, 400)
-        self.current_angle = 0
-        self.target_angle = 0
-        self.target_declination = 0
-        self.current_declination = 0
-        self.elevation = 0
-        self.rotation = 0
+        self.current_angle = 0.0
+        self.target_angle = 0.0
+        self.target_declination = 0.0
+        self.current_declination = 0.0
+        self.elevation = 0.0
+        self.rotation = 0.0
         self.start_animation_timer()
 
     def resizeEvent(self, event: QEvent) -> None:
