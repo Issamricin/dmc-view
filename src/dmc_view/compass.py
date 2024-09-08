@@ -1,7 +1,7 @@
 import math
 
 from PySide6.QtCore import QEvent, QPointF, Qt, QTimer
-from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform
+from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform,QResizeEvent
 from PySide6.QtWidgets import QWidget
 
 
@@ -18,7 +18,7 @@ class Compass(QWidget):
         self.rotation = 0.0
         self.start_animation_timer()
 
-    def resizeEvent(self, event: QEvent) -> None:
+    def resizeEvent(self, event: QResizeEvent) -> None:
 
         self.create_static_pixmap()
         super().resizeEvent(event)
