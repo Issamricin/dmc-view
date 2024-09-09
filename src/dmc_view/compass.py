@@ -1,7 +1,7 @@
 import math
 
 from PySide6.QtCore import QEvent, QPointF, Qt, QTimer
-from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform
+from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform,QResizeEvent
 from PySide6.QtWidgets import QWidget
 
 
@@ -10,15 +10,15 @@ class Compass(QWidget):
         super().__init__()
         self.setWindowTitle("Digital Magnetic Compass")
         self.setMinimumSize(400, 400)
-        self.current_angle = 0
-        self.target_angle = 0
-        self.target_declination = 0
-        self.current_declination = 0
-        self.elevation = 0
-        self.rotation = 0
+        self.current_angle = 0.0
+        self.target_angle = 0.0
+        self.target_declination = 0.0
+        self.current_declination = 0.0
+        self.elevation = 0.0
+        self.rotation = 0.0
         self.start_animation_timer()
 
-    def resizeEvent(self, event: QEvent) -> None:
+    def resizeEvent(self, event: QResizeEvent) -> None:
 
         self.create_static_pixmap()
         super().resizeEvent(event)

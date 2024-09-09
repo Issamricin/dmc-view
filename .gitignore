@@ -26,3 +26,5 @@ pydoer-graphs/
 *.log
 # LOCK files
 *.lock
+# VSC local env
+.venv/
