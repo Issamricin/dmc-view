@@ -19,7 +19,9 @@ def get_float_input(
 
 def main():
 
-    parser = ArgumentParser()
+    parser = ArgumentParser(description="DMC_view Command Line Interface")
+
+
 
     parser.add_argument(
         '-a',
@@ -61,7 +63,7 @@ def main():
     compass.update_declination(declination)  # This is Declination and can be float to two decimal places for example 35.55
     compass.update_angle(azimuth)  # This is Azimuth and can be float to two decimal places for example 35.55
     compass.set_rotation(bank) # This is the Inclination can be floated to two decimal places for example 35.55
-    
+
     app.exec()
 
 
