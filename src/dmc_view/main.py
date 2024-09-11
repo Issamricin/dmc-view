@@ -37,20 +37,31 @@ def main():
         default=None,
         metavar='declination'
     )
+    parser.add_argument(
+        '-b',
+        help='Inclination angle at the longitudinal and horizontal axis',
+        type=float,
+        nargs='?',
+        default=None, 
+        metavar='bank'
+    )
     
 
     args : Namespace = parser.parse_args()
 
     azimuth: float = args.a if args.a is not None else get_float_input("Enter the azimuth angle in degrees; for example 40.45",0.0) # azimuth
     declination: float = args.d if args.d is not None else get_float_input("Enter the declination angle in degrees; for example 30.0", 0.0) # declination
+    bank: float = args.b if args.b is not None else get_float_input("Enter the bank angle in degrees; for example -7.0", 0.0) # Inclination
+
 
     app = QApplication()
     compass = Compass()
     compass.show()
-    compass.update_declination(declination)  #
-    compass.update_angle(
-        azimuth
-    )  # This is Azimuth and can be float to two decimal places for example 35.55
+
+    compass.update_declination(declination)  # This is Declination and can be float to two decimal places for example 35.55
+    compass.update_angle(azimuth)  # This is Azimuth and can be float to two decimal places for example 35.55
+    compass.set_rotation(bank) # This is the Inclination can be floated to two decimal places for example 35.55
+    
     app.exec()
 
 
