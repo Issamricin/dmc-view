@@ -10,3 +10,11 @@ def test_get_float_input_with_valid_input(monkeypatch):
     monkeypatch.setattr('builtins.input',lambda _: "42.5")
     result = get_float_input("Enter the azimuth angle in degrees; for example 40.45",0.0)
     assert result == 42.5
+
+
+
+def test_get_float_input_with_default(monkeypatch):
+
+    monkeypatch.setattr('builtins.input',lambda _: "")
+    result = get_float_input("Enter the azimuth angle in degrees; for example 40.45",0.0) 
+    assert result == 0.0
