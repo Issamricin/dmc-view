@@ -66,5 +66,5 @@ def main():
 
     app.exec()
 
-
-main()
+if __name__ == "__main__": # this is important so that it doesnt run from pytest 
+    main()
