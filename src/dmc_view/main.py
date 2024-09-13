@@ -1,4 +1,4 @@
-from compass import Compass
+from dmc_view.compass import Compass
 from PySide6.QtWidgets import QApplication
 from argparse import ArgumentParser , Namespace
 
@@ -66,5 +66,5 @@ def main():
 
     app.exec()
 
-if __name__ == "__main__": # this is important so that it doesnt run from pytest 
+if __name__ == "__main__": # this is important so that it does not run from pytest 
     main()
