@@ -61,11 +61,23 @@ class Compass(QWidget):
 
         self.draw_red_line(painter, center, radius)
 
+        font_size = max(12,self.width()//80)
+        line_spacing = font_size
+
         painter.setPen(QPen(Qt.black))
+        painter.setFont(QFont("Arial",font_size))
         text_x = center.x() + radius + 100
         text_y = center.y() - radius
+
         test_pos = QPointF(text_x, text_y)
-        painter.drawText(test_pos, "Information")
+        azimuth_pos = QPointF(text_x,text_y + 4 * line_spacing)
+        declination_pos = QPointF(text_x,text_y + 8 * line_spacing)
+        rotation_pos = QPointF(text_x,text_y + 12 * line_spacing)
+
+        painter.drawText(test_pos, "Information: ")
+        painter.drawText(azimuth_pos,f"Azimuth: {round(self.current_angle,2)}")
+        painter.drawText(declination_pos,f"Declination: {round(self.current_declination,2)}")
+        painter.drawText(rotation_pos,f"Rotation: {round(self.rotation,2)}")
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
         painter.setPen(QPen(Qt.black, 2))
@@ -193,7 +205,10 @@ class Compass(QWidget):
             if abs(diff) > 180:
                 step *= -1
 
-            self.current_angle = (self.current_angle + step) % 360
+            if abs(diff) < 0.2:
+                self.current_angle = self.target_angle
+            else:
+                self.current_angle = (self.current_angle + step) % 360
             self.update()
 
     def update_angle(self, target_angle: float) -> None:
@@ -212,7 +227,10 @@ class Compass(QWidget):
             if abs(diff) > 180:
                 step *= -1
 
-            self.current_declination = (self.current_declination + step) % 360
+            if abs(diff) < 0.2:
+                self.current_declination = self.target_declination
+            else:
+                self.current_declination = (self.current_declination + step) % 360
             self.update()
 
     def set_elevation(self, elevation: float) -> None:
