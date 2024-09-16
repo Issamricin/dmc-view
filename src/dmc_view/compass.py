@@ -1,6 +1,6 @@
 import math
 
-from PySide6.QtCore import QEvent, QPointF, Qt, QTimer, QRectF
+from PySide6.QtCore import QEvent, QPointF, Qt, QTimer, QRectF, QPoint
 from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform,QResizeEvent
 from PySide6.QtWidgets import QWidget
 
@@ -38,7 +38,7 @@ class Compass(QWidget):
         # Offset for the circle to be to the left
         x_offset = 70
         center = QPointF(self.rect().center().x() - x_offset, self.rect().center().y())
-        radius = min(self.width() - 2 * x_offset, self.height()) // 2 - 30
+        radius = min(self.width() - 2 * x_offset, self.height()) // 2 - 37
 
         # Drawing on the pixmap
         painter.drawEllipse(center, radius, radius)
@@ -56,7 +56,7 @@ class Compass(QWidget):
 
         x_offset = 70
         center = QPointF(self.rect().center().x() - x_offset, self.rect().center().y())
-        radius = min(self.width() - 2 * x_offset, self.height()) // 2 - 30
+        radius = min(self.width() - 2 * x_offset, self.height()) // 2 - 37
         self.draw_arrow(painter, center, radius)
 
         self.draw_red_line(painter, center, radius)
@@ -269,3 +269,6 @@ class Compass(QWidget):
         transformed_line = transform.map(QPolygonF([line_start, line_end]))
 
         painter.drawLine(transformed_line[0], transformed_line[1])
+
+        offset = self.width() / 9
+        painter.drawText(center.x()-offset, center.y()+12,"Bank")
