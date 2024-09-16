@@ -9,7 +9,7 @@ class Compass(QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Digital Magnetic Compass")
-        self.setMinimumSize(400, 400)
+        self.setMinimumSize(600, 400)
         self.current_angle = 0.0
         self.target_angle = 0.0
         self.target_declination = 0.0
