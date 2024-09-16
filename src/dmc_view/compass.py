@@ -155,12 +155,37 @@ class Compass(QWidget):
         rotated_triangle = transform.map(floating_triangle)
         painter.drawPolygon(rotated_triangle)
 
+
+        pen = QPen(Qt.black,1.5,Qt.DotLine) 
+        painter.setPen(pen)
+
+        arc_radius = radius - 74# -90 so it isnt touching the circle
+
+        rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
+
+        startAngle = 90 * 16# *180 so it is draw to the left of the circle
+
+        if(self.current_angle>180):
+            spanAngle = (360 - self.current_angle)  * 16 
+        else: 
+            spanAngle = -self.current_angle * 16# angel in 1/16th degree expected by Qt
+
+    
+        painter.drawArc(rect, int(startAngle), int(spanAngle))
+
+
         painter.resetTransform()
 
-        label_x = triangle_x 
-        label_y = triangle_y + 15
 
-        painter.drawText(QRectF(label_x ,label_y,60,15),Qt.AlignCenter,"Azimuth")
+        midPointAngel = startAngle + spanAngle / 2
+        mid_angel_rad = math.radians(midPointAngel / 16) # angel in 1/16th degree expected by Qt
+
+
+        midpoint_x = center.x() + arc_radius * math.cos(mid_angel_rad) #offset to the right 10 so it is not touching the arc
+        midpoint_y = center.y() - arc_radius * math.sin(mid_angel_rad)
+
+        label = "Azimuth"
+        painter.drawText(QPointF(midpoint_x,midpoint_y), label)
 
         self.draw_rotating_magnetic_north(
             painter, center, radius, self.current_angle, self.current_declination
@@ -271,7 +296,7 @@ class Compass(QWidget):
         painter.drawLine(transformed_line[0], transformed_line[1])
 
         
-        pen = QPen(Qt.black,2,Qt.DotLine) 
+        pen = QPen(Qt.black,1.5,Qt.DotLine) 
         painter.setPen(pen)
 
         arc_radius = radius - 60 # -60 so it isnt touching the circle
