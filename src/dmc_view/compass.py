@@ -159,7 +159,7 @@ class Compass(QWidget):
         pen = QPen(Qt.black,1.5,Qt.DotLine) 
         painter.setPen(pen)
 
-        arc_radius = radius - 74# -90 so it isnt touching the circle
+        arc_radius = radius - 74# - 74 so it isnt touching the circle nor coliding with other arcs
 
         rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
 
