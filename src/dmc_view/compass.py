@@ -1,6 +1,6 @@
 import math
 
-from PySide6.QtCore import QEvent, QPointF, Qt, QTimer, QRectF, QPoint
+from PySide6.QtCore import QEvent, QPointF, Qt, QTimer, QRectF
 from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform,QResizeEvent
 from PySide6.QtWidgets import QWidget
 
@@ -270,5 +270,27 @@ class Compass(QWidget):
 
         painter.drawLine(transformed_line[0], transformed_line[1])
 
-        offset = self.width() / 9
-        painter.drawText(center.x()-offset, center.y()+12,"Bank")
+        
+        pen = QPen(Qt.black,2,Qt.DotLine) 
+        painter.setPen(pen)
+
+        arc_radius = radius - 60
+
+        rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
+
+        startAngle = 16 * 180
+        spanAngle = self.rotation * 16 
+
+    
+        painter.drawArc(rect, int(startAngle), int(spanAngle))
+
+        midPointAngel = startAngle + spanAngle / 2
+        mid_angel_rad = math.radians(midPointAngel / 16)
+
+
+        midpoint_x = center.x() + arc_radius * math.cos(mid_angel_rad) + 10
+        midpoint_y = center.y() - arc_radius * math.sin(mid_angel_rad)
+
+
+        painter.drawText(QPointF(midpoint_x,midpoint_y),"Bank")
+
