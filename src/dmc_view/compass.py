@@ -77,7 +77,7 @@ class Compass(QWidget):
         painter.drawText(test_pos, "Information: ")
         painter.drawText(azimuth_pos,f"Azimuth: {round(self.current_angle,2)}")
         painter.drawText(declination_pos,f"Declination: {round(self.current_declination,2)}")
-        painter.drawText(rotation_pos,f"Rotation: {round(self.rotation,2)}")
+        painter.drawText(rotation_pos,f"Bank: {round(self.rotation,2)}")
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
         painter.setPen(QPen(Qt.black, 2))
