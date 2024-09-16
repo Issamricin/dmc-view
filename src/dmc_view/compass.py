@@ -195,6 +195,13 @@ class Compass(QWidget):
 
         painter.drawPolygon(magnetic_marker)
 
+        painter.resetTransform()
+
+        label_x =  marker_x + 10
+        label_y = marker_y - 10
+
+        painter.drawText(QRectF(label_x ,label_y,80,15),Qt.AlignCenter,"Declination")
+
     def start_animation_timer(self) -> None:
         self.azimuth_timer = QTimer(self)
         self.azimuth_timer.timeout.connect(self.__rotate_angle)
