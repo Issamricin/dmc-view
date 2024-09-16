@@ -190,7 +190,11 @@ class Compass(QWidget):
         midpoint_y = center.y() - arc_radius * math.sin(mid_angel_rad)
 
         label = "Azimuth"
-        painter.drawText(QPointF(midpoint_x + 7,midpoint_y), label)
+
+        if self.current_angle > 180:
+            painter.drawText(QPointF(midpoint_x - 60, midpoint_y),label)
+        else:
+            painter.drawText(QPointF(midpoint_x + 7,midpoint_y), label)
 
         self.draw_rotating_magnetic_north(
             painter, center, radius, self.current_angle, self.current_declination
