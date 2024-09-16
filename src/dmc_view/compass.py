@@ -274,23 +274,23 @@ class Compass(QWidget):
         pen = QPen(Qt.black,2,Qt.DotLine) 
         painter.setPen(pen)
 
-        arc_radius = radius - 60
+        arc_radius = radius - 60 # -60 so it isnt touching the circle
 
         rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
 
-        startAngle = 16 * 180
-        spanAngle = self.rotation * 16 
+        startAngle = 16 * 180 # *180 so it is draw to the left of the circle
+        spanAngle = self.rotation * 16 # angel in 1/16th degree expected by Qt
 
     
         painter.drawArc(rect, int(startAngle), int(spanAngle))
 
         midPointAngel = startAngle + spanAngle / 2
-        mid_angel_rad = math.radians(midPointAngel / 16)
+        mid_angel_rad = math.radians(midPointAngel / 16) # angel in 1/16th degree expected by Qt
 
 
-        midpoint_x = center.x() + arc_radius * math.cos(mid_angel_rad) + 10
+        midpoint_x = center.x() + arc_radius * math.cos(mid_angel_rad) + 10 #offset to the right 10 so it is not touching the arc
         midpoint_y = center.y() - arc_radius * math.sin(mid_angel_rad)
 
-
-        painter.drawText(QPointF(midpoint_x,midpoint_y),"Bank")
+        label = "Bank"
+        painter.drawText(QPointF(midpoint_x,midpoint_y), label)
 
