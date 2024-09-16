@@ -173,7 +173,7 @@ class Compass(QWidget):
         if(self.current_angle>180):
             spanAngle = (360 - self.current_angle)  * 16 
         else: 
-            spanAngle = -self.current_angle * 16 # angel in 1/16th degree expected by Qt
+            spanAngle = -self.current_angle * 16 # angle in 1/16th degree expected by Qt
 
     
         painter.drawArc(rect, int(startAngle), int(spanAngle))
@@ -183,7 +183,7 @@ class Compass(QWidget):
 
 
         midPointAngel = startAngle + spanAngle / 2
-        mid_angel_rad = math.radians(midPointAngel / 16) # angel in 1/16th degree expected by Qt
+        mid_angel_rad = math.radians(midPointAngel / 16) # angle in 1/16th degree expected by Qt
 
 
         midpoint_x = center.x() + arc_radius * math.cos(mid_angel_rad)
@@ -240,7 +240,7 @@ class Compass(QWidget):
         if(self.current_declination>180):
             spanAngle = (360 - self.current_declination)  * 16 
         else: 
-            spanAngle = -self.current_declination * 16 # angel in 1/16th degree expected by Qt
+            spanAngle = -self.current_declination * 16 # angle in 1/16th degree expected by Qt
 
     
         painter.drawArc(rect, int(startAngle), int(spanAngle))
@@ -254,7 +254,10 @@ class Compass(QWidget):
 
         label = "Declination"
 
-        painter.drawText(QPointF(midPoint_x + 7,midPoint_y),label) # +7 so it is not touching with the arc
+        if self.current_declination < 180: # each side has different alignment 
+            painter.drawText(QPointF(midPoint_x + 7,midPoint_y),label) # +7 so it is not touching with the arc
+        else:
+            painter.drawText(QPointF(midPoint_x - 90,midPoint_y),label) # -90 so it is not touching the circle
 
     def start_animation_timer(self) -> None:
         self.azimuth_timer = QTimer(self)
@@ -333,18 +336,18 @@ class Compass(QWidget):
         rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
 
         startAngle = 16 * 180 # *180 so it is draw to the left of the circle
-        spanAngle = self.rotation * 16 # angel in 1/16th degree expected by Qt
+        spanAngle = self.rotation * 16 # angle in 1/16th degree expected by Qt
 
     
         painter.drawArc(rect, int(startAngle), int(spanAngle))
 
         midPointAngel = startAngle + spanAngle / 2
-        mid_angel_rad = math.radians(midPointAngel / 16) # angel in 1/16th degree expected by Qt
+        mid_angel_rad = math.radians(midPointAngel / 16) # angle in 1/16th degree expected by Qt
 
 
         midpoint_x = center.x() + arc_radius * math.cos(mid_angel_rad) + 10 #offset to the right 10 so it is not touching the arc
         midpoint_y = center.y() - arc_radius * math.sin(mid_angel_rad)
 
         label = "Bank"
-        painter.drawText(QPointF(midpoint_x,midpoint_y - 2), label) # -2 so it is not touching line at 0 angel
+        painter.drawText(QPointF(midpoint_x,midpoint_y - 2), label) # -2 so it is not touching line at 0 angle
 
