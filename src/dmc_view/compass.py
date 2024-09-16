@@ -1,6 +1,6 @@
 import math
 
-from PySide6.QtCore import QEvent, QPointF, Qt, QTimer
+from PySide6.QtCore import QEvent, QPointF, Qt, QTimer, QRectF
 from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform,QResizeEvent
 from PySide6.QtWidgets import QWidget
 
@@ -154,6 +154,13 @@ class Compass(QWidget):
 
         rotated_triangle = transform.map(floating_triangle)
         painter.drawPolygon(rotated_triangle)
+
+        painter.resetTransform()
+
+        label_x = triangle_x 
+        label_y = triangle_y + 15
+
+        painter.drawText(QRectF(label_x ,label_y,60,15),Qt.AlignCenter,"Azimuth")
 
         self.draw_rotating_magnetic_north(
             painter, center, radius, self.current_angle, self.current_declination
