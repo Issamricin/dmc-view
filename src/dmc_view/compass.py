@@ -296,9 +296,9 @@ class Compass(QWidget):
         label = "Declination"
 
         if self.current_declination < 180: # each side has different alignment 
-            painter.drawText(QPointF(midPoint_x + 7,midPoint_y - 4),label) # +7 so it is not touching with the arc
+            painter.drawText(QPointF(midPoint_x + 7,midPoint_y + 1 ),label) # +7 so it is not touching with the arc
         else:
-            painter.drawText(QPointF(midPoint_x - 90,midPoint_y - 4),label) # -90 so it is not touching the circle
+            painter.drawText(QPointF(midPoint_x - 100,midPoint_y ),label) # -90 so it is not touching the circle
 
     def start_animation_timer(self) -> None:
         self.azimuth_timer = QTimer(self)
