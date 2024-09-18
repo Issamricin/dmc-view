@@ -66,7 +66,7 @@ class Compass(QWidget):
 
         painter.setPen(QPen(Qt.black))
         painter.setFont(QFont("Arial",font_size))
-        text_x = center.x() + radius + 100
+        text_x = center.x() + radius + 60 # reduce the number to prevent capped text
         text_y = center.y() - radius
 
         test_pos = QPointF(text_x, text_y)
@@ -296,7 +296,7 @@ class Compass(QWidget):
         label = "Declination"
 
         if self.current_declination < 180: # each side has different alignment 
-            painter.drawText(QPointF(midPoint_x + 30,midPoint_y + 1 ),label) # +7 so it is not touching with the arc
+            painter.drawText(QPointF(midPoint_x + 50,midPoint_y + 1 ),label) # +7 so it is not touching with the arc
         else:
             painter.drawText(QPointF(midPoint_x - 100,midPoint_y ),label) # -90 so it is not touching the circle
 
