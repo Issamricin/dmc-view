@@ -79,7 +79,7 @@ class Compass(QWidget):
         painter.drawText(azimuth_pos,f"Azimuth: {round(self.current_angle,2)} °")
         painter.drawText(declination_pos,f"Declination: {round(self.current_declination,2)} °")
         painter.drawText(rotation_pos,f"Bank: {round(self.rotation,2)} °")
-        painter.drawText(inclination_pos,f"Inclination: {round(self.elevation,2)} °")
+        painter.drawText(inclination_pos,f"Elevation: {round(self.elevation,2)} °")
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
         painter.setPen(QPen(Qt.black, 2))
@@ -185,8 +185,8 @@ class Compass(QWidget):
 
         if (self.current_angle>270): # it is maxed at 90 but 
             spanAngleIncli = 90 * 16
-        elif (self.current_angle>180):
-            spanAngleIncli = -90 * 16
+        elif (self.current_angle>90):
+            spanAngleIncli = 0 
         else:
             spanAngleIncli = (90 - self.current_angle) * 16
 
@@ -210,7 +210,7 @@ class Compass(QWidget):
         midpoint_incli_y = center.y() - arc2_radius * math.sin(mid_angel_rad_incli)
 
         label = "Azimuth"
-        label2 = "Inclination"
+        label2 = "Elevation"
 
         if self.current_angle > 180:
             painter.drawText(QPointF(midpoint_x - 60, midpoint_y),label)
@@ -225,8 +225,8 @@ class Compass(QWidget):
 
         if (self.current_angle>270): # This is limit for the elevation/inclination 
             self.elevation = 90 
-        elif (self.current_angle>180):
-            self.elevation = -90
+        elif (self.current_angle>90):
+            self.elevation = 0
         else:
             self.elevation = 90 - self.current_angle 
 
