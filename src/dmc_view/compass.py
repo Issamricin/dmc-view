@@ -9,7 +9,7 @@ class Compass(QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Digital Magnetic Compass")
-        self.setMinimumSize(600, 400)
+        self.setMinimumSize(600, 420)
         self.current_angle = 0.0
         self.target_angle = 0.0
         self.target_declination = 0.0
@@ -73,11 +73,13 @@ class Compass(QWidget):
         azimuth_pos = QPointF(text_x,text_y + 4 * line_spacing)
         declination_pos = QPointF(text_x,text_y + 8 * line_spacing)
         rotation_pos = QPointF(text_x,text_y + 12 * line_spacing)
+        inclination_pos = QPointF(text_x,text_y + 16 * line_spacing)
 
         painter.drawText(test_pos, "Information: ")
         painter.drawText(azimuth_pos,f"Azimuth: {round(self.current_angle,2)} °")
         painter.drawText(declination_pos,f"Declination: {round(self.current_declination,2)} °")
         painter.drawText(rotation_pos,f"Bank: {round(self.rotation,2)} °")
+        painter.drawText(inclination_pos,f"Inclination: {round(self.elevation,2)} °")
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
         painter.setPen(QPen(Qt.black, 2))
@@ -141,6 +143,8 @@ class Compass(QWidget):
         triangle_y = center.y() + arrow_distance * math.sin(angle_rad)
 
         pen = QPen(Qt.red,1,Qt.SolidLine) 
+        pen2 = QPen(QColor("DarkBlue"),1,Qt.DashLine)
+
         painter.setPen(pen)
 
         painter.drawLine(center.x(),center.y(),triangle_x,triangle_y)
@@ -165,36 +169,67 @@ class Compass(QWidget):
         painter.setPen(pen)
 
         arc_radius = radius - 150 # - 150 so it is not touching the circle neither coliding with other arcs
+        arc2_radius = radius - 100
 
         rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
+        rect2 = QRectF(center.x() - arc2_radius,center.y() - arc2_radius, 2 * arc2_radius, 2 * arc2_radius)
 
-        startAngle = 90 * 16 
+        startAngle = 90 * 16 # Azimuth
+        startAngleIncli = 0 *16 # Inclination
 
         if(self.current_angle>180):
             spanAngle = (360 - self.current_angle)  * 16 
         else: 
             spanAngle = -self.current_angle * 16 # angle in 1/16th degree expected by Qt
 
+
+        if (self.current_angle>270): # it is maxed at 90 but 
+            spanAngleIncli = 90 * 16
+        elif (self.current_angle>180):
+            spanAngleIncli = -90 * 16
+        else:
+            spanAngleIncli = (90 - self.current_angle) * 16
+
     
         painter.drawArc(rect, int(startAngle), int(spanAngle))
-
-
+  
         painter.resetTransform()
 
 
-        midPointAngel = startAngle + spanAngle / 2
+        midPointAngel = startAngle + spanAngle / 2 # Azimuth
         mid_angel_rad = math.radians(midPointAngel / 16) # angle in 1/16th degree expected by Qt
 
+        midPointAngelIncli = startAngleIncli + spanAngleIncli / 2 # Inclination
+        mid_angel_rad_incli = math.radians(midPointAngelIncli / 16)
 
-        midpoint_x = center.x() + arc_radius * math.cos(mid_angel_rad)
+
+        midpoint_x = center.x() + arc_radius * math.cos(mid_angel_rad) # Azimuth
         midpoint_y = center.y() - arc_radius * math.sin(mid_angel_rad)
 
+        midpoint_incli_x = center.x() + arc2_radius * math.cos(mid_angel_rad_incli) # Inclination
+        midpoint_incli_y = center.y() - arc2_radius * math.sin(mid_angel_rad_incli)
+
         label = "Azimuth"
+        label2 = "Inclination"
 
         if self.current_angle > 180:
             painter.drawText(QPointF(midpoint_x - 60, midpoint_y),label)
         else:
             painter.drawText(QPointF(midpoint_x + 7,midpoint_y), label)
+
+
+        painter.setPen(pen2)
+        painter.drawArc(rect2, int(startAngleIncli), int(spanAngleIncli))
+        painter.drawText(QPointF(midpoint_incli_x + 11,midpoint_incli_y - 10), label2) # Inclination
+
+
+        if (self.current_angle>270): # This is limit for the elevation/inclination 
+            self.elevation = 90 
+        elif (self.current_angle>180):
+            self.elevation = -90
+        else:
+            self.elevation = 90 - self.current_angle 
+
 
         self.draw_rotating_magnetic_north(
             painter, center, radius, self.current_angle, self.current_declination
@@ -325,7 +360,6 @@ class Compass(QWidget):
         transform = QTransform()
         transform.translate(center.x(), center.y())
         transform.rotate(-self.rotation)
-        transform.translate(0, -self.elevation)
 
         line_start = QPointF(-line_length / 2, 0)
         line_end = QPointF(line_length / 2, 0)
