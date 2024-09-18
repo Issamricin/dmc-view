@@ -1,3 +1,4 @@
+# see config file doc https://coverage.readthedocs.io/en/7.6.1/config.html
 [run]
 source =
     dmc_view
