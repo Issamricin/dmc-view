@@ -1,7 +1,7 @@
 import math
 
 from PySide6.QtCore import QEvent, QPointF, Qt, QTimer, QRectF
-from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform,QResizeEvent
+from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform,QResizeEvent, QColor
 from PySide6.QtWidgets import QWidget
 
 
@@ -208,9 +208,11 @@ class Compass(QWidget):
         compass_angle: float,
         declination: float,
     ) -> None:
+        
+        dark_red = QColor(124,10,2)
 
-        painter.setBrush(QBrush(Qt.green))
-        painter.setPen(QPen(Qt.green, 2))
+        painter.setBrush(dark_red)
+        painter.setPen(QPen(dark_red, 2))
 
         final_angle = declination % 360
         rad_angle = math.radians(final_angle - 90)  # -90 to align correctly
@@ -231,8 +233,8 @@ class Compass(QWidget):
 
         painter.resetTransform()
 
-
-        pen = QPen(Qt.green,1,Qt.DashLine) 
+        
+        pen = QPen(dark_red,1,Qt.DashLine) 
         painter.setPen(pen)
 
         arc_radius = radius + 25
