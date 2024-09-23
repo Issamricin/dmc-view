@@ -6,6 +6,10 @@ from PySide6.QtWidgets import QWidget
 
 
 class Compass(QWidget):
+    """A digital magnatic compass widget.
+
+    This class visualizes the angles of the azimuth, declination, elevation, and rotation.
+    """
     def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Digital Magnetic Compass")
