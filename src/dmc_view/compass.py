@@ -92,6 +92,17 @@ class Compass(QWidget):
         painter.drawText(test_pos, "Information")
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """Draw the cardinal points (N, E, S, W) on the compass.
+
+        parameters
+        ----------
+        painter : QPainter
+            painter used to draw the points.
+        center : QPointF
+            center point of the compass.
+        radius : int
+            radius for the compass.
+        """
         painter.setPen(QPen(Qt.black, 2))
         font = QFont("Arial", 14, QFont.Bold)
         painter.setFont(font)
@@ -118,6 +129,17 @@ class Compass(QWidget):
             painter.drawLine(QPointF(outer_x, outer_y), QPointF(inner_x, inner_y))
 
     def draw_lines(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """Draw the lines that divides the compass into four quadrants.
+
+        parameters
+        ----------
+        painter : QPainter
+            painter used to draw the lines.
+        center : QPointF
+            center point for the compass.
+        radius : int
+            radius for the compass.
+        """
 
         painter.setPen(QPen(Qt.black, 2))
 
