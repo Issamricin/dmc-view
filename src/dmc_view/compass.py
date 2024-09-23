@@ -29,7 +29,7 @@ class Compass(QWidget):
     def resizeEvent(self, event: QResizeEvent) -> None:
         """Handle the resize event for the widget.
 
-        Parameters:
+        Parameters
         -----------
         event : QResizeEvent
             Resize event holding the new size of the window
@@ -39,6 +39,8 @@ class Compass(QWidget):
         super().resizeEvent(event)
 
     def create_static_pixmap(self) -> None:
+        """Create the static image background for the compass using pixmap
+        """
 
         self.static_pixmap = QPixmap(self.size())
         self.static_pixmap.fill(Qt.transparent)
@@ -63,6 +65,13 @@ class Compass(QWidget):
         painter.end()
 
     def paintEvent(self, event: QEvent) -> None:
+        """Handle the paint event for the class.
+
+        Parameters
+        -----------
+        event : QEvent
+            The paint event.
+        """
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
