@@ -129,7 +129,7 @@ class Compass(QWidget):
             painter.drawLine(QPointF(outer_x, outer_y), QPointF(inner_x, inner_y))
 
     def draw_lines(self, painter: QPainter, center: QPointF, radius: int) -> None:
-        """Draw the lines that divides the compass into four quadrants.
+        """Draw the lines that divides the compass into four equal quadrants.
 
         parameters
         ----------
@@ -163,6 +163,17 @@ class Compass(QWidget):
             )
 
     def draw_arrow(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """draw the arrow of the compass that points to the azimuth angle.
+
+        Parameters
+        ----------
+        painter : QPainter
+            painter used to draw the arrow.
+        center : QPointF
+            center point of the compass.
+        radius : int
+            radius of the compass.
+        """
 
         painter.setBrush(QBrush(Qt.red))
         painter.setPen(QPen(Qt.red, 2))
@@ -198,9 +209,21 @@ class Compass(QWidget):
         painter: QPainter,
         center: QPointF,
         radius: int,
-        compass_angle: float,
         declination: float,
     ) -> None:
+        """Draw the arrow for the magnetic north based on the declination angle.
+        
+        parameters
+        ----------
+        painter : QPainter
+            painter used to draw the arrow for the magnetic north.
+        center : QPointF
+            center point of the compass.
+        radius : int
+            radius for the compass.
+        declination : float
+            The angle of the declination that determines the magnatic north.
+        """
 
         painter.setBrush(QBrush(Qt.green))
         painter.setPen(QPen(Qt.green, 2))
