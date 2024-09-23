@@ -11,6 +11,10 @@ class Compass(QWidget):
     This class visualizes the angles of the azimuth, declination, elevation, and rotation.
     """
     def __init__(self) -> None:
+        """Initialize the Compass widget.
+
+        Sets up the title and minimum size of the window, and starts the animation timers.
+        """
         super().__init__()
         self.setWindowTitle("Digital Magnetic Compass")
         self.setMinimumSize(400, 400)
