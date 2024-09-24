@@ -7,6 +7,22 @@ def get_float_input(
     prompt: str, 
     default: float
     ) -> float:
+    """Gets the input from the user using the terminal.
+
+    Promts the user to enter the angle for azimuth, declination, rotation, and bank.
+
+    Parameters
+    ----------
+    prompt : str
+        The desired question for the user to indicate which angle is required.
+    default : float
+        The default value of the angle if the user did not enter a value.
+
+    Raises
+    ------
+    ValueError
+        If the user's input was not a numerical value.
+    """
 
     while True:
         try:

@@ -11,7 +11,7 @@ class Compass(QWidget):
     This class visualizes the angles of the azimuth, declination, elevation, and rotation.
     """
     def __init__(self) -> None:
-        """Initialize the Compass widget.
+        """Initializes the Compass widget.
 
         Sets up the title and minimum size of the window, and starts the animation timers.
         """
@@ -27,7 +27,7 @@ class Compass(QWidget):
         self.start_animation_timer()
 
     def resizeEvent(self, event: QResizeEvent) -> None:
-        """Handle the resize event for the widget.
+        """Handles the resize event for the widget.
 
         Parameters
         -----------
@@ -39,7 +39,7 @@ class Compass(QWidget):
         super().resizeEvent(event)
 
     def create_static_pixmap(self) -> None:
-        """Create the static image background for the compass using pixmap
+        """Creates the static image background for the compass using pixmap
         """
 
         self.static_pixmap = QPixmap(self.size())
@@ -65,7 +65,7 @@ class Compass(QWidget):
         painter.end()
 
     def paintEvent(self, event: QEvent) -> None:
-        """Handle the paint event for the class.
+        """Handles the paint event for the class.
 
         Parameters
         -----------
@@ -92,7 +92,7 @@ class Compass(QWidget):
         painter.drawText(test_pos, "Information")
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
-        """Draw the cardinal points (N, E, S, W) on the compass.
+        """Draws the cardinal points (N, E, S, W) on the compass.
 
         Parameters
         ----------
@@ -129,7 +129,7 @@ class Compass(QWidget):
             painter.drawLine(QPointF(outer_x, outer_y), QPointF(inner_x, inner_y))
 
     def draw_lines(self, painter: QPainter, center: QPointF, radius: int) -> None:
-        """Draw the lines that divides the compass into four equal quadrants.
+        """Draws the lines that divides the compass into four equal quadrants.
 
         Parameters
         ----------
@@ -163,7 +163,7 @@ class Compass(QWidget):
             )
 
     def draw_arrow(self, painter: QPainter, center: QPointF, radius: int) -> None:
-        """Draw the arrow of the compass that points to the azimuth angle.
+        """Draws the arrow of the compass that points to the azimuth angle.
 
         Parameters
         ----------
@@ -211,7 +211,7 @@ class Compass(QWidget):
         radius: int,
         declination: float,
     ) -> None:
-        """Draw the arrow for the magnetic north based on the declination angle.
+        """Draws the arrow for the magnetic north based on the declination angle.
         
         Parameters
         ----------
