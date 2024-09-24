@@ -34,6 +34,24 @@ def get_float_input(
 
 
 def main():
+    """This is the main function that executes the program.
+
+    This function uses argparse to handle input from the command line.
+    It create an instance of Compass class and sets its values using the inputs provided.
+    
+    Command-line arguments
+    ----------------------
+    -a : float
+        Azimuth angle towards the desired location.
+    -d : float
+        Declination angle from the real north to the magnatic north.
+    -b : float
+        Bank angle at the longitudinal and horizontal axis.
+
+    Examples
+    --------
+    >>> python3 main.py -a 45 -d 20 -b 2
+    """
 
     parser = ArgumentParser(description="DMC_view Command Line Interface")
 
