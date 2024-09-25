@@ -50,7 +50,7 @@ def main():
 
     Examples
     --------
-    >>> python3 main.py -a 45 -d 20 -b 2
+    >>>python3 main.py -a 45 -d 20 -b 2
     """
 
     parser = ArgumentParser(description="DMC_view Command Line Interface")
