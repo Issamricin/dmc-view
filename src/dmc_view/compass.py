@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QWidget
 
 
 class Compass(QWidget):
-    """A digital magnatic compass widget.
+    """A digital magnetic compass widget.
 
     This class visualizes the angles of the azimuth, declination, elevation, and rotation.
     """
@@ -32,14 +32,14 @@ class Compass(QWidget):
         Parameters
         -----------
         event : QResizeEvent
-            Resize event holding the new size of the window
+            Resize event holding the new size of the window.
         """
 
         self.create_static_pixmap()
         super().resizeEvent(event)
 
     def create_static_pixmap(self) -> None:
-        """Creates the static image background for the compass using pixmap
+        """Creates the static image background for the compass using a pixmap.
         """
 
         self.static_pixmap = QPixmap(self.size())
@@ -129,7 +129,7 @@ class Compass(QWidget):
             painter.drawLine(QPointF(outer_x, outer_y), QPointF(inner_x, inner_y))
 
     def draw_lines(self, painter: QPainter, center: QPointF, radius: int) -> None:
-        """Draws the lines that divides the compass into four equal quadrants.
+        """Draws the lines that divide the compass into four equal quadrants.
 
         Parameters
         ----------
@@ -216,7 +216,7 @@ class Compass(QWidget):
         Parameters
         ----------
         painter : QPainter
-            Painter used to draw the arrow for the magnetic north.
+            Painter used to draw the arrow for magnetic north.
         center : QPointF
             Center point of the compass.
         radius : int
@@ -256,7 +256,7 @@ class Compass(QWidget):
         self.declination_timer.start(2)  #  Adjust the speed of declination animation
 
     def __rotate_angle(self) -> None:
-        """Rotates azimuth angle towards the target angle."""
+        """Rotates the azimuth angle towards the target angle."""
         if self.current_angle != self.target_angle:
             diff = round(self.target_angle - self.current_angle, 2)  # Here is for the azimuth
             step = 0.1 if diff > 0 else -0.1
