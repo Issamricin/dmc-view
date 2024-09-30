@@ -6,7 +6,15 @@ from PySide6.QtWidgets import QWidget
 
 
 class Compass(QWidget):
+    """A digital magnetic compass widget.
+
+    This class visualizes the angles of the azimuth, declination, elevation, and rotation.
+    """
     def __init__(self) -> None:
+        """Initializes the Compass widget.
+
+        Sets up the title and minimum size of the window, and starts the animation timers.
+        """
         super().__init__()
         self.setWindowTitle("Digital Magnetic Compass")
         self.setMinimumSize(400, 400)
@@ -19,11 +27,20 @@ class Compass(QWidget):
         self.start_animation_timer()
 
     def resizeEvent(self, event: QResizeEvent) -> None:
+        """Handles the resize event for the widget.
+
+        Parameters
+        -----------
+        event : QResizeEvent
+            Resize event holding the new size of the window.
+        """
 
         self.create_static_pixmap()
         super().resizeEvent(event)
 
     def create_static_pixmap(self) -> None:
+        """Creates the static image background for the compass using a pixmap.
+        """
 
         self.static_pixmap = QPixmap(self.size())
         self.static_pixmap.fill(Qt.transparent)
@@ -48,6 +65,13 @@ class Compass(QWidget):
         painter.end()
 
     def paintEvent(self, event: QEvent) -> None:
+        """Handles the paint event for the class.
+
+        Parameters
+        -----------
+        event : QEvent
+            The paint event.
+        """
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
@@ -68,6 +92,17 @@ class Compass(QWidget):
         painter.drawText(test_pos, "Information")
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """Draws the cardinal points (N, E, S, W) on the compass.
+
+        Parameters
+        ----------
+        painter : QPainter
+            Painter used to draw the points.
+        center : QPointF
+            Center point of the compass.
+        radius : int
+            Radius for the compass.
+        """
         painter.setPen(QPen(Qt.black, 2))
         font = QFont("Arial", 14, QFont.Bold)
         painter.setFont(font)
@@ -94,6 +129,17 @@ class Compass(QWidget):
             painter.drawLine(QPointF(outer_x, outer_y), QPointF(inner_x, inner_y))
 
     def draw_lines(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """Draws the lines that divide the compass into four equal quadrants.
+
+        Parameters
+        ----------
+        painter : QPainter
+            Painter used to draw the lines.
+        center : QPointF
+            Center point for the compass.
+        radius : int
+            Radius for the compass.
+        """
 
         painter.setPen(QPen(Qt.black, 2))
 
@@ -117,6 +163,17 @@ class Compass(QWidget):
             )
 
     def draw_arrow(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """Draws the arrow of the compass that points to the azimuth angle.
+
+        Parameters
+        ----------
+        painter : QPainter
+            Painter used to draw the arrow.
+        center : QPointF
+            Center point of the compass.
+        radius : int
+            Radius of the compass.
+        """
 
         painter.setBrush(QBrush(Qt.red))
         painter.setPen(QPen(Qt.red, 2))
@@ -152,9 +209,21 @@ class Compass(QWidget):
         painter: QPainter,
         center: QPointF,
         radius: int,
-        compass_angle: float,
         declination: float,
     ) -> None:
+        """Draws the arrow for the magnetic north based on the declination angle.
+        
+        Parameters
+        ----------
+        painter : QPainter
+            Painter used to draw the arrow for magnetic north.
+        center : QPointF
+            Center point of the compass.
+        radius : int
+            Radius for the compass.
+        declination : float
+            The angle of declination that determines magnetic north.
+        """
 
         painter.setBrush(QBrush(Qt.green))
         painter.setPen(QPen(Qt.green, 2))
@@ -177,6 +246,7 @@ class Compass(QWidget):
         painter.drawPolygon(magnetic_marker)
 
     def start_animation_timer(self) -> None:
+        """Starts timer for the animation of the azimuth arrow and magnetic north arrow."""
         self.azimuth_timer = QTimer(self)
         self.azimuth_timer.timeout.connect(self.__rotate_angle)
         self.azimuth_timer.start(1)  # Adjust the speed of azimuth animation
@@ -186,6 +256,7 @@ class Compass(QWidget):
         self.declination_timer.start(2)  #  Adjust the speed of declination animation
 
     def __rotate_angle(self) -> None:
+        """Rotates the azimuth angle towards the target angle."""
         if self.current_angle != self.target_angle:
             diff = round(self.target_angle - self.current_angle, 2)  # Here is for the azimuth
             step = 0.1 if diff > 0 else -0.1
@@ -197,12 +268,27 @@ class Compass(QWidget):
             self.update()
 
     def update_angle(self, target_angle: float) -> None:
+        """Updates the target angle for the azimuth.
+
+        Parameters
+        ----------
+        target_angle : float
+            The desired angle for the azimuth in degrees.
+        """
         self.target_angle = target_angle % 360
 
     def update_declination(self, target_declination: float):
+        """Updates the target angle for the declination.
+        
+        Parameters
+        ----------
+        target_declination : float
+            The desired angle for the declination in degrees.
+        """
         self.target_declination = target_declination % 360
 
     def __animate_declination(self) -> None:
+        """Animates the declination towards its desired angle."""
         if self.current_declination != self.target_declination:
             diff = round(
                 self.target_declination - self.current_declination, 2
@@ -216,14 +302,39 @@ class Compass(QWidget):
             self.update()
 
     def set_elevation(self, elevation: float) -> None:
+        """Sets the elevation angle.
+        
+        Parameters
+        ----------
+        elevation : float
+            The angle for the elevation in degrees.
+        """
         self.elevation = elevation
         self.update()
 
     def set_rotation(self, rotation: float) -> None:
+        """Sets the rotation angle.
+        
+        Parameters
+        ----------
+        rotation : float
+            The desired angle for the rotation in degrees. 
+        """
         self.rotation = rotation
         self.update()
 
     def draw_red_line(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """Draws the line that represents the bank angle.
+        
+        Parameters
+        ----------
+        painter : QPainter
+            Painter used to draw the line.
+        center : QPointF
+            Center point of the compass.
+        radius : int
+            Radius of the compass.
+        """
         painter.setPen(QPen(Qt.red, 2))
 
         line_length = radius * 2
