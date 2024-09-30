@@ -7,6 +7,24 @@ def get_float_input(
     prompt: str, 
     default: float
     ) -> float:
+    """
+    Gets the input from the user using the terminal.
+
+    Prompts the user to enter the angle for azimuth, declination, rotation, and bank.
+
+    Parameters
+    ----------
+    prompt : str
+        The desired question for the user to indicate which angle is required.
+    default : float
+        The default value of the angle if the user does not enter a value.
+
+    Raises
+    ------
+    ValueError
+        If the user's input is not a numerical value.
+    """
+
 
     while True:
         try:
@@ -18,6 +36,26 @@ def get_float_input(
 
 
 def main():
+    """
+    This is the main function that executes the program.
+    
+    This function uses argparse to handle input from the command line.
+    It creates an instance of the Compass class and sets its values using the inputs provided.
+    
+    Command-line arguments
+    ----------------------
+    -a : float
+        Azimuth angle towards the desired location.
+    -d : float
+        Declination angle from the real north to the magnetic north.
+    -b : float
+        Bank angle at the longitudinal and horizontal axis.
+    
+    Examples
+    --------
+    >>> python3 main.py -a 45 -d 20 -b 2
+    """
+
 
     parser = ArgumentParser(description="DMC_view Command Line Interface")
 
