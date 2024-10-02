@@ -390,4 +390,3 @@ class Compass(QWidget):
 
         label = "Bank"
         painter.drawText(QPointF(midpoint_x,midpoint_y - 2), label) # -2 so it is not touching line at 0 angle
-
