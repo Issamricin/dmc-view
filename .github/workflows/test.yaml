@@ -28,11 +28,11 @@ on:
 
 env:
   ### STRESS TEST Job MATRIX ###
-  FULL_MATRIX_STRATEGY: "{\"platform\": [\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\": [\"3.8\", \"3.9\", \"3.10\", \"3.11\"]}"
+  FULL_MATRIX_STRATEGY: "{\"platform\": [\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\": [\"3.8\", \"3.9\", \"3.10\", \"3.11\", \"3.12\"]}"
   # Python 3.7 has reached End of Life (EOL) on June 27th, 2023
   # Python 3.12 is in bugfix mode, same as 3.11 -> can start supporting 3.12 it
   UBUNTU_PY312_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":[\"3.12\"]}"
-  TEST_STRATEGY: "{\"platform\":[\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\":[\"3.9\"]}"
+  TEST_STRATEGY: "{\"platform\":[\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\":[\"3.12\"]}"
 
   ##### JOB ON/OFF SWITCHES - Top/1st level overrides #####
   RUN_UNIT_TESTS: "true"
@@ -42,7 +42,7 @@ env:
   DOCS_ON: "true"
   DRAW_DEPENDENCIES: "true"
   ###############################
-
+ß
   ### DOCKER Job Policy ####
   # Override Docker Policy-dependent decision-making and
   # Accept any ALL (branch/build) to Publish to Dockerhub

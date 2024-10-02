@@ -28,3 +28,5 @@ pydoer-graphs/
 *.lock
 # VSC local env
 .venv/
+# pin-deps generated file 
+reqs.txt

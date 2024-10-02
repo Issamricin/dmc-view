@@ -1,7 +1,7 @@
 # Test for start_animation_timer() method in compass.py
 
 import pytest 
-from src.dmc_view.compass import Compass
+from dmc_view.compass import Compass
 
 @pytest.fixture
 def compass(qtbot):  # qtbot is provided by pytest-qt
