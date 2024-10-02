@@ -1,4 +1,4 @@
-from dmc_view.compass import Compass
+from compass import Compass
 from PySide6.QtWidgets import QApplication
 from argparse import ArgumentParser , Namespace
 
