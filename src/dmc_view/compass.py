@@ -201,7 +201,7 @@ class Compass(QWidget):
         painter.drawPolygon(rotated_triangle)
 
         self.draw_rotating_magnetic_north(
-            painter, center, radius, self.current_angle, self.current_declination
+            painter, center, radius, self.current_angle
         )
 
     def draw_rotating_magnetic_north(
