@@ -184,11 +184,11 @@ class Compass(QWidget):
 
 
         if (self.current_angle>270): # it is maxed at 90 but 
-            spanAngleIncli = 90 * 16
+            spanAngleIncli = 90 * 16.00 # make it float
         elif (self.current_angle>90):
-            spanAngleIncli = 0 
+            spanAngleIncli = 0.00 # make it float
         else:
-            spanAngleIncli = (90 - self.current_angle) * 16
+            spanAngleIncli = (90 - self.current_angle) * 16 # float datatype (implicit)
 
     
         painter.drawArc(rect, int(startAngle), int(spanAngle))
@@ -232,7 +232,7 @@ class Compass(QWidget):
 
 
         self.draw_rotating_magnetic_north(
-            painter, center, radius, self.current_angle
+            painter, center, radius, self.current_angle, self.current_declination
         )
 
     def draw_rotating_magnetic_north(
