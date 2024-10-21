@@ -22,7 +22,7 @@ Features
 
    a. View Object Azimuth and Inclindation; also View Declination(Offset from real North)  **Create Feature**
    b. Circule view animation  **Nice Feature**
-2. Tested against multiple `platforms` and `python` versions
+2. Tested against Linux(ubuntu-latest) `platforms` and `python` 3.12.3
 
 
 Development
@@ -40,7 +40,7 @@ Install `Pyside6`
 
 .. code-block:: shell
 
-    pip install  Py
+    pip install  PySide6
 
 Install `tox` 
 
@@ -94,7 +94,7 @@ Testing, Documentation Building, Scripts, CI/CD, Static Code Analysis for this p
 Prerequisites
 =============
 
-You need to have `Python` and  `PySide6`  installed.
+You need to have `Python` and  `PySide6`  installed for Development
 
 Quickstart
 ==========
@@ -105,8 +105,12 @@ Using `pip` is the approved way for installing `dmc_view`.
 
     python3 -m pip install dmc_view
 
+.. code-block:: sh
 
-TODO Document a use case TODO Alan usage here 
+    command to run ?????
+
+
+
 
 
 License
