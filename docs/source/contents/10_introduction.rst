@@ -2,11 +2,9 @@
 Introduction
 ============
 
-| This is **DMC View**, a *Python Package* desinged to ...
+| This is **DMC View**, a *Python Package* Desktop application to view the data from dmc device
 
-| Goal of this project is to TODO Document
-| Additionally, TODO Document
-
-| This documentation aims to help people understand what are the package's features and to demonstrate
-| how to leverage them for their use cases.
-| It also presents the overall package design.
+| Goal of this project is to allow device manufacturer to plug the device from a serial port and 
+  view the Digital Magnetic Data. Each device manufacturer has its own unique serial port Id; so 
+  there is no need to configure. It is just plug and play approach with different internal adapter 
+|

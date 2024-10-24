@@ -22,6 +22,13 @@ Assuming you have 'activated' a `python virtual environment`:
 Simple Use Case
 ---------------
 
-| Common Use Case for the dmc_view is to TODO Document
+| Common Use Case for the dmc_view is 
 
-TODO Document
+.. code-block:: shell
+
+  python3 dmc_view.main.py -a 45.5 -d 5.6 -b 30.35
+
+| **a**: azimuth angle in degree.
+| **d**: declination angle in degree which is the difference between Real North and Magnetic North.
+| **b**: Bank or the angle of inclination of the object from horizontal axis in degree
+

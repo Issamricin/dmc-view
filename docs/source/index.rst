@@ -1,7 +1,7 @@
 Welcome to DMC View  documentation!
 =========================================================================================
 
-.. include:: ../README.rst
+.. include:: ../../README.rst
 
 
 .. toctree::
@@ -12,6 +12,7 @@ Welcome to DMC View  documentation!
    contents/20_why_this_package
    contents/30_usage
    contents/40_modules
+   contents/50_api
 
 
 Indices and tables
