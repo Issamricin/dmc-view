@@ -1,7 +1,12 @@
 API
 ===
 
-.. autosummary::
-   :toctree: generated
+dmc_view objects
+~~~~~~~~~~~~~~~~
 
-   dmc_view
+register
+--------
+
+.. automodule:: dmc_view.compass
+   :members:
+   :exclude-members:
