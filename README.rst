@@ -14,7 +14,8 @@ Digital Magnatic Compass View
 | **PyPI:** https://pypi.org/project/dmc-view/
 | **CI:** https://github.com/alanmehio/dmc-view/actions/
   
-
+| 
+| 
 | |dmc_image|
 
 Features
