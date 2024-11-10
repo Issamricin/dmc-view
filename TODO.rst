@@ -14,12 +14,20 @@ Adding X, Y and Z acceleration:
 -------------------------------
 We need to add and view the 3 axis-es acceleration data to be viewed and displayed
 
-Device Manufactures:
---------------------
+Device Manufactures Common Interface(API):
+------------------------------------------
 The application should work in a plug and play manner. Any device manufacturer should be able to 
 plug the device via USB (RS-232 or RS-485) serial communication. The application should be able to have different 
 parser implementation for difference device manufacturers. It helps the autonomous car to test the device before 
 embedding it into their products. Different parsing implementation upon reading from serial port. Common interface to extract the data from different device manufacturers  
+
+Device Manufactures Details DMC Product Information:
+----------------------------------------------------
+1. A  hyberlink list of DMC product in the market for 2D and 3D.
+2. Detail price and features 
+3. User manual
+4. Reference implementation in Python  if exist 
+5. Direct sales contact information
 
 .. |done| image::  https://img.shields.io/badge/DONE-green
             :alt: DONE
