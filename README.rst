@@ -23,9 +23,10 @@ Features
 
 1. **dmc_view** `python package`
 
-   a. View Object Azimuth and Inclindation; also View Declination(Offset from real North)  **Create Feature**
-   b. Circule view animation  **Nice Feature**
+   a. View Object Azimuth, Inclindation(Elevation) and Bank; also View Declination(Offset from real North)  
+   b. View animation to reflect real DMC device in 2D. Acceleration is not implemented yet 
 2. Tested against Linux(ubuntu-latest) `platforms` and `python` 3.12.3
+3. See `TODO <TODO.rst\_>`__.
 
 
 Development
@@ -232,3 +233,4 @@ License
 
 
 .. |dmc_image| image:: dmc-view.png
+               :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimentional acceleration
