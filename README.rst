@@ -13,9 +13,9 @@ Digital Magnatic Compass View
 | **Docs:** https://dmc-view.readthedocs.io/en/main/
 | **PyPI:** https://pypi.org/project/dmc-view/
 | **CI:** https://github.com/alanmehio/dmc-view/actions/
+  
 
-
-.. image:: dmc-view.ping
+| |dmc_image|
 
 Features
 ========
@@ -228,3 +228,6 @@ License
 .. |tech-debt| image:: https://img.shields.io/codeclimate/tech-debt/alanmehio/dmc-view
     :alt: Technical Debt
     :target: https://codeclimate.com/github/alanmehio/dmc-view
+
+
+.. |dmc_image| image:: dmc-view.png
