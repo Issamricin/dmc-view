@@ -38,7 +38,7 @@ Running the Simulation
 | The simulation  execution gives you a real device feeling 
 
 .. code-block:: shell
-  python3 dmc_view.simulation.py 
+  python3 dmc_view.simulation.py
 
 **Ctrl + C** to terminate the execution since the simulation will run for infinite time  
 
