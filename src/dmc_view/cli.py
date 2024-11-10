@@ -1,9 +1,10 @@
+""" The command line interace (CLI) parser """
 from compass import Compass
 from PySide6.QtWidgets import QApplication
 from argparse import ArgumentParser , Namespace
 
 
-def get_float_input(
+def get_float_input(    
     prompt: str, 
     default: float
     ) -> float:
@@ -12,17 +13,15 @@ def get_float_input(
 
     Prompts the user to enter the angle for azimuth, declination, rotation, and bank.
 
-    Parameters
-    ----------
-    prompt : str
-        The desired question for the user to indicate which angle is required.
-    default : float
-        The default value of the angle if the user does not enter a value.
+    Args:
+        prompt (str) : The desired question for the user to indicate which angle is required.
+        default (float) : The default value of the angle if the user does not enter a value.
+        
+    Return: 
+        float: the parsed string as float is returned
 
-    Raises
-    ------
-    ValueError
-        If the user's input is not a numerical value.
+    Raises:
+        ValueError: If the user's input is not a numerical value.
     """
 
 
@@ -35,7 +34,7 @@ def get_float_input(
 
 
 
-def main():
+def main()-> None:
     """
     This is the main function that executes the program.
     
@@ -51,9 +50,8 @@ def main():
     -b : float
         Bank angle at the longitudinal and horizontal axis.
     
-    Examples
-    --------
-    >>> python3 main.py -a 45 -d 20 -b 2
+    Examples:
+        >>> python3 cli.py -a 45 -d 20 -b 2
     """
 
 

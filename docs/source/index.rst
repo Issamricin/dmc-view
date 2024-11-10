@@ -9,10 +9,9 @@ Welcome to DMC View  documentation!
    :caption: Contents:
 
    contents/10_introduction
-   contents/20_why_this_package
-   contents/30_usage
-   contents/40_modules
-   contents/50_api
+   contents/20_usage
+   contents/30_modules
+   contents/40_api
 
 
 Indices and tables
