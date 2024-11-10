@@ -15,6 +15,8 @@ Digital Magnatic Compass View
 | **CI:** https://github.com/alanmehio/dmc-view/actions/
 
 
+.. image:: dmc-view.ping
+
 Features
 ========
 
