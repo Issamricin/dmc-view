@@ -2,7 +2,6 @@
 Development
 ===========
 
-| Get started: 
 | Insall `pip` 
  
 .. code-block:: shell
@@ -10,13 +9,13 @@ Development
     python3 -m pip install 
 
 
-Install `Pyside6` 
+| Install `Pyside6` 
 
 .. code-block:: shell
 
     pip install  PySide6
 
-Install `tox` 
+| Install `tox` 
 
 .. code-block:: shell
 
@@ -38,7 +37,7 @@ Testing, Documentation Building, Scripts, CI/CD, Static Code Analysis for this p
 1. **Test Suite**, using `pytest`_, located in `tests` dir
 2. **Parallel Execution** of Unit Tests, on multiple cpu's
 3. **Documentation Pages**, hosted on `readthedocs` server, located in `docs` dir
-4. **CI/CD Pipeline**, running on `Github Actions`_, defined in `.github/`
+4. **CI(Continuous Integration)/CD(Continuous Delivery) Pipeline**, running on `Github Actions`, defined in `.github/`
 
    a. **Test Job Matrix**, spanning different `platform`'s and `python version`'s
 
@@ -53,7 +52,7 @@ Testing, Documentation Building, Scripts, CI/CD, Static Code Analysis for this p
       
       `Staging`
 
-         1. **Python Distristribution** to `test.pypi.org`_, on "pre-release" `tags` **v*-rc**, pushed to `release` branch
+         3. **Python Distristribution** to `test.pypi.org`_, on "pre-release" `tags` **v*-rc**, pushed to `release` branch
 
    c. **Configurable Policies** for `Docker`, and `Static Code Analysis` Workflows
 5. **Automation**, using `tox`_, driven by single `tox.ini` file

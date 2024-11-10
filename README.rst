@@ -143,5 +143,9 @@ License
     :target: https://codeclimate.com/github/alanmehio/dmc-view
 
 
+
+
+
+.. Local Image 
 .. |dmc_image| image:: dmc-view.png
                :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimentional acceleration
