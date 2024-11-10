@@ -35,19 +35,7 @@ Development
 
 Quickstart
 ==========
-
-Using `pip` is the approved way for installing `dmc_view`.
-
-.. code-block:: sh
-
-    python3 -m pip install dmc_view
-
-.. code-block:: sh
-
-    command to run ?????
-
-
-
+| See 'Usage <docs/source/contents/20_usage.rst>'_.
 
 
 License

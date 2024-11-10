@@ -32,3 +32,14 @@ Simple Use Case
 | **d**: declination angle in degree which is the difference between Real North and Magnetic North.
 | **b**: Bank or the angle of inclination of the object from horizontal axis in degree
 
+----------------------
+Running the Simulation
+----------------------
+| The simulation  execution gives you a real device feeling 
+
+.. code-block:: shell
+  python3 dmc_view.simulation.py 
+
+**Ctrl + C** to terminate the execution since the simulation will run for infinite time  
+
+
