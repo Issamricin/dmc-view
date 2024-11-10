@@ -26,7 +26,7 @@ Features
    a. View Object Azimuth, Inclindation(Elevation) and Bank; also View Declination(Offset from real North)  
    b. View animation to reflect real DMC device in 2D. Acceleration is not implemented yet 
 2. Tested against Linux(ubuntu-latest) `platforms` and `python` 3.12.3
-3. See `TODO <TODO.rst\_>`__.
+3. See `TODO <TODO.rst\_>`_.
 
 
 Development
