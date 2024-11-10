@@ -35,7 +35,7 @@ Development
 
 Quickstart
 ==========
-| See 'Usage <docs/source/contents/20_usage.rst>'_.
+| See `Usage <docs/source/contents/20_usage.rst>`_.
 
 
 License
