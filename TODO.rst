@@ -1,9 +1,9 @@
 TODO LIST
 =========
 
-Device Simulator
+Device Simulator(|done|)
 ------------------------
-| |done|
+| 
 | We need to build a simulator which sends a constant value for the declination(the difference between real north and magnetic north). The azimuth, inclination and bank should be repeated across a small range as below:
 | Azimuth: [45.5, 46.5,47.0, 47.5, 48.0, 48.5] with delay timer of 100 Millisecond
 | Inclination Angle: [60,60.5,61.0,61.5,62.0] with  delay time of 200 Millisecond
