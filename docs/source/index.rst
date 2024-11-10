@@ -1,14 +1,12 @@
-Welcome to DMC View  documentation!
-=========================================================================================
-
-.. include:: ../../README.rst
+Welcome to DMC  View  documentation!
+====================================
 
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   contents/10_introduction
+   contents/10_development
    contents/20_usage
    contents/30_modules
    contents/40_api

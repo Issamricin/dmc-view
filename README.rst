@@ -31,6 +31,7 @@ Features
 
 Development
 -----------
+| See `Development <docs/source/content/10_development.rst>`_.
 
 | Get started: 
 | Insall `pip` 
