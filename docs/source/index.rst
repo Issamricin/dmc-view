@@ -9,7 +9,6 @@ Welcome to DMC  View  documentation!
    contents/10_development
    contents/20_usage
    contents/30_modules
-   contents/40_api
 
 
 Indices and tables

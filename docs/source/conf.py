@@ -40,7 +40,7 @@ def get_templated_vars():
 variables = get_templated_vars()
 
 # Add package to PYTHONPATH
-sys.path.insert(0, os.path.abspath(os.path.join('..', 'src', variables.package_name)))
+sys.path.insert(0, os.path.abspath(os.path.join('../..', 'src', variables.package_name)))
 
 
 # -- Project information -----------------------------------------------------
