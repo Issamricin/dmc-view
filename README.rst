@@ -31,11 +31,11 @@ Features
 
 Development
 -----------
-| See `Development <docs/source/contents/10_development.rst>`_.
+| See `Development <docs/source/contents/development.rst>`_.
 
 Quickstart
 ==========
-| See `Usage <docs/source/contents/20_usage.rst>`_.
+| See `Usage <docs/source/contents/usage.rst>`_.
 
 
 License
