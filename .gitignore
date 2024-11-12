@@ -31,4 +31,5 @@ pydoer-graphs/
 # pin-deps generated file 
 reqs.txt
 # auto-generated Sphinx api docs
-docs/build
+.docs
+docs/html

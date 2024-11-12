@@ -19,6 +19,13 @@ class Compass(QWidget):
         self.start_animation_timer()
 
     def resizeEvent(self, event: QResizeEvent) -> None:
+        """
+        triggers when screen resize happens
+        
+        Args:
+            event (QResizeEvent) : The QT size event
+        
+        """ 
 
         self.create_static_pixmap()
         super().resizeEvent(event)

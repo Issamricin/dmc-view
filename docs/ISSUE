@@ -1,0 +1,4 @@
+1- module for simulator and cli not found; needs to be fixed
+2- python api documentation does not show
+3- Only dmv_view.compass module which works without the api document 
+
