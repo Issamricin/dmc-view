@@ -30,3 +30,6 @@ pydoer-graphs/
 .venv/
 # pin-deps generated file 
 reqs.txt
+# auto-generated Sphinx api docs
+.docs
+docs/html

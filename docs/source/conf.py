@@ -18,7 +18,8 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here
 import os
-import sys
+#sys.path.insert(0, os.path.abspath(os.path.join('../..', 'src', variables.package_name)))
+
 
 
 def get_templated_vars():
@@ -28,7 +29,7 @@ def get_templated_vars():
         dict(
             project_slug='dmc-view',
             package_name='dmc_view',
-            author_name='Alan Mehio',
+            author_name='Holm Consulting',
             year='2024',
             version='0.0.1',
             github_username='alanmehio',
@@ -39,8 +40,7 @@ def get_templated_vars():
 
 variables = get_templated_vars()
 
-# Add package to PYTHONPATH
-sys.path.insert(0, os.path.abspath(os.path.join('..', 'src', variables.package_name)))
+
 
 
 # -- Project information -----------------------------------------------------
@@ -69,9 +69,10 @@ extensions = [
     'sphinx.ext.extlinks',  # External Links Configuration: Dynamic Urls
     'sphinx.ext.ifconfig',
     'sphinx.ext.napoleon',  # Allow parsing of docstrings using Google format
-    'sphinx.ext.todo',
+    'sphinx.ext.todo', # Support for todo items see  https://www.sphinx-doc.org/en/master/usage/extensions/todo.html
     'sphinx.ext.viewcode',
-    'sphinxcontrib.spelling',
+    'sphinxcontrib.spelling', # https://sphinxcontrib-spelling.readthedocs.io/en/latest/
+    'sphinx.ext.duration',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -111,7 +112,7 @@ if not on_rtd:  # only set the theme if we're building docs locally
 
 # Mapping of link identifiers/keys to:
 # 2-length tuples with 1st item the url and 2nd the prefix (the "text string")
-# You can add etries here, according to your use case(s).
+# You can add retries here, according to your use case(s).
 extlinks = {
     'issue': (
         'https://github.com/{username}/{repository}/issues/'.format(

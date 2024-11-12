@@ -41,8 +41,8 @@ env:
   PUBLISH_ON_PYPI: "true"
   DOCS_ON: "true"
   DRAW_DEPENDENCIES: "true"
+  
   ###############################
-ß
   ### DOCKER Job Policy ####
   # Override Docker Policy-dependent decision-making and
   # Accept any ALL (branch/build) to Publish to Dockerhub
