@@ -15,3 +15,12 @@
 # These owners will be the default owners for everything in the repo.
 * @alanmehio @Issamricin
 
+# To protect a repository fully against unauthorized changes, 
+# you also need to define an owner for the CODEOWNERS file itself. 
+# The most secure method is to define a CODEOWNERS file in the .github directory of the repository 
+# and define the repository owner as the owner of either the CODEOWNERS file (/.github/CODEOWNERS @owner_
+# username) or the whole directory (/.github/ @owner_username).
+/.github/ @alanmehio
+
+
+
