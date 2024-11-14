@@ -30,11 +30,11 @@ Features
 
 Change Log
 ==========
- `Change Log <CHANGELOG.rst>`_
+ `Change Log <CHANGELOG.rst>`_.
 
- How to Contribute
- =================
- `Contribute <CONTRIBUTE.md>`_
+How to Contribute
+=================
+ `Contribute <CONTRIBUTING.md>`_.
 
 Development
 ===========
