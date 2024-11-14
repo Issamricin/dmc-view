@@ -28,14 +28,21 @@ Features
 2. Tested against Linux(ubuntu-latest) `platforms` and `python` 3.12.3
 3. See `TODO <TODO.rst>`_.
 
+Change Log
+==========
+ `Change Log <CHANGELOG.rst>`_
+
+ How to Contribute
+ =================
+ `Contribute <CONTRIBUTE.md>`_
 
 Development
------------
-| See `Development <docs/source/contents/development.rst>`_.
+===========
+| `Development <docs/source/contents/development.rst>`_
 
 Quickstart
 ==========
-| See `Usage <docs/source/contents/usage.rst>`_.
+| `Usage <docs/source/contents/usage.rst>`_
 
 
 License
