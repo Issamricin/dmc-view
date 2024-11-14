@@ -26,6 +26,3 @@ RUN apt-get update && \
 
 COPY . .
 RUN pip install --no-cache-dir --user .
-
-
-CMD [ "dmc-view" ]

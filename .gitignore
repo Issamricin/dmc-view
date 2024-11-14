@@ -23,5 +23,12 @@ uml-diagrams/
 pydoer-graphs/
 
 # LOGS
-
-cookie-py.log
+*.log
+# LOCK files
+*.lock
+# VSC local env
+.venv/
+# pin-deps generated file 
+reqs.txt
+# auto-generated Sphinx api docs
+.docs

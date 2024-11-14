@@ -2,10 +2,10 @@
 Changelog
 =========
 
-0.0.1 (2024-08-02)
+0.0.1 (2024-08-04)
 =======================================
 
-| This is the first ever release of the **dmc_viewr** Python Package.
+| This is the first ever release of the **dmc_view** Python Package.
 | The package is open source and is part of the **DMC View** Project.
 | The project is hosted in a public repository on github at https://github.com/alanmehio/dmc-view
 | The project was scaffolded using the `Cookiecutter Python Package`_ (cookiecutter) Template at https://github.com/boromir674/cookiecutter-python-package/tree/master/src/cookiecutter_python

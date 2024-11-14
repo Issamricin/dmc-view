@@ -1,0 +1,3 @@
+#A MANIFEST.in is needed when you need to package additional files that are not automatically included in a source distribution. 
+# see example https://github.com/antarctica/PolarRoute/blob/main/MANIFEST.in
+# https://github.com/pypa/sampleproject/blob/3a836905fbd687af334db16b16c37cf51dcbc99c/MANIFEST.in
