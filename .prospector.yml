@@ -1,4 +1,5 @@
 # output-format: json
+# see https://prospector.landscape.io/en/master/
 
 strictness: high
 test-warnings: true

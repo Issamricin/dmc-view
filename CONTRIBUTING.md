@@ -230,7 +230,7 @@ For other issues: encourage friendly discussion, moderate debate, offer your tho
 
 ### Process: Roadmap
 
-The roadmap located [here](https://github.com/alanmehio/dmc-view/milestones?direction=desc&sort=due_date&state=open)
+The roadmap(issues) located [here](https://github.com/alanmehio/dmc-view/issues)
 
 Due dates are flexible.
 
