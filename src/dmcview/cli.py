@@ -1,5 +1,5 @@
-""" The command line interace (CLI) parser """
-from compass import Compass
+""" The command line interface (CLI) parser """
+from .compass import Compass
 from PySide6.QtWidgets import QApplication
 from argparse import ArgumentParser , Namespace
 

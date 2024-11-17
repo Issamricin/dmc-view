@@ -1,13 +1,13 @@
-dmc\_view package
-=================
+dmcview package
+===============
 
 Submodules
 ----------
 
 
 
-dmc\_view.compass module
-------------------------
+dmcview.compass module
+----------------------
 
 .. automodule:: dmcview.compass
    :members:
