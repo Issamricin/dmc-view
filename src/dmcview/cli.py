@@ -1,5 +1,5 @@
-""" The command line interace (CLI) parser """
-from compass import Compass
+""" The command line interface (CLI) parser """
+from dmcview.compass import Compass
 from PySide6.QtWidgets import QApplication
 from argparse import ArgumentParser , Namespace
 
@@ -55,7 +55,7 @@ def main()-> None:
     """
 
 
-    parser = ArgumentParser(description="DMC_view Command Line Interface")
+    parser = ArgumentParser(description="dmcview Command Line Interface")
 
 
 

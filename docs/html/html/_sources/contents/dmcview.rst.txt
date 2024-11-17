@@ -1,15 +1,15 @@
-dmc\_view package
-=================
+dmcview package
+===============
 
 Submodules
 ----------
 
 
 
-dmc\_view.compass module
-------------------------
+dmcview.compass module
+----------------------
 
-.. automodule:: dmc_view.compass
+.. automodule:: dmcview.compass
    :members:
    :undoc-members:
    :show-inheritance:
@@ -19,7 +19,7 @@ dmc\_view.compass module
 Module contents
 ---------------
 
-.. automodule:: dmc_view
+.. automodule:: dmcview
    :members:
    :undoc-members:
    :show-inheritance:
