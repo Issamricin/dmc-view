@@ -2,7 +2,7 @@
 #
 [run]
 source =
-    dmc_view
+    dmcview
     tests
 
 [report]

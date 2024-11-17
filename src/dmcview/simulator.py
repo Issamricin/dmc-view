@@ -21,7 +21,7 @@ class SimulatorRunner(QRunnable):
             azimuth = randrange(30,40,1)
             inclination = randrange(20,35,1)
             bank = randrange(30, 45, 1)
-            print("Azimuth:{0}; Inclination(Elevation):{1}; Bank(Rotation:{2}".format(azimuth,inclination,bank))
+            print("Azimuth:{0}; Inclination(Elevation):{1}; Bank(Rotation):{2}".format(azimuth,inclination,bank))
             self.signal.result.emit(str(azimuth), str(inclination),str(bank))
             time.sleep(2)# two seconds
     

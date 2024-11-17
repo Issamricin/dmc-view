@@ -21,7 +21,7 @@ Digital Magnatic Compass View
 Features
 ========
 
-1. **dmc_view** `python package`
+1. **dmcview** `python package`
 
    a. View Object Azimuth, Inclindation(Elevation) and Bank; also View Declination(Offset from real North)  
    b. View animation to reflect real DMC device in 2D. Acceleration is not implemented yet 
@@ -89,7 +89,7 @@ License
 
 .. PyPI
 
-.. |release_version| image:: https://img.shields.io/pypi/v/dmc_view
+.. |release_version| image:: https://img.shields.io/pypi/v/dmcview
     :alt: Production Version
     :target: https://pypi.org/project/dmc-view/
 
@@ -143,4 +143,4 @@ License
 
 .. Local Image 
 .. |dmc_image| image:: dmc-view.png
-               :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimentional acceleration
+               :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimensions acceleration

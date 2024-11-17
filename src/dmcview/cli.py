@@ -55,7 +55,7 @@ def main()-> None:
     """
 
 
-    parser = ArgumentParser(description="DMC_view Command Line Interface")
+    parser = ArgumentParser(description="dmcview Command Line Interface")
 
 
 

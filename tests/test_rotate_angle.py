@@ -1,7 +1,7 @@
 # Testing rotate_angle() method from compass.py
 
 import pytest
-from dmc_view.compass import Compass
+from dmcview.compass import Compass
 
 @pytest.fixture
 def compass(qtbot):  # qtbot is provided by pytest-qt
