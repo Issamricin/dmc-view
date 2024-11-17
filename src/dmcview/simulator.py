@@ -1,4 +1,4 @@
-from .compass import Compass
+from dmcview.compass import Compass
 from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import (QObject, QRunnable, Slot, Signal, QThreadPool)
 from random import randrange
