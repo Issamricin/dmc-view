@@ -9,7 +9,7 @@ Submodules
 dmc\_view.compass module
 ------------------------
 
-.. automodule:: dmc_view.compass
+.. automodule:: dmcview.compass
    :members:
    :undoc-members:
    :show-inheritance:
@@ -19,7 +19,7 @@ dmc\_view.compass module
 Module contents
 ---------------
 
-.. automodule:: dmc_view
+.. automodule:: dmcview
    :members:
    :undoc-members:
    :show-inheritance:

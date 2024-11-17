@@ -1,7 +1,7 @@
-dmc_view
+dmcview
 ========
 
 .. toctree::
    :maxdepth: 4
 
-   dmc_view
+   dmcview
