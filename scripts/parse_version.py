@@ -22,7 +22,7 @@ MatchData = t.Union[
 
 
 DEMO_SECTION: str = (
-    "[tool.software-release]\nversion_variable = " "src/package_name/__init__.py:__version__"
+    "[tool.software-release]\nversion_variable = " "src/dmcview/__init__.py:__version__"
 )
 TOML = 'pyproject.toml'
 
