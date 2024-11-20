@@ -4,7 +4,7 @@
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-# Poetry
+# Poetry see https://python-poetry.org/docs/pyproject/
 
 # Information required for building (sdist/wheel)
 ## Also renders on pypi as 'subtitle'
@@ -12,8 +12,8 @@ build-backend = "poetry.core.masonry.api"
 name = "dmcview"
 version = "0.0.1"
 description = "Digital Magnatic Compass View"
-authors = ["Alan Mehio <alan.mehio@gmail.com>"]
-maintainers = ["Alan Mehio <alan.mehio@gmail.com>"]
+authors = ["Alan Mehio <alan.mehio@gmail.com>", "Iso"]
+maintainers = ["Alan Mehio <alan.mehio@gmail.com>","Iso"]
 license = "AGPL-3.0-only"
 readme = "README.rst"
 
@@ -22,28 +22,27 @@ repository = "https://github.com/alanmehio/dmc-view"
 documentation = "https://dmc-view.readthedocs.io/"
 
 keywords = [
-    "python package",
+    "digital Magnatic view", "dmc",
 ]
+
+# Troves classifer see https://pypi.org/classifiers/
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "Intended Audience :: Developers",
+    "Intended Audience :: Device Manufacturer",
     "Intended Audience :: End Users/Desktop",
-    "Intended Audience :: Science/Research",
     "License :: OSI Approved :: GNU Affero General Public License v3",
     "Natural Language :: English",
     "Operating System :: Unix",
     "Operating System :: POSIX :: Linux",
     "Operating System :: MacOS",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
-    "Topic :: Software Development",
-    "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: System :: Software Distribution",
-    "Typing :: Typed"
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Desktop Environment",
 ]
 
 packages = [
@@ -89,21 +88,6 @@ exclude = [
 "Code of Conduct" = "https://github.com/alanmehio/dmc-view/blob/master/CONTRIBUTING.rst"
 
 
-# Caret requirements allow SemVer compatible updates to a specified version. An update is allowed if the new version number does not modify the left-most non-zero digit in the major, minor, patch grouping. For instance, if we previously ran poetry add requests@^2.13.0 and wanted to update the library and ran poetry update requests, poetry would update us to version 2.14.0 if it was available, but would not update us to 3.0.0. If instead we had specified the version string as ^0.1.13, poetry would update to 0.1.14 but not 0.2.0. 0.0.x is not considered compatible with any other version.
-# REQUIREMENT  VERSIONS ALLOWED
-# ^1.2.3	   >=1.2.3 <2.0.0
-# ^1.2	       >=1.2.0 <2.0.0
-# ^1	       >=1.0.0 <2.0.0
-# ^0.2.3	   >=0.2.3 <0.3.0
-# ^0.0.3	   >=0.0.3 <0.0.4
-# ^0.0	       >=0.0.0 <0.1.0
-# ^0	       >=0.0.0 <1.0.0
-# "~" is the more conservative compared to "^"
-# Tilde requirements specify a minimal version with some ability to update. If you specify a major, minor, and patch version or only a major and minor version, only patch-level changes are allowed. If you only specify a major version, then minor- and patch-level changes are allowed.
-# REQUIREMENT  VERSIONS ALLOWED
-# ~1.2.3	   >=1.2.3 <1.3.0
-# ~1.2	       >=1.2.0 <1.3.0
-# ~1	       >=1.0.0 <2.0.0
 
 
 ### Dependency Constraints, aka Requirements ###
@@ -171,12 +155,19 @@ docslive = [
     "sphinx-autobuild",
 ]
 
-[tool.poetry.plugins."poetry.application.plugin"]
-export = "poetry_plugin_export.plugins:ExportApplicationPlugin"
+[tool.poetry.scripts]
+ cli = 'dmcview.cli:main'
 
+
+##########
 # TOOLS
+##########
+
+# see  https://docs.pytest.org/en/stable/reference/customize.html (pyproject.toml)
+# QT fixutre see https://pytest-qt.readthedocs.io/en/latest/intro.html
 [tool.pytest.ini_options]
 minversion = "6.2"
+qt_api="pyqt5"
 addopts = "--strict-markers"
 markers = [
     "slow: Marks a slow test",
@@ -191,20 +182,24 @@ explicit-only = [
     "network_bound",
 ]
 
+# see https://black.readthedocs.io/en/stable/  code format with max line 95
 [tool.black]
 line-length = 95
 include = '\.pyi?$'
 extend-exclude = '''
 '''
 
+# see https://pycqa.github.io/isort/index.html arrange the import in right order 
 [tool.isort]
 profile = 'black'
 
+# see https://bandit.readthedocs.io/en/latest/ ( check for security volubility
 [tool.bandit]
 tests = []
 skips = [
     "B101",
 ]
 
+# see scripts/parse_version.py 
 [tool.software-release]
 version_variable = "src/dmcview/__init__.py:__version__"
