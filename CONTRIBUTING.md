@@ -21,6 +21,8 @@ Report bugs at [https://github.com/alanmehio/dmc-view/issues](https://github.com
 W
 Stambling upon a Bug means encountering different behaviour than the expected/advertised one. When you are reporting a bug, please include the following infromation by filling in [the template](https://github.com/alanmehio/dmc-view/.github/blob/master/.github/ISSUE_TEMPLATE/bug_report.md).
 
+`Change Log <.github/ISSUE_TEMPLATE/bug_report.md>`_.
+
 * Your operating system name and version.
 * Any details about your local setup that might be helpful in troubleshooting.
 * If you can, provide detailed steps to reproduce the bug.
