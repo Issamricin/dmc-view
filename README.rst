@@ -14,8 +14,8 @@ Digital Magnatic Compass View
 | **PyPI:** https://pypi.org/project/dmc-view/
 | **CI:** https://github.com/alanmehio/dmc-view/actions/
   
-| 
-| 
+|
+|
 | |dmc_image|
 
 Features
@@ -139,8 +139,9 @@ License
 
 
 
+.. Local linux command: CTRL+Shift+Alt+R key 
 
-
-.. Local Image 
-.. |dmc_image| image:: dmc-view.png
-               :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimensions acceleration
+.. Local Image and YouTube Vedio as link
+.. |dmc_image| image:: ./media/dmc-view.png
+                :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimensions acceleration
+                :target: https://youtu.be/cSs83sqnzxg 
