@@ -242,6 +242,10 @@ class Compass(QWidget):
             painter, center, radius, self.current_angle, self.current_declination
         )
 
+        self.draw_azimuth(
+            painter, center, radius, self.current_angle
+        )
+
     def draw_rotating_magnetic_north(
         self,
         painter: QPainter,
@@ -306,6 +310,73 @@ class Compass(QWidget):
             painter.drawText(QPointF(midPoint_x + 50,midPoint_y + 1 ),label) # +7 so it is not touching with the arc
         else:
             painter.drawText(QPointF(midPoint_x - 100,midPoint_y ),label) # -90 so it is not touching the circle
+
+    def draw_azimuth(
+        self,
+        painter: QPainter,
+        center: QPointF,
+        radius: int,
+        compass_angle: float,
+    ) -> None:
+        
+        dark_orange = QColor(183,65,14)
+
+        painter.setBrush(dark_orange)
+        painter.setPen(QPen(dark_orange, 2))
+
+        final_angle = compass_angle % 360
+        rad_angle = math.radians(final_angle - 90)  # -90 to align correctly
+
+        marker_x = center.x() + (radius -20) * math.cos(rad_angle)
+        marker_y = center.y() + (radius -20) * math.sin(rad_angle)
+
+        marker_size = 10
+        magnetic_marker = QPolygonF(
+            [
+                QPointF(marker_x - marker_size / 2, marker_y),
+                QPointF(marker_x + marker_size / 2, marker_y),
+                QPointF(marker_x, marker_y - marker_size),
+            ]
+        )
+
+        painter.drawPolygon(magnetic_marker)
+
+        painter.resetTransform()
+
+        
+        pen = QPen(dark_orange,1,Qt.DashLine) 
+        painter.setPen(pen)
+
+        arc_radius = radius - 20
+
+        rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
+
+        startAngle = 90 * 16 
+
+        if(self.current_angle>180):
+            spanAngle = (360 - self.current_angle)  * 16 
+        else: 
+            spanAngle = -self.current_angle * 16 # angle in 1/16th degree expected by Qt
+
+    
+        painter.drawArc(rect, int(startAngle), int(spanAngle))
+
+
+        midPointAngel = startAngle + spanAngle / 2
+        AngelRad = math.radians(midPointAngel/16)
+
+        midPoint_x = center.x() + arc_radius * math.cos(AngelRad)
+        midPoint_y = center.y() - arc_radius * math.sin(AngelRad)
+
+        label = "azimuth"
+
+        if self.current_angle == 0: # each side has different alignment 
+            painter.drawText(QPointF(midPoint_x+12,midPoint_y+22),label)
+        elif self.current_angle < 180: # each side has different alignment 
+            painter.drawText(QPointF(midPoint_x-25,midPoint_y+25),label) 
+        else:
+            painter.drawText(QPointF(midPoint_x-10,midPoint_y+25),label)
+
 
     def start_animation_timer(self) -> None:
         self.azimuth_timer = QTimer(self)
