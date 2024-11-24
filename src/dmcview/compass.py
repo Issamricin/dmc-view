@@ -175,7 +175,7 @@ class Compass(QWidget):
         pen = QPen(Qt.black,1,Qt.DashLine) 
         painter.setPen(pen)
 
-        arc2_radius = radius - 100
+        arc2_radius = radius - 120
         rect2 = QRectF(center.x() - arc2_radius,center.y() - arc2_radius, 2 * arc2_radius, 2 * arc2_radius)
         startAngleIncli = 0 *16 # Inclination
 
@@ -281,10 +281,10 @@ class Compass(QWidget):
         compass_angle: float,
     ) -> None:
         
-        dark_orange = QColor(183,65,14)
+        dark_green = QColor(87,108,67)
 
-        painter.setBrush(dark_orange)
-        painter.setPen(QPen(dark_orange, 2))
+        painter.setBrush(dark_green)
+        painter.setPen(QPen(dark_green, 2))
 
         final_angle = compass_angle % 360
         rad_angle = math.radians(final_angle - 90)  # -90 to align correctly
@@ -306,7 +306,7 @@ class Compass(QWidget):
         painter.resetTransform()
 
         
-        pen = QPen(dark_orange,1,Qt.DashLine) 
+        pen = QPen(dark_green,1,Qt.DashLine) 
         painter.setPen(pen)
 
         arc_radius = radius - 20
