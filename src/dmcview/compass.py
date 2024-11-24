@@ -330,7 +330,7 @@ class Compass(QWidget):
         midPoint_x = center.x() + arc_radius * math.cos(AngelRad)
         midPoint_y = center.y() - arc_radius * math.sin(AngelRad)
 
-        label = "azimuth"
+        label = "Azimuth"
 
         if self.current_angle == 0: # each side has different alignment 
             painter.drawText(QPointF(midPoint_x+12,midPoint_y+22),label)
