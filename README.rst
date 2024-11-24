@@ -18,7 +18,7 @@ Digital Magnatic Compass View
 |
 | |dmc_image|
 
- |dmc_gif|
+|dmc_gif|
 
 Features
 ========
@@ -149,5 +149,5 @@ License
                 :target: https://youtu.be/cSs83sqnzxg 
 
 .. |dmc_gif| image:: ./media/simulator.gif
-                :alt: Demo Preview
-                :width::600
+   :alt: Demo Preview
+   :width: 600
