@@ -14,7 +14,7 @@ class Compass(QWidget):
         self.target_angle = 0.0
         self.target_declination = 0.0
         self.current_declination = 0.0
-        self.elevation = 20
+        self.elevation = 0.0
         self.rotation = 0.0
         self.start_animation_timer()
 
