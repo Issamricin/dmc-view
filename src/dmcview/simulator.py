@@ -1,7 +1,7 @@
-from compass import Compass
+from dmcview.compass import Compass
 from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import (QObject, QRunnable, Slot, Signal, QThreadPool)
-from random import randrange
+from random import uniform
 import time
 
 class SimulatorSignal(QObject):
@@ -18,10 +18,10 @@ class SimulatorRunner(QRunnable):
     @Slot()
     def run(self)-> None:
         while True:
-            azimuth = randrange(30,40,1)
-            inclination = randrange(20,35,1)
-            bank = randrange(30, 45, 1)
-            print("Azimuth:{0}; Inclination(Elevation):{1}; Bank(Rotation:{2}".format(azimuth,inclination,bank))
+            azimuth = round(uniform(20.0,40.0),2)
+            inclination = round(uniform(20.0,35.0),2)
+            bank = round(uniform(30.0, 45.0),2)
+            print("Azimuth:{0}; Inclination(Elevation):{1}; Bank(Rotation):{2}".format(azimuth,inclination,bank))
             self.signal.result.emit(str(azimuth), str(inclination),str(bank))
             time.sleep(2)# two seconds
     

@@ -9,26 +9,34 @@ Development
     python3 -m pip install 
 
 
-| Install `Pyside6` 
+| Clone the repository 
 
 .. code-block:: shell
 
-    pip install  PySide6
+    git clone git@github.com:alanmehio/dmc-view.git
+    cd dmc-view
 
-| Install `tox` 
-
-.. code-block:: shell
-
-    pip install  tox
-
-Then, to see all out-of-the-box available `tox` commands:
+| Make the project in edit mode  
 
 .. code-block:: shell
 
-    tox -a
+    pip install -e .
+
+Then, for any changes in the code you can execute it from command line
+
+.. code-block:: shell
+
+    python
     
 
-OR **`tox -av`** for showing `description` of each command
+To run the simulator run the below code from the python interactive 
+
+.. code-block:: shell
+
+    from dmcview.simulator import Simulator
+    simulator = Simulator()
+    simulator.run()
+ 
 
 Development Notes
 ~~~~~~~~~~~~~~~~~

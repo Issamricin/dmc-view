@@ -28,7 +28,7 @@ def get_templated_vars():
         (),
         dict(
             project_slug='dmc-view',
-            package_name='dmc_view',
+            package_name='dmcview',
             author_name='Holm Consulting',
             year='2024',
             version='0.0.1',

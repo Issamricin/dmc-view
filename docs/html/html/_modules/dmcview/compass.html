@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dmc_view.compass &mdash; dmc-view 0.0.1 documentation</title>
+  <title>dmcview.compass &mdash; dmc-view 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
@@ -43,7 +43,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../contents/development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contents/usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contents/modules.html">dmc_view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contents/modules.html">dmcview</a></li>
 </ul>
 
         </div>
@@ -61,7 +61,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">dmc_view.compass</li>
+      <li class="breadcrumb-item active">dmcview.compass</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -70,7 +70,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for dmc_view.compass</h1><div class="highlight"><pre>
+  <h1>Source code for dmcview.compass</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">math</span>
 
 <span class="kn">from</span> <span class="nn">PySide6.QtCore</span> <span class="kn">import</span> <span class="n">QEvent</span><span class="p">,</span> <span class="n">QPointF</span><span class="p">,</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QTimer</span><span class="p">,</span> <span class="n">QRectF</span>
@@ -79,7 +79,7 @@
 
 
 <div class="viewcode-block" id="Compass">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass">[docs]</a>
 <span class="k">class</span> <span class="nc">Compass</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -94,15 +94,22 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">start_animation_timer</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Compass.resizeEvent">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.resizeEvent">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.resizeEvent">[docs]</a>
     <span class="k">def</span> <span class="nf">resizeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QResizeEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        triggers when screen resize happens</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            event (QResizeEvent) : The QT size event</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span> 
 
         <span class="bp">self</span><span class="o">.</span><span class="n">create_static_pixmap</span><span class="p">()</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">resizeEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Compass.create_static_pixmap">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.create_static_pixmap">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.create_static_pixmap">[docs]</a>
     <span class="k">def</span> <span class="nf">create_static_pixmap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">static_pixmap</span> <span class="o">=</span> <span class="n">QPixmap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
@@ -129,7 +136,7 @@
 
 
 <div class="viewcode-block" id="Compass.paintEvent">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.paintEvent">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.paintEvent">[docs]</a>
     <span class="k">def</span> <span class="nf">paintEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">painter</span> <span class="o">=</span> <span class="n">QPainter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">painter</span><span class="o">.</span><span class="n">setRenderHint</span><span class="p">(</span><span class="n">QPainter</span><span class="o">.</span><span class="n">RenderHint</span><span class="o">.</span><span class="n">Antialiasing</span><span class="p">)</span>
@@ -166,7 +173,7 @@
 
 
 <div class="viewcode-block" id="Compass.draw_cardinal_points">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.draw_cardinal_points">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.draw_cardinal_points">[docs]</a>
     <span class="k">def</span> <span class="nf">draw_cardinal_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">:</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">QPointF</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">painter</span><span class="o">.</span><span class="n">setPen</span><span class="p">(</span><span class="n">QPen</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
         <span class="n">font</span> <span class="o">=</span> <span class="n">QFont</span><span class="p">(</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="n">QFont</span><span class="o">.</span><span class="n">Bold</span><span class="p">)</span>
@@ -195,7 +202,7 @@
 
 
 <div class="viewcode-block" id="Compass.draw_lines">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.draw_lines">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.draw_lines">[docs]</a>
     <span class="k">def</span> <span class="nf">draw_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">:</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">QPointF</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="n">painter</span><span class="o">.</span><span class="n">setPen</span><span class="p">(</span><span class="n">QPen</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -221,7 +228,7 @@
 
 
 <div class="viewcode-block" id="Compass.draw_arrow">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.draw_arrow">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.draw_arrow">[docs]</a>
     <span class="k">def</span> <span class="nf">draw_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">:</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">QPointF</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="n">painter</span><span class="o">.</span><span class="n">setBrush</span><span class="p">(</span><span class="n">QBrush</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">red</span><span class="p">))</span>
@@ -329,7 +336,7 @@
 
 
 <div class="viewcode-block" id="Compass.draw_rotating_magnetic_north">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.draw_rotating_magnetic_north">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.draw_rotating_magnetic_north">[docs]</a>
     <span class="k">def</span> <span class="nf">draw_rotating_magnetic_north</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">painter</span><span class="p">:</span> <span class="n">QPainter</span><span class="p">,</span>
@@ -397,7 +404,7 @@
 
 
 <div class="viewcode-block" id="Compass.start_animation_timer">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.start_animation_timer">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.start_animation_timer">[docs]</a>
     <span class="k">def</span> <span class="nf">start_animation_timer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">azimuth_timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">azimuth_timer</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__rotate_angle</span><span class="p">)</span>
@@ -423,13 +430,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Compass.update_angle">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.update_angle">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.update_angle">[docs]</a>
     <span class="k">def</span> <span class="nf">update_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_angle</span> <span class="o">=</span> <span class="n">target_angle</span> <span class="o">%</span> <span class="mi">360</span></div>
 
 
 <div class="viewcode-block" id="Compass.update_declination">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.update_declination">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.update_declination">[docs]</a>
     <span class="k">def</span> <span class="nf">update_declination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_declination</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_declination</span> <span class="o">=</span> <span class="n">target_declination</span> <span class="o">%</span> <span class="mi">360</span></div>
 
@@ -451,21 +458,21 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Compass.set_elevation">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.set_elevation">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.set_elevation">[docs]</a>
     <span class="k">def</span> <span class="nf">set_elevation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elevation</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">elevation</span> <span class="o">=</span> <span class="n">elevation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Compass.set_rotation">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.set_rotation">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.set_rotation">[docs]</a>
     <span class="k">def</span> <span class="nf">set_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">rotation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Compass.draw_red_line">
-<a class="viewcode-back" href="../../contents/dmc_view.html#dmc_view.compass.Compass.draw_red_line">[docs]</a>
+<a class="viewcode-back" href="../../contents/dmcview.html#dmcview.compass.Compass.draw_red_line">[docs]</a>
     <span class="k">def</span> <span class="nf">draw_red_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">:</span> <span class="n">QPainter</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">QPointF</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">painter</span><span class="o">.</span><span class="n">setPen</span><span class="p">(</span><span class="n">QPen</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">red</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 

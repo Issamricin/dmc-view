@@ -1,7 +1,7 @@
 import sys
 
 import pytest
-from dmc_view.cli import get_float_input
+from dmcview.cli import get_float_input
 
 
 def test_get_float_input_with_valid_input(monkeypatch):

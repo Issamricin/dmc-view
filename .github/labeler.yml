@@ -22,8 +22,8 @@ business_logic:
   - any:
     - changed-files:
       - any-glob-to-any-file:
-        - 'src/dmc_view/*'
-        - 'src/dmc_view/*'
+        - 'src/dmcview/*'
+        - 'src/dmcview/*'
 
 stubs:
   - any:
