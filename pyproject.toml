@@ -28,7 +28,7 @@ keywords = [
 # Troves classifer see https://pypi.org/classifiers/
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "Intended Audience :: Device Manufacturer",
+    "Intended Audience :: Manufacturing",
     "Intended Audience :: End Users/Desktop",
     "License :: OSI Approved :: GNU Affero General Public License v3",
     "Natural Language :: English",
