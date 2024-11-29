@@ -15,7 +15,7 @@ description = "Digital Magnatic Compass View"
 authors = ["Iso", "Alan"]
 maintainers = ["Iso","Alan"]
 license = "AGPL-3.0-only"
-readme = "README.rst"
+readme = "https://github.com/alanmehio/dmc-view/blob/main/README.rst"
 
 homepage = "https://github.com/alanmehio/dmc-view"
 repository = "https://github.com/alanmehio/dmc-view"
