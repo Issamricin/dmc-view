@@ -12,8 +12,8 @@ build-backend = "poetry.core.masonry.api"
 name = "dmcview"
 version = "0.0.1"
 description = "Digital Magnatic Compass View"
-authors = ["Alan Mehio <alan.mehio@gmail.com>", "Iso"]
-maintainers = ["Alan Mehio <alan.mehio@gmail.com>","Iso"]
+authors = ["Alan", "Iso"]
+maintainers = ["Alan","Iso"]
 license = "AGPL-3.0-only"
 readme = "README.rst"
 
