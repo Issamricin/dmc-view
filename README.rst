@@ -10,7 +10,7 @@ Digital Magnatic Compass View
 
 |
 | **Code:** https://github.com/alanmehio/dmc-view
-| **Docs:** https://dmc-view.readthedocs.io/en/main/
+| **Docs:** https://dmc-view.readthedocs.io/en/latest/
 | **PyPI:** https://pypi.org/project/dmc-view/
 | **CI:** https://github.com/alanmehio/dmc-view/actions/
   
@@ -28,23 +28,23 @@ Features
    a. View Object Azimuth, Inclindation(Elevation) and Bank; also View Declination(Offset from real North)  
    b. View animation to reflect real DMC device in 2D. Acceleration is not implemented yet 
 2. Tested against Linux(ubuntu-latest) `platforms` and `python` 3.12.3
-3. See `TODO <TODO.rst>`_.
+3. See `TODO <https://github.com/alanmehio/dmc-view/blob/main/TODO.rst>`_.
 
 Change Log
 ==========
- `Change Log <CHANGELOG.rst>`_.
+ `Change Log <https://github.com/alanmehio/dmc-view/blob/main/CHANGELOG.rst>`_.
 
 How to Contribute
 =================
- `Contribute <CONTRIBUTING.md>`_.
+ `Contribute <https://github.com/alanmehio/dmc-view/blob/main/CONTRIBUTING.md>`_.
 
 Development
 ===========
-| `Development <docs/source/contents/development.rst>`_
+| `Development <https://github.com/alanmehio/dmc-view/blob/main/docs/source/contents/development.rst>`_.
 
 Quickstart
 ==========
-| `Usage <docs/source/contents/usage.rst>`_
+| `Usage <https://github.com/alanmehio/dmc-view/blob/main/docs/source/contents/usage.rst>`_.
 
 
 License
@@ -81,7 +81,7 @@ License
 
 .. |docs| image:: https://img.shields.io/readthedocs/dmc-view/main?logo=readthedocs&logoColor=lightblue
     :alt: Read the Docs (version)
-    :target: https://dmc-view.readthedocs.io/en/main/
+    :target: https://dmc-view.readthedocs.io/en/latest/
 
 .. Code Coverage
 
@@ -144,9 +144,9 @@ License
 .. Local linux command: CTRL+Shift+Alt+R key 
 
 .. Local Image and YouTube Vedio as link
-.. |dmc_image| image:: ./media/dmc-view.png
+.. |dmc_image| image:: https://raw.githubusercontent.com/alanmehio/dmc-view/main/media/dmc-view.png
                 :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimensions acceleration
 
-.. |dmc_gif| image:: ./media/simulator.gif
+.. |dmc_gif| image:: https://raw.githubusercontent.com/alanmehio/dmc-view/main/media/simulator.gif
    :alt: Demo Preview
    :width: 600
