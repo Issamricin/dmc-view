@@ -17,9 +17,9 @@ You can contribute in many ways:
 
 ### Report Bugs
 
-Report bugs at [https://github.com/alanmehio/dmc-view/issues](https://github.com/alanmehio/dmc-view/issues).
+Report bugs at [https://github.com/Issamricin/dmc-view/issues](https://github.com/Issamricin/dmc-view/issues).
 
-Stambling upon a Bug means encountering different behaviour than the expected/advertised one. When you are reporting a bug, please include the following infromation by filling in [the template](https://github.com/alanmehio/dmc-view/blob/develop/.github/ISSUE_TEMPLATE/bug_report.md).
+Stambling upon a Bug means encountering different behaviour than the expected/advertised one. When you are reporting a bug, please include the following infromation by filling in [the template](https://github.com/Issamricin/dmc-view/blob/develop/.github/ISSUE_TEMPLATE/bug_report.md).
 
 
 * Your operating system name and version.
@@ -55,7 +55,7 @@ You can open it in your browser at http://127.0.0.1:8000 !
 
 ### Submit Feedback
 
-The best way to send feedback is to file an issue at [https://github.com/alanmehio/dmc-view/issues](https://github.com/alanmehio/dmc-view/issues).
+The best way to send feedback is to file an issue at [https://github.com/Issamricin/dmc-view/issues](https://github.com/Issamricin/dmc-view/issues).
 
 If you are proposing a feature:
 
@@ -71,7 +71,7 @@ Here's how to set up `dmc-view` for local development.
 2. Clone your fork locally:
 
 ```bash
-git clone git@github.com:alanmehio/dmc-view.git
+git clone git@github.com:Issamricin/dmc-view.git
 ```
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenv installed, this is how you set up your fork for local development:
@@ -231,7 +231,7 @@ For other issues: encourage friendly discussion, moderate debate, offer your tho
 
 ### Process: Roadmap
 
-The roadmap(issues) located [here](https://github.com/alanmehio/dmc-view/issues)
+The roadmap(issues) located [here](https://github.com/Issamricin/dmc-view/issues)
 
 Due dates are flexible.
 
