@@ -9,10 +9,10 @@ Digital Magnatic Compass View
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main| |commits_since_latest_github_release|
 
 |
-| **Code:** https://github.com/alanmehio/dmc-view
+| **Code:** https://github.com/Issamricin/dmc-view
 | **Docs:** https://dmc-view.readthedocs.io/en/latest/
 | **PyPI:** https://pypi.org/project/dmc-view/
-| **CI:** https://github.com/alanmehio/dmc-view/actions/
+| **CI:** https://github.com/Issamricin/dmc-view/actions/
   
 |
 |
@@ -28,23 +28,23 @@ Features
    a. View Object Azimuth, Inclindation(Elevation) and Bank; also View Declination(Offset from real North)  
    b. View animation to reflect real DMC device in 2D. Acceleration is not implemented yet 
 2. Tested against Linux(ubuntu-latest) `platforms` and `python` 3.12.3
-3. See `TODO <https://github.com/alanmehio/dmc-view/blob/main/TODO.rst>`_.
+3. See `TODO <https://github.com/Issamricin/dmc-view/blob/main/TODO.rst>`_.
 
 Change Log
 ==========
- `Change Log <https://github.com/alanmehio/dmc-view/blob/main/CHANGELOG.rst>`_.
+ `Change Log <https://github.com/Issamricin/dmc-view/blob/main/CHANGELOG.rst>`_.
 
 How to Contribute
 =================
- `Contribute <https://github.com/alanmehio/dmc-view/blob/main/CONTRIBUTING.md>`_.
+ `Contribute <https://github.com/Issamricin/dmc-view/blob/main/CONTRIBUTING.md>`_.
 
 Development
 ===========
-| `Development <https://github.com/alanmehio/dmc-view/blob/main/docs/source/contents/development.rst>`_.
+| `Development <https://github.com/Issamricin/dmc-view/blob/main/docs/source/contents/development.rst>`_.
 
 Quickstart
 ==========
-| `Usage <https://github.com/alanmehio/dmc-view/blob/main/docs/source/contents/usage.rst>`_.
+| `Usage <https://github.com/Issamricin/dmc-view/blob/main/docs/source/contents/usage.rst>`_.
 
 
 License
@@ -64,7 +64,7 @@ License
 
 .. LINKS
 
-.. _GNU Affero General Public License v3.0: https://github.com/alanmehio/dmc-view/blob/main/LICENSE
+.. _GNU Affero General Public License v3.0: https://github.com/Issamricin/dmc-view/blob/main/LICENSE
 
 
 .. BADGE ALIASES
@@ -72,9 +72,9 @@ License
 .. Build Status
 .. Github Actions: Test Workflow Status for specific branch <branch>
 
-.. |build| image:: https://img.shields.io/github/workflow/status/alanmehio/dmc-view/Test%20Python%20Package/main?label=build&logo=github-actions&logoColor=%233392FF
+.. |build| image:: https://img.shields.io/github/workflow/status/Issamricin/dmc-view/Test%20Python%20Package/main?label=build&logo=github-actions&logoColor=%233392FF
     :alt: GitHub Workflow Status (branch)
-    :target: https://github.com/alanmehio/dmc-view/actions/workflows/test.yaml?query=branch%3Amain
+    :target: https://github.com/Issamricin/dmc-view/actions/workflows/test.yaml?query=branch%3Amain
 
 
 .. Documentation
@@ -85,9 +85,9 @@ License
 
 .. Code Coverage
 
-.. |coverage| image:: https://img.shields.io/codecov/c/github/alanmehio/dmc-view/main?logo=codecov
+.. |coverage| image:: https://img.shields.io/codecov/c/github/Issamricin/dmc-view/main?logo=codecov
     :alt: Codecov
-    :target: https://app.codecov.io/gh/alanmehio/dmc-view
+    :target: https://app.codecov.io/gh/Issamricin/dmc-view
 
 .. PyPI
 
@@ -105,11 +105,11 @@ License
 
 .. Github Releases & Tags
 
-.. |commits_since_specific_tag_on_main| image:: https://img.shields.io/github/commits-since/alanmehio/dmc-view/v0.0.1/main?color=blue&logo=github
+.. |commits_since_specific_tag_on_main| image:: https://img.shields.io/github/commits-since//dmc-view/v0.0.1/main?color=blue&logo=github
     :alt: GitHub commits since tagged version (branch)
-    :target: https://github.com/alanmehio/dmc-view/compare/v0.0.1..main
+    :target: https://github.com/Issamricin/dmc-view/compare/v0.0.1..main
 
-.. |commits_since_latest_github_release| image:: https://img.shields.io/github/commits-since/alanmehio/dmc-view/latest?color=blue&logo=semver&sort=semver
+.. |commits_since_latest_github_release| image:: https://img.shields.io/github/commits-since/Issamricin/dmc-view/latest?color=blue&logo=semver&sort=semver
     :alt: GitHub commits since latest release (by SemVer)
 
 .. LICENSE (eg AGPL, MIT)
@@ -117,7 +117,7 @@ License
 
 .. |gh-lic| image:: https://img.shields.io/badge/license-GNU_Affero-orange
     :alt: GitHub
-    :target: https://github.com/alanmehio/dmc-view/blob/main/LICENSE
+    :target: https://github.com/Issamricin/dmc-view/blob/main/LICENSE
 
 
 .. CODE QUALITY
@@ -131,22 +131,22 @@ License
 .. Code Climate CI
 .. Code maintainability & Technical Debt
 
-.. |maintainability| image:: https://img.shields.io/codeclimate/maintainability/alanmehio/dmc-view
+.. |maintainability| image:: https://img.shields.io/codeclimate/maintainability/Issamricin/dmc-view
     :alt: Code Climate Maintainability
-    :target: https://codeclimate.com/github/alanmehio/dmc-view
+    :target: https://codeclimate.com/github/Issamricin/dmc-view
 
-.. |tech-debt| image:: https://img.shields.io/codeclimate/tech-debt/alanmehio/dmc-view
+.. |tech-debt| image:: https://img.shields.io/codeclimate/tech-debt/Issamricin/dmc-view
     :alt: Technical Debt
-    :target: https://codeclimate.com/github/alanmehio/dmc-view
+    :target: https://codeclimate.com/github/Issamricin/dmc-view
 
 
 
 .. Local linux command: CTRL+Shift+Alt+R key 
 
 .. Local Image and YouTube Vedio as link
-.. |dmc_image| image:: https://raw.githubusercontent.com/alanmehio/dmc-view/main/media/dmc-view.png
+.. |dmc_image| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/main/media/dmc-view.png
                 :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimensions acceleration
 
-.. |dmc_gif| image:: https://raw.githubusercontent.com/alanmehio/dmc-view/main/media/simulator.gif
+.. |dmc_gif| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/main/media/simulator.gif
    :alt: Demo Preview
    :width: 600
