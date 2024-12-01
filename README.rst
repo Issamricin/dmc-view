@@ -30,6 +30,10 @@ Features
 2. Tested against Linux(ubuntu-latest) `platforms` and `python` 3.12.3
 3. See `TODO <https://github.com/Issamricin/dmc-view/blob/main/TODO.rst>`_.
 
+Technical Debt
+==============
+See `Technical Debt <https://github.com/Issamricin/dmc-view/blob/main/TECHNICALDEBT.rst>`_.
+
 Change Log
 ==========
  `Change Log <https://github.com/Issamricin/dmc-view/blob/main/CHANGELOG.rst>`_.
