@@ -32,7 +32,7 @@ Features
 
 Technical Debt
 ==============
-See `Technical Debt <https://github.com/Issamricin/dmc-view/blob/main/TECHNICALDEBT.rst>`_.
+See `Technical Debt <https://github.com/Issamricin/dmc-view/blob/c9ac5ce36a8a22c68eccdcd08d2e364c500c0ece/TECHNICALDEBT.rst>`_.
 
 Change Log
 ==========

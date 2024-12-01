@@ -23,14 +23,13 @@ Implement push rule to protect the master branch from any misuse
 
 
 Populate the test coverage link with the write test coverage report
---------------------------------------------------------------------
+-------------------------------------------------------------------
 The test coverage report should be published upon release on test as well as on production
 
 
- Include python version 313 in tox once it comes up in production
------------------------------------------------------------------
-Once this version comes as production version, we need to include it in
-tox file to be able to be compatible with it 
+Include python version 313 in tox once it comes up in production
+----------------------------------------------------------------
+| Once this version comes as production version, we need to include it in tox file to be able to be compatible with it 
 
 
 .. |done| image::  https://img.shields.io/badge/DONE-green
