@@ -5,7 +5,7 @@ Digital Magnatic Compass View
 .. start-badges
 
 | |build| |release_version| |wheel| |supported_versions|
-| |docs| |coverage| |maintainability| |tech-debt|
+| |docs| |maintainability| |tech-debt|
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main| |commits_since_latest_github_release|
 
 |
@@ -16,7 +16,7 @@ Digital Magnatic Compass View
   
 |
 |
-| |dmc_image|
+|dmc_image|
 
 |dmc_gif|
 
@@ -87,12 +87,6 @@ License
     :alt: Read the Docs (version)
     :target: https://dmc-view.readthedocs.io/en/latest/
 
-.. Code Coverage
-
-.. |coverage| image:: https://img.shields.io/codecov/c/github/Issamricin/dmc-view/main?logo=codecov
-    :alt: Codecov
-    :target: https://app.codecov.io/gh/Issamricin/dmc-view
-
 .. PyPI
 
 .. |release_version| image:: https://img.shields.io/pypi/v/dmcview
@@ -109,7 +103,7 @@ License
 
 .. Github Releases & Tags
 
-.. |commits_since_specific_tag_on_main| image:: https://img.shields.io/github/commits-since//dmc-view/v0.0.1/main?color=blue&logo=github
+.. |commits_since_specific_tag_on_main| image:: https://img.shields.io/github/commits-since/Issamricin/dmc-view/v0.0.1/main?color=blue&logo=github
     :alt: GitHub commits since tagged version (branch)
     :target: https://github.com/Issamricin/dmc-view/compare/v0.0.1..main
 
@@ -122,27 +116,13 @@ License
 .. |gh-lic| image:: https://img.shields.io/badge/license-GNU_Affero-orange
     :alt: GitHub
     :target: https://github.com/Issamricin/dmc-view/blob/main/LICENSE
-
-
-.. CODE QUALITY
+    
 
 .. Ruff linter for Fast Python Linting
 
 .. |ruff| image:: https://img.shields.io/badge/codestyle-ruff-000000.svg
     :alt: Ruff
     :target: https://docs.astral.sh/ruff/
-
-.. Code Climate CI
-.. Code maintainability & Technical Debt
-
-.. |maintainability| image:: https://img.shields.io/codeclimate/maintainability/Issamricin/dmc-view
-    :alt: Code Climate Maintainability
-    :target: https://codeclimate.com/github/Issamricin/dmc-view
-
-.. |tech-debt| image:: https://img.shields.io/codeclimate/tech-debt/Issamricin/dmc-view
-    :alt: Technical Debt
-    :target: https://codeclimate.com/github/Issamricin/dmc-view
-
 
 
 .. Local linux command: CTRL+Shift+Alt+R key 
