@@ -5,7 +5,7 @@ Digital Magnatic Compass View
 .. start-badges
 
 | |build| |release_version| |wheel| |supported_versions|
-| |docs| |maintainability| |tech-debt|
+| |docs|
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main| |commits_since_latest_github_release|
 
 |
@@ -116,7 +116,7 @@ License
 .. |gh-lic| image:: https://img.shields.io/badge/license-GNU_Affero-orange
     :alt: GitHub
     :target: https://github.com/Issamricin/dmc-view/blob/main/LICENSE
-    
+
 
 .. Ruff linter for Fast Python Linting
 
