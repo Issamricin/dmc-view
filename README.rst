@@ -16,7 +16,7 @@ Digital Magnatic Compass View
   
 |
 |
-|dmc_image|
+| |dmc_image|
 
 |dmc_gif|
 
