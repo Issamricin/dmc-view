@@ -92,7 +92,7 @@ exclude = [
 
 ### Dependency Constraints, aka Requirements ###
 [tool.poetry.dependencies]
-python = ">=3.10, <3.13"
+python = ">=3"
 pyside6= ">=6.6.1"
 
 
@@ -124,36 +124,6 @@ module =["PySide6.*"]
 ignore_errors = true
 #disable_error_code = ["syntax"]
 
-### EXTRAS ###
-[tool.poetry.extras]
-test = [
-    "pytest",
-    "pytest-cov",
-    "pytest-explicit",
-    "pytest-xdist",
-]
-typing = [
-    "mypy",
-    "types-requests",
-    "pytest",
-]
-docs = [
-    "sphinx",
-    "sphinx-autodoc-typehints",
-    "sphinx-rtd-theme",
-    "sphinxcontrib-spelling",
-    "sphinx-inline-tabs",
-    "sphinxcontrib-mermaid",
-]
-docslive = [
-    "sphinx",
-    "sphinx-autodoc-typehints",
-    "sphinx-rtd-theme",
-    "sphinxcontrib-spelling",
-    "sphinx-inline-tabs",
-    "sphinxcontrib-mermaid",
-    "sphinx-autobuild",
-]
 
 [tool.poetry.scripts]
  cli = 'dmcview.cli:main'
