@@ -80,12 +80,12 @@ exclude = [
 
 # PyPi url links, that appear in 'Project Links' section
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/dmc-view/issues"
+"Bug Tracker" = "https://github.com/Issamricin/dmc-view/issues"
 "CI: Github Actions" = "https://github.com/Issamricin/dmc-view/actions"
 "Documentation" = "https://dmc-view.readthedocs.io/"
 "Source Code" = "https://github.com/Issamricin/dmc-view"
 "Changelog" = "https://github.com/Issamricin/dmc-view/blob/master/CHANGELOG.rst"
-"Code of Conduct" = "https://github.com/Issamricin/dmc-view/blob/master/CONTRIBUTING.rst"
+"Code of Conduct" = "https://github.com/Issamricin/dmc-view/blob/master/CONTRIBUTING.md"
 
 
 
