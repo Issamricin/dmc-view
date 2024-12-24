@@ -11,7 +11,7 @@ def get_float_input(
     """
     Gets the input from the user using the terminal.
 
-    Prompts the user to enter the angle for azimuth, declination, rotation, and bank.
+    Prompts the user to enter the angle for azimuth, declination, rotation, elevation, and bank.
 
     Args:
         prompt (str) : The desired question for the user to indicate which angle is required.
@@ -83,6 +83,14 @@ def main()-> None:
         default=None, 
         metavar='bank'
     )
+    parser.add_argument(
+        '-e',
+        help='angular height of a point of interest above or below the horizon, in degrees',
+        type=float,
+        nargs='?',
+        default=None, 
+        metavar='bank'
+    )
     
 
     args : Namespace = parser.parse_args()
@@ -90,7 +98,7 @@ def main()-> None:
     azimuth: float = args.a if args.a is not None else get_float_input("Enter the azimuth angle in degrees; for example 40.45",0.0) # azimuth
     declination: float = args.d if args.d is not None else get_float_input("Enter the declination angle in degrees; for example 30.0", 0.0) # declination
     bank: float = args.b if args.b is not None else get_float_input("Enter the bank angle in degrees; for example -7.0", 0.0) # Inclination
-
+    elevation: float = args.e if args.e is not None else get_float_input("Enter the elevation in degrees; for example 25.21",0.0) # elevation
 
     app = QApplication()
     compass = Compass()
@@ -99,6 +107,7 @@ def main()-> None:
     compass.update_declination(declination)  # This is Declination and can be float to two decimal places for example 35.55
     compass.update_angle(azimuth)  # This is Azimuth and can be float to two decimal places for example 35.55
     compass.set_rotation(bank) # This is the Inclination can be floated to two decimal places for example 35.55
+    compass.set_elevation(elevation) # This is the Elevation can be floated to two decimal places for example 25.55
 
     app.exec()
 
