@@ -10,7 +10,7 @@ build-backend = "poetry.core.masonry.api"
 ## Also renders on pypi as 'subtitle'
 [tool.poetry]
 name = "dmcview"
-version = "0.0.4"
+version = "0.0.5"
 description = "Digital Magnatic Compass View"
 authors = ["Iso", "Alan"]
 maintainers = ["Iso","Alan"]
@@ -80,19 +80,19 @@ exclude = [
 
 # PyPi url links, that appear in 'Project Links' section
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/dmc-view/issues"
+"Bug Tracker" = "https://github.com/Issamricin/dmc-view/issues"
 "CI: Github Actions" = "https://github.com/Issamricin/dmc-view/actions"
 "Documentation" = "https://dmc-view.readthedocs.io/"
 "Source Code" = "https://github.com/Issamricin/dmc-view"
 "Changelog" = "https://github.com/Issamricin/dmc-view/blob/master/CHANGELOG.rst"
-"Code of Conduct" = "https://github.com/Issamricin/dmc-view/blob/master/CONTRIBUTING.rst"
+"Code of Conduct" = "https://github.com/Issamricin/dmc-view/blob/master/CONTRIBUTING.md"
 
 
 
 
 ### Dependency Constraints, aka Requirements ###
 [tool.poetry.dependencies]
-python = ">=3.10, <3.13"
+python = ">=3"
 pyside6= ">=6.6.1"
 
 
@@ -124,36 +124,6 @@ module =["PySide6.*"]
 ignore_errors = true
 #disable_error_code = ["syntax"]
 
-### EXTRAS ###
-[tool.poetry.extras]
-test = [
-    "pytest",
-    "pytest-cov",
-    "pytest-explicit",
-    "pytest-xdist",
-]
-typing = [
-    "mypy",
-    "types-requests",
-    "pytest",
-]
-docs = [
-    "sphinx",
-    "sphinx-autodoc-typehints",
-    "sphinx-rtd-theme",
-    "sphinxcontrib-spelling",
-    "sphinx-inline-tabs",
-    "sphinxcontrib-mermaid",
-]
-docslive = [
-    "sphinx",
-    "sphinx-autodoc-typehints",
-    "sphinx-rtd-theme",
-    "sphinxcontrib-spelling",
-    "sphinx-inline-tabs",
-    "sphinxcontrib-mermaid",
-    "sphinx-autobuild",
-]
 
 [tool.poetry.scripts]
  cli = 'dmcview.cli:main'

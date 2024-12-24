@@ -33,3 +33,13 @@ Once this version comes as production version, we need to include it in tox file
 
 .. |done| image::  https://img.shields.io/badge/DONE-green
             :alt: DONE
+
+Known issue
+-----------
+Background of the dmc-view app is being affected by the system's theme (light/dark). It is hard to read the values in dark theme.
+
+
+IDE friendly API doc popup
+--------------------------
+When hovering over a method in VS, it should show a popup with the method input and output parameters.
+At the bottom it should show API doc explaining the method.
