@@ -10,7 +10,7 @@ build-backend = "poetry.core.masonry.api"
 ## Also renders on pypi as 'subtitle'
 [tool.poetry]
 name = "dmcview"
-version = "0.0.4"
+version = "0.0.5"
 description = "Digital Magnatic Compass View"
 authors = ["Iso", "Alan"]
 maintainers = ["Iso","Alan"]
