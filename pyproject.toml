@@ -92,7 +92,7 @@ exclude = [
 
 ### Dependency Constraints, aka Requirements ###
 [tool.poetry.dependencies]
-python = ">=3.10"
+python = ">=3.10,<3.13"
 pyside6= ">=6.6.1"
 
 
