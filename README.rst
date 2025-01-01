@@ -6,10 +6,6 @@ Digital Magnatic Compass View
 
 .. start-badges
 
-.. image:: https://img.shields.io/github/workflow/status/Issamricin/dmc-view/Test%20Python%20Package/main?label=build&logo=github-actions&logoColor=%233392FF
-    :alt: Latest build status
-    :target: https://github.com/Issamricin/dmc-view/actions/workflows/test.yaml?query=branch%3Amain
-
 .. image:: https://img.shields.io/pypi/v/dmcview
     :alt: Production Version
     :target: https://pypi.org/project/dmcview/
