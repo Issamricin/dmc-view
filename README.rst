@@ -4,7 +4,7 @@ Digital Magnatic Compass View
 
 ------
 
-.. start-badges
+.. start-badges see https://shields.io/badges and collection see https://github.com/inttter/md-badges
 
 .. image:: https://img.shields.io/pypi/v/dmcview
     :alt: Production Version
