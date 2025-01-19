@@ -1,0 +1,141 @@
+name: "PyPI Publish Environment"
+
+on:
+  workflow_call:
+    inputs:
+      # Success Policy
+      distro_name:
+        required: true
+        type: string
+      # PEP 440 compliant version string
+      distro_version:
+        required: true
+        type: string
+      should_trigger:
+        required: true
+        type: boolean
+      pypi_env:
+        required: true
+        type: string
+      # Optional Inputs
+      allow_existing:
+      # Continue uploading files, if one already exists. (Only valid when
+      # uploading to PyPI. Other implementations may not support this.)
+        type: boolean
+        default: true
+        description: 'Continue uploading files, if one already exists, instead of Erroring'
+        required: false
+      require_wheel:
+        type: boolean
+        default: true
+        description: 'Require at least one Wheel Distribution to be uploaded'
+        required: false
+      artifacts_path:
+        type: string
+        default: 'downloaded-artifacts'
+        description: 'Where to download CI Artifacts into'
+        required: false
+      dist_folder:
+        required: false
+        type: string
+    secrets:
+      # Bypassing https://github.com/actions/runner/issues/1490
+      TWINE_PASSWORD: 
+        required: false
+
+
+jobs:
+  # https://github.com/marketplace/actions/pypi-publish
+  ### PYPI UPLOAD JOB ###
+  pypi_env_publish:
+    runs-on: ubuntu-latest
+    if: always() && inputs.should_trigger
+    environment:
+      name: ${{ inputs.pypi_env }}
+    env:
+      DIST_DIR: ${{ inputs.dist_folder || 'dist' }}
+    steps:
+    - uses: actions/checkout@v4
+    # TODO only Download Build Artifacts
+    # For python, Builds typically are files: *.tar.gz, *.whl, cython builds, etc.
+    - name: Download Source & Wheel distributions
+      uses: actions/download-artifact@v3
+      with:
+        path: ${{ inputs.artifacts_path }}
+
+    - run: ls -laR ${{ inputs.artifacts_path }}
+
+    # Create DIST Dir folder, to Upload to PyPI
+    - run: mkdir ${DIST_DIR}
+
+    ## PUT TAR.GZ file in DIST Dir ##
+    # Every Python Release must a Source Distro Build
+    - name: "Discover .tar.gz Source Distribution, from CI Artifacts"
+      run: |
+        targz_files=$(find ${{ inputs.artifacts_path }} -type f -name ${{ inputs.distro_name }}*.tar.gz)
+        targz_files_array=($targz_files)
+
+        SOURCE_DISTRO=${targz_files_array[0]}  # a *.tar.gz file path
+        echo "[INFO] Sdist Build: ${SOURCE_DISTRO}"
+
+        DISTRO_DIR=$(dirname "$SOURCE_DISTRO")
+        DISTRO_FILE_NAME=$(basename "$SOURCE_DISTRO")
+
+        echo
+        echo "---> Selected Sdist Build: ${DISTRO_FILE_NAME} <---"
+        echo
+        echo "---> Taken from directory: ${DISTRO_DIR} <---"
+        echo
+
+        # Check if all source distribution (.tar.gz) files have the same name
+        for file in "${targz_files_array[@]}"; do
+          echo "[INFO] Checking file ${file}"
+          if [ "$DISTRO_FILE_NAME" != "$(basename "$file")" ]; then
+            echo "Error: Not all Source Distribution .tar.gz files have the same name!"
+            exit 1
+          fi
+        done
+        echo "SOURCE_DISTRO=$SOURCE_DISTRO" >> $GITHUB_ENV
+        echo "DISTRO_FILE_NAME=$DISTRO_FILE_NAME" >> $GITHUB_ENV
+
+    - name: "Copy .tar.gz SOURCE Distro '${{ env.DISTRO_FILE_NAME }}' file, into '${{ env.DIST_DIR }}' folder"
+      run: cp "${{ env.SOURCE_DISTRO }}" "${{ env.DIST_DIR }}"
+
+    ## PUT WHEEL file(s) in DIST Dir ##
+    # A Python Release could have one or more Wheel Builds
+    - name: "Copy .whl WHEEL Distro(s) files, into '${{ env.DIST_DIR }}' folder"
+      run: |
+        echo " -> Downloaded Wheel(s):"
+        find ${{ inputs.artifacts_path }} -type f -name "${{ inputs.distro_name }}*.whl"
+        echo
+
+        res=$(find ${{ inputs.artifacts_path }} -type f -name "${{ inputs.distro_name }}*.whl")
+
+        for f in $res; do
+          echo "[INFO] Copying Wheel Distribution: $f";
+          cp $f ${DIST_DIR}
+        done
+
+    - run: ls -la ${DIST_DIR}
+
+    - name: Verify at least 1 Wheel Distribution, to be uploaded to PyPI
+      if: inputs.require_wheel
+      run: |
+        if [[ $(find ${DIST_DIR} -type f -name "${{ inputs.distro_name }}*.whl" | wc -l) -eq 0 ]]; then
+          echo "Error: No Wheel Distribution .whl files found!"
+          exit 1
+        fi
+    ##
+
+    ## PyPI Upload Command
+    - run: pip install tox==3.28
+
+    - name: "Publish '${{ inputs.distro_name }}' version ${{ inputs.distro_version }} to '${{ inputs.pypi_server }}' Server"
+      env:
+        PACKAGE_DIST_VERSION: ${{ inputs.distro_version }}
+        TWINE_USERNAME: ${{ vars.TWINE_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+        PYPI_SERVER: ${{ vars.PYPI_SERVER }}
+      run: tox -vv -s false -e deploy -- upload --non-interactive ${{ inputs.allow_existing && '--skip-existing' || '' }}
+
+    - run: echo "Published :\)"
