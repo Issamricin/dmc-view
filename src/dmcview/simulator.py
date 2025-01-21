@@ -1,8 +1,11 @@
-from dmcview.compass import Compass
-from PySide6.QtWidgets import QApplication
-from PySide6.QtCore import (QObject, QRunnable, Slot, Signal, QThreadPool)
-from random import uniform
 import time
+from random import uniform
+
+from PySide6.QtCore import QObject, QRunnable, QThreadPool, Signal, Slot
+from PySide6.QtWidgets import QApplication
+
+from dmcview.compass import Compass
+
 
 class SimulatorSignal(QObject):
       '''Define the signals available from a running worker thread'''

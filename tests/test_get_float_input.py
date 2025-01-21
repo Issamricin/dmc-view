@@ -1,6 +1,4 @@
-import sys
 
-import pytest
 from dmcview.cli import get_float_input
 
 

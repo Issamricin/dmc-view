@@ -1,6 +1,4 @@
-from dmcview import cli  
-
-
+from dmcview import cli
 
 if __name__ == "__main__":
    cli.main()

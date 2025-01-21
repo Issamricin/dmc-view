@@ -163,11 +163,13 @@ extend-exclude = '''
 [tool.isort]
 profile = 'black'
 
-# see https://bandit.readthedocs.io/en/latest/ ( check for security volubility
+# see https://bandit.readthedocs.io/en/latest/  check for security volubility
+#  Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+#  Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
 [tool.bandit]
 tests = []
 skips = [
-    "B101",
+    "B101","B311"
 ]
 
 # see scripts/parse_version.py 

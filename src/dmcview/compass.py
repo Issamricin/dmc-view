@@ -1,7 +1,17 @@
 import math
 
-from PySide6.QtCore import QEvent, QPointF, Qt, QTimer, QRectF
-from PySide6.QtGui import QBrush, QFont, QPainter, QPen, QPixmap, QPolygonF, QTransform,QResizeEvent, QColor
+from PySide6.QtCore import QEvent, QPointF, QRectF, Qt, QTimer
+from PySide6.QtGui import (
+    QBrush,
+    QColor,
+    QFont,
+    QPainter,
+    QPen,
+    QPixmap,
+    QPolygonF,
+    QResizeEvent,
+    QTransform,
+)
 from PySide6.QtWidgets import QWidget
 
 

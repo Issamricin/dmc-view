@@ -1,9 +1,11 @@
 # test_compass_drawings.py
 
-import pytest
-from dmcview.compass import Compass
 from unittest.mock import MagicMock
+
+import pytest
 from PySide6.QtCore import QPointF
+
+from dmcview.compass import Compass
 
 
 @pytest.fixture
