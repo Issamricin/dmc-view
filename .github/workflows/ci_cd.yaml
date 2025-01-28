@@ -151,16 +151,17 @@ jobs:
       - uses: actions/checkout@v4.2.2
 
       - name: Pin 'Static Type Checking' Dependencies
-        run: tox -vv -s false -e pin-deps -- -E typing
+        run: tox -v -s false -e pin-deps  #  -s , --skip-missing-interpreters V -fail tests for missing interpreters: {config,true,false} choice (default: config)
 
       - name: Do Type Checking
-        run: tox -e type -vv -s false
+        run: tox -e type -v -s false  # do not skip missing interpreters don't install (config default)
 
       ###### TEST SUITE RUN against Edit and Sdist ######
       - name: Build and Test 'Edit' and 'Sdist' & Build Wheel(s)
         run: |
-          set -o pipefail
-          tox -vv -s false | tee test_output.log
+          set -o pipefail # see https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+                          
+          tox -v -s false | tee test_output.log
         env:
           PLATFORM: ${{ matrix.platform }}
           BUILD_DEST: ${{ env.WHEELS_PIP_DIR }}
@@ -205,7 +206,7 @@ jobs:
 
       ## Combine Coverage Data from Tests' Results ##
       - name: "Combine Coverage (dev, sdist, wheel) & make Reports"
-        run: tox -e coverage --sitepackages -vv -s false
+        run: tox -e coverage --sitepackages -v -s false
 
       - name: Rename Coverage Files
         shell: bash
@@ -231,7 +232,7 @@ jobs:
           mkdir ${DIST_DIR}
           mv ".tox/${DIST_DIR}/github_lab-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
           mv "${{ env.WHEEL_PATH }}" "${DIST_DIR}"
-          tox -e check -vv -s false
+          tox -e check -v -s false
 
       ## UPLOAD CI ARTIFACTS - Distro Build(s), 1 sdist and 1 or more wheels ##
       - name: Upload Source & Wheel distributions as Artefacts
@@ -250,7 +251,7 @@ jobs:
   codecov_coverage_host:
     runs-on: ubuntu-latest
     needs: test_suite
-    if: false
+    if: false 
     steps:
     - uses: actions/checkout@v4
     - name: Get Codecov binary
