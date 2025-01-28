@@ -5,7 +5,7 @@ Digital Magnatic Compass View
 .. start-badges
 
 | |build| |release_version| |wheel| |supported_versions|
-| |docs|
+| |docs| |pylint|
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main| |commits_since_latest_github_release|
 
 |
@@ -86,6 +86,9 @@ License
 .. |docs| image:: https://img.shields.io/readthedocs/dmc-view/main?logo=readthedocs&logoColor=lightblue
     :alt: Read the Docs (version)
     :target: https://dmc-view.readthedocs.io/en/latest/
+
+.. |pylint| image:: https://img.shields.io/badge/linting-pylint-yellowgreen
+    :target: https://github.com/pylint-dev/pylint
 
 .. PyPI
 
