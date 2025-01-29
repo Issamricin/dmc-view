@@ -186,8 +186,8 @@ jobs:
           WHEEL_SIZE=$(echo $WHEEL_INFO | cut -d ' ' -f 2)
           echo "WHEEL_SIZE=$WHEEL_SIZE" >> $GITHUB_ENV
 
-          # extract '1.12.5.dev0' from 'github_lab-1.12.5.dev0-py3-none-any.whl'
-          PEP_VERSION=$(echo $WHEEL_NAME | sed -E "s/github_lab-([^ ]+)-py3-none-any.whl/\1/")
+          # extract '1.12.5.dev0' from 'dmcview-1.12.5.dev0-py3-none-any.whl'
+          PEP_VERSION=$(echo $WHEEL_NAME | sed -E "s/dmcview-([^ ]+)-py3-none-any.whl/\1/")
 
           echo "PEP_VERSION=${PEP_VERSION}" >> $GITHUB_OUTPUT
 
@@ -232,7 +232,7 @@ jobs:
           DIST_DIR=dist
           echo "DIST_DIR=${DIST_DIR}" >> $GITHUB_ENV
           mkdir ${DIST_DIR}
-          mv ".tox/${DIST_DIR}/github_lab-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
+          mv ".tox/${DIST_DIR}/dmcview-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
           mv "${{ env.WHEEL_PATH }}" "${DIST_DIR}"
           tox -e check -v -s false
 
@@ -283,7 +283,7 @@ jobs:
     if: false
     with:
       acceptance_policy: ${{ needs.set_github_outputs.outputs.PIPE_DOCKER_POLICY }}
-      image_slug: "github-lab"
+      image_slug: "dmcview"
       # target_stage: "some_stage_alias"  # no stage, means no `--target` flag, on build
       tests_pass: ${{ needs.test_suite.result == 'success' }}
       tests_run: ${{ !contains(fromJSON('["skipped", "cancelled"]'), needs.test_suite.result) }}
