@@ -2,16 +2,51 @@ DMC VIEW
 
 Digital Magnatic Compass View
 
-.. start-badges
+------
+
+.. start-badges see https://shields.io/badges and collection see https://github.com/inttter/md-badges
+
+.. image:: https://img.shields.io/pypi/v/dmcview
+    :alt: Production Version
+    :target: https://pypi.org/project/dmcview/
+
+.. image:: https://img.shields.io/pypi/wheel/dmcview?color=green&label=wheel
+    :alt: PyPI - Wheel
+    :target: https://pypi.org/project/dmcview
+
+.. image:: https://img.shields.io/pypi/pyversions/dmcview?color=blue&label=python&logo=python&logoColor=%23ccccff
+    :alt: Supported Python versions
+    :target: https://pypi.org/project/dmcview
+
+.. image:: https://readthedocs.org/projects/dmc-view/badge/?version=latest
+    :alt: Read the Docs (version)
+    :target: https://dmc-view.readthedocs.io/en/latest/
+
+
+.. Ruff linter for Fast Python Linting
+
+.. image:: https://img.shields.io/badge/codestyle-ruff-000000.svg
+    :alt: Ruff
+    :target: https://docs.astral.sh/ruff/
+
+  
+.. LICENSE (eg AGPL, MIT)
+
+.. image:: https://img.shields.io/badge/license-GNU_Affero-orange
+    :alt: GNU Affero License
+    :target: https://github.com/Issamricin/dmc-view/blob/main/LICENSE
+
+
 
 | |build| |release_version| |wheel| |supported_versions|
 | |docs| |pylint|
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main| |commits_since_latest_github_release|
 
+
 |
 | **Code:** https://github.com/Issamricin/dmc-view
 | **Docs:** https://dmc-view.readthedocs.io/en/latest/
-| **PyPI:** https://pypi.org/project/dmc-view/
+| **PyPI:** https://pypi.org/project/dmcview/
 | **CI:** https://github.com/Issamricin/dmc-view/actions/
   
 |
@@ -54,7 +89,6 @@ Quickstart
 License
 =======
 
-|gh-lic|
 
 * `GNU Affero General Public License v3.0`_
 
@@ -70,6 +104,7 @@ License
 
 .. _GNU Affero General Public License v3.0: https://github.com/Issamricin/dmc-view/blob/main/LICENSE
 
+ 
 
 .. BADGE ALIASES
 
@@ -131,6 +166,9 @@ License
 .. Local linux command: CTRL+Shift+Alt+R key 
 
 .. Local Image and YouTube Vedio as link
+
+.. Local Image as link
+
 .. |dmc_image| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/main/media/dmc-view.png
                 :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimensions acceleration
 
