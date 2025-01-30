@@ -27,10 +27,9 @@ on:
 
 env:
   ### STRESS TEST Job MATRIX ###
-  FULL_MATRIX_STRATEGY: "{\"platform\": [\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\": [\"3.8\", \"3.9\", \"3.10\", \"3.11\"]}"
-  # Python 3.7 has reached End of Life (EOL) on June 27th, 2023
-  # Python 3.12 is in bugfix mode, same as 3.11 -> can start supporting 3.12 it
-  UBUNTU_PY310_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":[\"3.12\"]}"
+  FULL_MATRIX_STRATEGY: "{\"platform\": [\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\": [\"3.8\", \"3.9\", \"3.10\", \"3.11\", \"3.12\", \"3.13\"]}"
+  # Python 3.12 is in bugfix mode, same as 3.11 -> can start supporting 3.13 later 
+  UBUNTU_PY312_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":[\"3.12\"]}"
   TEST_STRATEGY: "{\"platform\":[\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\":[\"3.12\"]}"
 
   #########################################################
@@ -59,14 +58,14 @@ env:
   ALWAYS_LINT: "false"
   LINT_JOB_POLICY: '2'  # {2, 3}
   ## Python Runtime version to set the Job runner with ##
-  STATIC_ANALYSIS_PY: "3.10"
+  STATIC_ANALYSIS_PY: "3.12"
   ## Pylint Minimum Acceptance Rating/Score ##
   PYLINT_SCORE_THRESHOLD: "8.2"
 
   #### DOCS Build/Test ####
   ALWAYS_DOCS: "false"
   DOCS_JOB_POLICY: '2'  # {2, 3}
-  DOCS_BUILDER_RUNTIME: "3.10"
+  DOCS_BUILDER_RUNTIME: "3.12"
 
   #### CODE VISUALIZATION Job ####
   ALWAYS_CODE_VIZ: "false"
@@ -93,7 +92,7 @@ jobs:
           if [[ $BRANCH_NAME == "stress-test" || $GITHUB_REF == refs/tags/* ]]; then
             echo "matrix=$FULL_MATRIX_STRATEGY" >> $GITHUB_OUTPUT
           else
-            echo "matrix=$UBUNTU_PY310_STRATEGY" >> $GITHUB_OUTPUT
+            echo "matrix=$UBUNTU_PY312_STRATEGY" >> $GITHUB_OUTPUT
           fi
           echo "TESTS_ENABLED=$RUN_UNIT_TESTS" >> $GITHUB_OUTPUT
           echo "PUBLISH_ON_PYPI=$PUBLISH_ON_PYPI" >> $GITHUB_OUTPUT
@@ -280,7 +279,7 @@ jobs:
   docker_build:
     needs: [set_github_outputs, test_suite]
     uses: ./.github/workflows/docker.yml
-    if: false
+    if: false 
     with:
       acceptance_policy: ${{ needs.set_github_outputs.outputs.PIPE_DOCKER_POLICY }}
       image_slug: "dmcview"
