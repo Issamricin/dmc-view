@@ -9,8 +9,8 @@ build-backend = "poetry.core.masonry.api"
 # Information required for building (sdist/wheel)
 ## Also renders on pypi as 'subtitle'
 [tool.poetry]
-name = "dmcview"
-version = "0.1.0"
+name = "dmc-view"
+version = "0.2.0"
 description = "Digital Magnatic Compass View"
 authors = ["Iso", "Alan"]
 maintainers = ["Iso","Alan"]

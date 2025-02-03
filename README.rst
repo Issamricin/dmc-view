@@ -8,15 +8,15 @@ Digital Magnatic Compass View
 
 .. image:: https://img.shields.io/pypi/v/dmcview
     :alt: Production Version
-    :target: https://pypi.org/project/dmcview/
+    :target: https://pypi.org/project/dmc-view/
 
 .. image:: https://img.shields.io/pypi/wheel/dmcview?color=green&label=wheel
     :alt: PyPI - Wheel
-    :target: https://pypi.org/project/dmcview
+    :target: https://pypi.org/project/dmc-view
 
 .. image:: https://img.shields.io/pypi/pyversions/dmcview?color=blue&label=python&logo=python&logoColor=%23ccccff
     :alt: Supported Python versions
-    :target: https://pypi.org/project/dmcview
+    :target: https://pypi.org/project/dmc-view
 
 .. image:: https://readthedocs.org/projects/dmc-view/badge/?version=latest
     :alt: Read the Docs (version)
@@ -46,7 +46,7 @@ Digital Magnatic Compass View
 |
 | **Code:** https://github.com/Issamricin/dmc-view
 | **Docs:** https://dmc-view.readthedocs.io/en/latest/
-| **PyPI:** https://pypi.org/project/dmcview/
+| **PyPI:** https://pypi.org/project/dmc-view/
 | **CI:** https://github.com/Issamricin/dmc-view/actions/
   
 |
