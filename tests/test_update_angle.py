@@ -1,6 +1,8 @@
 
 import pytest
+
 from dmcview.compass import Compass
+
 
 @pytest.fixture
 def compass(qtbot):  # qtbot is provided by pytest-qt

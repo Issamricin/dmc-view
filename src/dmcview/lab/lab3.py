@@ -1,18 +1,6 @@
 from PySide6.QtCore import QPointF, Qt, QTimer
-from PySide6.QtGui import (
-    QBrush,
-    QPainter,
-    QPen,
-    QPolygonF,
-    QTransform,
-)
-from PySide6.QtWidgets import (
-    QApplication,
-    QLineEdit,
-    QMainWindow,
-    QVBoxLayout,
-    QWidget,
-)
+from PySide6.QtGui import QBrush, QPainter, QPen, QPolygonF, QTransform
+from PySide6.QtWidgets import QApplication, QLineEdit, QMainWindow, QVBoxLayout, QWidget
 
 
 class Widget(QWidget):

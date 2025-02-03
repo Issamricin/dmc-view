@@ -1,9 +1,11 @@
 # A label that follows a line at any angle
 import sys
-from math import cos, sin, radians
-from PySide6.QtCore import Qt, QRectF
-from PySide6.QtGui import QPainter, QPen, QFont, QTransform
-from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QPushButton, QSpacerItem, QSizePolicy
+from math import cos, radians, sin
+
+from PySide6.QtCore import QRectF, Qt
+from PySide6.QtGui import QFont, QPainter, QPen
+from PySide6.QtWidgets import QApplication, QLineEdit, QPushButton, QVBoxLayout, QWidget
+
 
 class RotatingLineWidget(QWidget):
     def __init__(self):

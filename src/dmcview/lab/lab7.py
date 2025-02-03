@@ -1,8 +1,7 @@
-from PySide6.QtCore import Qt, QPointF, QRectF
-from PySide6.QtGui import QPainter, QPen, QBrush, QColor
-from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout
+from PySide6.QtCore import QPointF, QRectF, Qt
+from PySide6.QtGui import QPainter, QPen
+from PySide6.QtWidgets import QApplication, QVBoxLayout, QWidget
 
-import math
 
 class CompassWidget(QWidget):
     def __init__(self, parent=None):

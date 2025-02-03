@@ -1,7 +1,9 @@
 # Testing animate_declination() method from compass.py
 
 import pytest
+
 from dmcview.compass import Compass
+
 
 @pytest.fixture
 def compass(qtbot):

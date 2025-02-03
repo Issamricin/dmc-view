@@ -1,7 +1,9 @@
 """ The command line interface (CLI) parser """
-from dmcview.compass import Compass
+from argparse import ArgumentParser, Namespace
+
 from PySide6.QtWidgets import QApplication
-from argparse import ArgumentParser , Namespace
+
+from dmcview.compass import Compass
 
 
 def get_float_input(    
