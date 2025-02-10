@@ -6,40 +6,8 @@ Digital Magnatic Compass View
 
 .. start-badges see https://shields.io/badges and collection see https://github.com/inttter/md-badges
 
-.. image:: https://img.shields.io/pypi/v/dmc-view
-    :alt: Production Version
-    :target: https://pypi.org/project/dmc-view/
-
-.. image:: https://img.shields.io/pypi/wheel/dmc-view?color=green&label=wheel
-    :alt: PyPI - Wheel
-    :target: https://pypi.org/project/dmc-view
-
-.. image:: https://img.shields.io/pypi/pyversions/dmc-view?color=blue&label=python&logo=python&logoColor=%23ccccff
-    :alt: Supported Python versions
-    :target: https://pypi.org/project/dmc-view
-
-.. image:: https://readthedocs.org/projects/dmc-view/badge/?version=latest
-    :alt: Read the Docs (version)
-    :target: https://dmc-view.readthedocs.io/en/latest/
-
-
-.. Ruff linter for Fast Python Linting
-
-.. image:: https://img.shields.io/badge/codestyle-ruff-000000.svg
-    :alt: Ruff
-    :target: https://docs.astral.sh/ruff/
-
-  
-.. LICENSE (eg AGPL, MIT)
-
-.. image:: https://img.shields.io/badge/license-GNU_Affero-orange
-    :alt: GNU Affero License
-    :target: https://github.com/Issamricin/dmc-view/blob/master/LICENSE
-
-
-
 | |build| |release_version| |wheel| |supported_versions|
-| |docs| |pylint|
+| |docs| |pylint| |docs_pass|
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main| |commits_since_latest_github_release|
 
 
@@ -124,6 +92,10 @@ License
 
 .. |pylint| image:: https://img.shields.io/badge/linting-pylint-yellowgreen
     :target: https://github.com/pylint-dev/pylint
+
+.. |docs_pass| image:: https://readthedocs.org/projects/dmc-view/badge/?version=latest
+    :alt: Read the Docs (version)
+    :target: https://dmc-view.readthedocs.io/en/latest/
 
 .. PyPI
 
