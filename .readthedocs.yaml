@@ -16,7 +16,7 @@ build:
     pre_install:
       - python --version
       - python -m pip install poetry
-      - python -m poetry export -o req-docs.txt -E docs
+      - python -m poetry export -o reqs.txt -E docs --without-hashes
     post_install:
       - python -m pip install -e .
       - python -m pip install pyyaml
