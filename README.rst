@@ -127,7 +127,7 @@ License
 
 .. PyPI
 
-.. |release_version| image:: https://img.shields.io/pypi/v/dmcview
+.. |release_version| image:: https://img.shields.io/pypi/v/dmc-view
     :alt: Production Version
     :target: https://pypi.org/project/dmc-view/
 
