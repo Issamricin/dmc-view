@@ -129,7 +129,7 @@ ignore_errors = true
 [tool.poetry.scripts]
  cli = 'dmcview.cli:main'
 
-[tool.poetry.extras] see https://realpython.com/dependency-management-python-poetry/
+[tool.poetry.extras] #see https://realpython.com/dependency-management-python-poetry/
  docs = ["sphinx", "sphinx-rtd-theme", "sphinx-notfound-page", "sphinxcontrib-spelling"]
  
 
