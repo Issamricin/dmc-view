@@ -22,7 +22,10 @@ build:
       - python -m pip install -e .
       - python -m pip install pyyaml
     pre_build:
-      - python ./scripts/visualize-ga-workflow.py > ./docs/cicd_mermaid.md
+      - |
+        for file in .github/workflows/*.yaml; do
+          python ./scripts/visualize-ga-workflow.py "$file" > "./docs/$(basename "$file" .yaml)_mermaid.md"
+        done
       - python ./scripts/visualize-dockerfile.py > ./docs/dockerfile_mermaid.md
 
 
