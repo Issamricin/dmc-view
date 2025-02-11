@@ -86,16 +86,12 @@ License
 
 .. Documentation
 
-.. |docs| image:: https://img.shields.io/readthedocs/dmc-view/master?logo=readthedocs&logoColor=lightblue
+.. |docs| image:: https://img.shields.io/readthedocs/dmc-view/latest?logo=readthedocs&logoColor=lightblue
     :alt: Read the Docs (version)
     :target: https://dmc-view.readthedocs.io/en/latest/
 
 .. |pylint| image:: https://img.shields.io/badge/linting-pylint-yellowgreen
     :target: https://github.com/pylint-dev/pylint
-
-.. |docs_pass| image:: https://readthedocs.org/projects/dmc-view/badge/?version=latest
-    :alt: Read the Docs (version)
-    :target: https://dmc-view.readthedocs.io/en/latest/
 
 .. PyPI
 
