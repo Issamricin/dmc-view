@@ -28,7 +28,7 @@ class Accelaration_3D(FigureCanvas):
         self.ax.set_zlim([-15, 15])
         self.ax.set_title("3D Acceleration")
 
-        self.ax.view_init(azim=-111,elev=22,roll=3)
+        self.ax.view_init(azim=-115,elev=20,roll=3)
 
 
     def update_plot(self):
@@ -172,7 +172,7 @@ def main()-> None:
 
     timer = QTimer()
     timer.timeout.connect(canvas.update_plot)
-    timer.start(100)  # Update every 100m
+    timer.start(10)  # Update every 100m
 
     main_widget.show()
 
