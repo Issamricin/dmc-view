@@ -26,7 +26,7 @@ Simple Use Case
 
 .. code-block:: shell
 
-  python3 dmcview.main.py -a 45.5 -d 5.6 -b 30.35
+  dmcview -a 45.5 -d 5.6 -b 30.35
 
 | **a**: azimuth angle in degree.
 | **d**: declination angle in degree which is the difference between Real North and Magnetic North.
