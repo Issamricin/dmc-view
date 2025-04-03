@@ -1,7 +1,7 @@
 """ The command line interface (CLI) parser """
 from argparse import ArgumentParser, Namespace
 
-from dmcview.compass import Compass
+from compass import Compass
 
 from acceleration import  Accelaration_3D
 

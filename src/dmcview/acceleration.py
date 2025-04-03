@@ -2,7 +2,7 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
 from PySide6.QtCore import QTimer
-
+from signal_manger import signal_manager
 from decimal import Decimal, ROUND_HALF_UP
 
 class Accelaration_3D(FigureCanvas):
@@ -53,6 +53,8 @@ class Accelaration_3D(FigureCanvas):
         self.target_y = float(Decimal(self.target_y).quantize(Decimal('0.1'), rounding=ROUND_HALF_UP))
         self.target_x = float(Decimal(self.target_x).quantize(Decimal('0.1'), rounding=ROUND_HALF_UP))
         self.target_z = float(Decimal(self.target_z).quantize(Decimal('0.1'), rounding=ROUND_HALF_UP))
+
+        signal_manager.data_signal.emit(self.target_x, self.target_y, self.target_z)
 
         accel = np.array([self.target_x,self.target_y,self.target_z])
         origin= np.array([0,0,0])

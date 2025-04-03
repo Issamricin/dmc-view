@@ -4,7 +4,7 @@ from random import uniform
 from PySide6.QtCore import QObject, QRunnable, QThreadPool, Signal, Slot, QThread
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 
-from dmcview.compass import Compass
+from compass import Compass
 from acceleration import Accelaration_3D
 
 
@@ -25,13 +25,13 @@ class SimulatorRunner(QRunnable):
             azimuth = round(uniform(20.0,40.0),2)
             inclination = round(uniform(20.0,35.0),2)
             bank = round(uniform(30.0, 45.0),2)
-            x = round(uniform(-3.0,15.0),1)
-            y = round(uniform(-3.0,15.0),1)
+            x = round(uniform(5.0,15.0),1)
+            y = x
             z = 0.0
 
             print("Azimuth:{0}; Inclination(Elevation):{1}; Bank(Rotation):{2}; acceleration:{3}".format(azimuth,inclination,bank,[x,y,z]))
             self.signal.result.emit(str(azimuth), str(inclination),str(bank),str(x),str(y),str(z))
-            QThread.sleep(2)# two seconds
+            QThread.sleep(2.5)# two seconds
     
     
 class Simulator():
