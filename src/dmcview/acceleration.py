@@ -3,6 +3,7 @@ from matplotlib.figure import Figure
 import numpy as np
 from PySide6.QtCore import QTimer
 
+from decimal import Decimal, ROUND_HALF_UP
 
 class Accelaration_3D(FigureCanvas):
     def __init__(self, figure=None):
@@ -18,24 +19,6 @@ class Accelaration_3D(FigureCanvas):
 
         self.value = 0.2 #0.1 step is very slow
 
-        last_x_digit = self.x*10
-        last_x_digit = last_x_digit %10
-
-        if last_x_digit % 2 != 0:
-            self.x += 0.1  #since the step is 0.2 we will make odd inputs into even.
-
-        last_y_digit = self.y*10
-        last_y_digit = last_y_digit %10
-
-        if last_y_digit % 2 != 0:
-            self.y += 0.1  #since the step is 0.2 we will make odd inputs into even.
-
-        last_z_digit = self.z*10
-        last_z_digit = last_z_digit %10
-
-        if last_z_digit % 2 != 0:
-            self.z += 0.1  #since the step is 0.2 we will make odd inputs into even.
-            
         self.figure = Figure()
         self.ax = self.figure.add_subplot(projection='3d')
 
@@ -52,10 +35,6 @@ class Accelaration_3D(FigureCanvas):
 
     def update_acceleration_vector(self) -> None:
 
-        self.target_x = round(self.target_x,1)
-        self.target_y = round(self.target_y,1)
-        self.target_z = round(self.target_z,1)
-
         if self.target_x < self.x:
             self.target_x += self.value
         elif self.target_x > self.x:
@@ -70,6 +49,10 @@ class Accelaration_3D(FigureCanvas):
             self.target_z += self.value
         elif self.target_z > self.z:
             self.target_z -= self.value
+        
+        self.target_y = float(Decimal(self.target_y).quantize(Decimal('0.1'), rounding=ROUND_HALF_UP))
+        self.target_x = float(Decimal(self.target_x).quantize(Decimal('0.1'), rounding=ROUND_HALF_UP))
+        self.target_z = float(Decimal(self.target_z).quantize(Decimal('0.1'), rounding=ROUND_HALF_UP))
 
         accel = np.array([self.target_x,self.target_y,self.target_z])
         origin= np.array([0,0,0])
@@ -82,7 +65,7 @@ class Accelaration_3D(FigureCanvas):
     def start_acceleration_timer(self) -> None:
         self.Acceleration_timer = QTimer(self)
         self.Acceleration_timer.timeout.connect(self.update_acceleration_vector)
-        self.Acceleration_timer.start(50)
+        self.Acceleration_timer.start(60)
               
         
     def update_acceleration(self,x:float,y:float,z:float) -> None:  
@@ -90,5 +73,25 @@ class Accelaration_3D(FigureCanvas):
         self.x = round(x,1)
         self.z = round(z,1)
 
-    def get_values(self):
-        return self.target_x,self.target_y,self.target_z
+        last_x_digit = self.x*10
+        last_x_digit = last_x_digit %10
+
+        if last_x_digit % 2 != 0:
+            self.x -= 0.1  #since the step is 0.2 we will make odd inputs into even.
+
+        last_y_digit = self.y*10
+        last_y_digit = last_y_digit %10
+
+        if last_y_digit % 2 != 0:
+            self.y -= 0.1  #since the step is 0.2 we will make odd inputs into even.
+
+        last_z_digit = self.z*10
+        last_z_digit = last_z_digit %10
+
+        if last_z_digit % 2 != 0:
+            self.z -= 0.1  #since the step is 0.2 we will make odd inputs into even.
+
+        
+        self.y = round(self.y,1)
+        self.x = round(self.x,1)
+        self.z = round(self.z,1)
