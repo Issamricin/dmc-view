@@ -32,6 +32,8 @@ class Compass(QWidget):
         self.y = 0.0
         self.z = 0.0
 
+        self.signal_connected = False #So the first time the signal tries to discconnect it wont be able
+        
         self.start_animation_timer()
 
     def resizeEvent(self, event: QResizeEvent) -> None:
@@ -99,8 +101,10 @@ class Compass(QWidget):
         inclination_pos = QPointF(text_x,text_y + 16 * line_spacing)
         acceleration_pos = QPointF(text_x,text_y + 20 * line_spacing)
         acceleration_vec_pos = QPointF(text_x,text_y + 22 * line_spacing)
-
-        signal_manager.data_signal.disconnect() # Avoid duplicate connections
+        
+        if self.signal_connected:
+            signal_manager.data_signal.disconnect() # Avoid duplicate connections
+            self.signal_connected = True
         signal_manager.data_signal.connect(self.receive_acceleration)
         
         painter.drawText(test_pos, "Information: ")
