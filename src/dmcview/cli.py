@@ -3,7 +3,7 @@ from argparse import ArgumentParser, Namespace
 
 from compass import Compass
 
-from acceleration import  Accelaration_3D
+from acceleration import  Accelaration3D
 
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 from PySide6.QtCore import QTimer
@@ -149,7 +149,7 @@ def main()-> None:
 
     layout.addWidget(compass)
 
-    canvas = Accelaration_3D()
+    canvas = Accelaration3D()
     canvas.setFixedSize(350,350)
     layout.addWidget(canvas)
 

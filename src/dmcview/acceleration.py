@@ -2,10 +2,10 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
 from PySide6.QtCore import QTimer
-from signal_manger import signal_manager
+from accele3D_signal_manger import signal_manager
 from decimal import Decimal, ROUND_HALF_UP
 
-class Accelaration_3D(FigureCanvas):
+class Accelaration3D(FigureCanvas):
     def __init__(self, figure=None):
         super().__init__(figure)
 

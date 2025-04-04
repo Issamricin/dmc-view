@@ -5,7 +5,7 @@ from PySide6.QtCore import QObject, QRunnable, QThreadPool, Signal, Slot, QThrea
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 
 from compass import Compass
-from acceleration import Accelaration_3D
+from acceleration import Accelaration3D
 
 
 class SimulatorSignal(QObject):
@@ -51,7 +51,7 @@ class Simulator():
   
       layout.addWidget(self.compass)
   
-      self.canvas = Accelaration_3D()
+      self.canvas = Accelaration3D()
       self.canvas.setFixedSize(350,350)
       layout.addWidget(self.canvas)
 
