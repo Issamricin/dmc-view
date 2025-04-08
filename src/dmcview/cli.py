@@ -1,9 +1,12 @@
 """ The command line interface (CLI) parser """
 from argparse import ArgumentParser, Namespace
 
-from PySide6.QtWidgets import QApplication
+from compass import Compass
 
-from dmcview.compass import Compass
+from acceleration import  Accelaration3D
+
+from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
+from PySide6.QtCore import QTimer
 
 
 def get_float_input(    
@@ -33,6 +36,34 @@ def get_float_input(
             return float(user_input)
         except ValueError:
             print("Invalid input. Please enter a numeric value.")
+
+def get_acceleration_input(    
+    prompt: str, 
+    x: float,
+    y: float,
+    z: float
+    ) -> float:
+
+    while True:
+        try:
+            user_input = input(f"{prompt} (default {x,y,z}): ").split()
+            try:
+                user_x = user_input[0] 
+            except IndexError:   
+                user_x = x
+            try:
+                user_y = user_input[1]
+            except IndexError:
+                user_y = y
+            try:
+                user_z = user_input[2]
+            except IndexError:
+                user_z = z
+
+            return float(user_x),float(user_y),float(user_z)
+        
+        except ValueError:
+            print("Invalid input. Please enter a correct numeric value.")
 
 
 
@@ -83,7 +114,7 @@ def main()-> None:
         type=float,
         nargs='?',
         default=None, 
-        metavar='bank'
+        metavar='inclination'
     )
     parser.add_argument(
         '-e',
@@ -93,6 +124,14 @@ def main()-> None:
         default=None, 
         metavar='bank'
     )
+    parser.add_argument(
+        '-ac',
+        help='acceleration of the object, using 3 points vector',
+        type=float,
+        nargs='?',
+        default=None, 
+        metavar='acceleration'
+    )
     
 
     args : Namespace = parser.parse_args()
@@ -101,16 +140,39 @@ def main()-> None:
     declination: float = args.d if args.d is not None else get_float_input("Enter the declination angle in degrees; for example 30.0", 0.0) # declination
     bank: float = args.b if args.b is not None else get_float_input("Enter the bank angle in degrees; for example -7.0", 0.0) # Inclination
     elevation: float = args.e if args.e is not None else get_float_input("Enter the elevation in degrees; for example 25.21",0.0) # elevation
+    x,y,z = args.ac if args.ac is not None else get_acceleration_input("Enter the acceleration values(vectors: x,y,z); for example 12 12 0",0,0,0)
 
     app = QApplication()
+    main_widget = QWidget()
+    layout = QHBoxLayout(main_widget)
     compass = Compass()
-    compass.show()
+
+    layout.addWidget(compass)
+
+    canvas = Accelaration3D()
+    canvas.setFixedSize(350,350)
+    layout.addWidget(canvas)
+
+
+    #def on_resize(event):
+    #    screen_size = main_widget.size()
+    #    if screen_size.width()<1000 or screen_size.height()<500:
+    #        canvas.setFixedSize(250,250)
+    #    else:
+    #        canvas.setFixedSize(350,350)
+    #    
+    #    print(screen_size)
+
+    #main_widget.resizeEvent = on_resize
 
     compass.update_declination(declination)  # This is Declination and can be float to two decimal places for example 35.55
     compass.update_angle(azimuth)  # This is Azimuth and can be float to two decimal places for example 35.55
     compass.set_rotation(bank) # This is the Inclination can be floated to two decimal places for example 35.55
     compass.set_elevation(elevation) # This is the Elevation can be floated to two decimal places for example 25.55
 
+    canvas.update_acceleration(x,y,z)
+
+    main_widget.show()
     app.exec()
 
 if __name__ == "__main__": # this is important so that it does not run from pytest 

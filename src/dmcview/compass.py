@@ -13,7 +13,7 @@ from PySide6.QtGui import (
     QTransform,
 )
 from PySide6.QtWidgets import QWidget
-
+from accele3D_signal_manger import signal_manager
 
 class Compass(QWidget):
     def __init__(self) -> None:
@@ -26,6 +26,14 @@ class Compass(QWidget):
         self.current_declination = 0.0
         self.elevation = 0.0
         self.rotation = 0.0
+
+        #acceleration vectors
+        self.x = 0.0
+        self.y = 0.0
+        self.z = 0.0
+
+        self.signal_connected = False #So the first time the signal tries to discconnect it wont be able
+        
         self.start_animation_timer()
 
     def resizeEvent(self, event: QResizeEvent) -> None:
@@ -91,12 +99,29 @@ class Compass(QWidget):
         declination_pos = QPointF(text_x,text_y + 8 * line_spacing)
         rotation_pos = QPointF(text_x,text_y + 12 * line_spacing)
         inclination_pos = QPointF(text_x,text_y + 16 * line_spacing)
-
+        acceleration_pos = QPointF(text_x,text_y + 20 * line_spacing)
+        acceleration_vec_pos = QPointF(text_x,text_y + 22 * line_spacing)
+        
+        if self.signal_connected:
+            signal_manager.data_signal.disconnect() # Avoid duplicate connections
+            self.signal_connected = True
+        signal_manager.data_signal.connect(self.receive_acceleration)
+        
         painter.drawText(test_pos, "Information: ")
         painter.drawText(azimuth_pos,f"Azimuth: {round(self.current_angle,2)} °")
         painter.drawText(declination_pos,f"Declination: {round(self.current_declination,2)} °")
         painter.drawText(rotation_pos,f"Bank: {round(self.rotation,2)} °")
         painter.drawText(inclination_pos,f"Elevation: {round(self.elevation,2)} °")
+        painter.drawText(acceleration_pos,"Acceleration:")
+        painter.drawText(acceleration_vec_pos,f"{self.x,self.y,self.z}")
+
+        
+        
+    def receive_acceleration(self, x: float, y: float, z: float):
+        self.x = x
+        self.y = y
+        self.z = z
+        self.update()
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
         painter.setPen(QPen(Qt.black, 2))
