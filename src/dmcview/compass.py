@@ -91,7 +91,7 @@ class Compass(QWidget):
 
         painter.setPen(QPen(Qt.black))
         painter.setFont(QFont("Arial",font_size))
-        text_x = center.x() + radius + 60 # reduce the number to prevent capped text
+        text_x = center.x() + radius + 47 # reduce the number to prevent capped text
         text_y = center.y() - radius
 
         test_pos = QPointF(text_x, text_y)
@@ -113,7 +113,7 @@ class Compass(QWidget):
         painter.drawText(rotation_pos,f"Bank: {round(self.rotation,2)} °")
         painter.drawText(inclination_pos,f"Elevation: {round(self.elevation,2)} °")
         painter.drawText(acceleration_pos,"Acceleration:")
-        painter.drawText(acceleration_vec_pos,f"{self.x,self.y,self.z}")
+        painter.drawText(acceleration_vec_pos,f"{self.x}, {self.y}, {self.z}")
 
         
         
