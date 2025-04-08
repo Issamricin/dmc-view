@@ -8,7 +8,7 @@ Digital Magnatic Compass View
 
 | |build| |release_version| |wheel| |supported_versions|
 | |docs| |pylint| |docs_pass|
-| |ruff| |gh-lic| |commits_since_specific_tag_on_main| |commits_since_latest_github_release|
+| |ruff| |gh-lic| |commits_since_specific_tag_on_main|
 
 
 |
@@ -81,7 +81,7 @@ License
 
 .. |build| image:: https://img.shields.io/github/workflow/status/Issamricin/dmc-view/Test%20Python%20Package/master?label=build&logo=github-actions&logoColor=%233392FF
     :alt: GitHub Workflow Status (branch)
-    :target: https://github.com/Issamricin/dmc-view/actions/workflows/test.yaml?query=branch%3Amaster
+    :target: https://github.com/Issamricin/dmc-view/actions/
 
 
 .. Documentation
@@ -112,9 +112,6 @@ License
 .. |commits_since_specific_tag_on_main| image:: https://img.shields.io/github/commits-since/Issamricin/dmc-view/v0.0.1/master?color=blue&logo=github
     :alt: GitHub commits since tagged version (branch)
     :target: https://github.com/Issamricin/dmc-view/compare/v0.0.1..master
-
-.. |commits_since_latest_github_release| image:: https://img.shields.io/github/commits-since/Issamricin/dmc-view/latest?color=blue&logo=semver&sort=semver
-    :alt: GitHub commits since latest release (by SemVer)
 
 .. LICENSE (eg AGPL, MIT)
 .. Github License
