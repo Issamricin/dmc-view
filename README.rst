@@ -19,7 +19,7 @@ Digital Magnatic Compass View
   
 |
 |
-| |dmc_image|
+|
 
 |dmc_gif|
 
@@ -133,9 +133,6 @@ License
 .. Local Image and YouTube Vedio as link
 
 .. Local Image as link
-
-.. |dmc_image| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/master/media/dmc-view.png
-                :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimensions acceleration
 
 .. |dmc_gif| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/master/media/simulator.gif
    :alt: Demo Preview

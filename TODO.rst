@@ -10,9 +10,9 @@ Device Simulator(|done|)
 | Bank Angle: [30.0,30.5, 31.0, 31.5,32.0.32.5] with delay time of 150 Millisecond
 
 
-Adding X, Y and Z acceleration:
+Adding X, Y and Z acceleration:(|done|)
 -------------------------------
-We need to add and view the 3 axis-es acceleration data to be viewed and displayed
+We need to add and view the 3 axis-es acceleration data to be viewed and displayed 
 
 Device Manufactures Common Interface(API):
 ------------------------------------------
