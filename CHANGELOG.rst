@@ -13,16 +13,33 @@ Changelog
 | Scaffolding included:
 
 - **CI Pipeline** running on Github Actions at https://github.com/Issamricin/dmc-view/actions
-  - `Test Workflow` running a multi-factor **Build Matrix** spanning different `platform`'s and `python version`'s
+- `Test Workflow` running a multi-factor **Build Matrix** spanning different `platform`'s and `python version`'s
     1. Platforms: `ubuntu-latest`, `macos-latest`
     2. Python Interpreters: `3.6`, `3.7`, `3.8`, `3.9`, `3.10`
 
 - Automated **Test Suite** with parallel Test execution across multiple cpus.
-  - Code Coverage
+- Code Coverage
 - **Automation** in a 'make' like fashion, using **tox**
-  - Seamless `Lint`, `Type Check`, `Build` and `Deploy` *operations*
+- Seamless `Lint`, `Type Check`, `Build` and `Deploy` *operations*
 
 
 .. LINKS
 
 .. _Cookiecutter Python Package: https://python-package-generator.readthedocs.io/en/master/
+
+
+0.3.0 (2025-04-10)
+=======================================
+
+| This release brings the new 3D acceleration support to the **dmcview** Python Package.
+
+Added
+-----
+- Added a 3D graph to the left of the compass display.
+- This visualizes real-time acceleration along the X, Y, Z axes.
+- Acceleration values will also be printed under the information section.
+- The simulator is improved to visualize this new 3D acceleration in action.
+
+**Note:** This release requires new data input:
+
+- 3 acceleration vectors: **X**, **Y** , **Z** 
