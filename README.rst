@@ -6,8 +6,8 @@ Digital Magnatic Compass View
 
 .. start-badges see https://shields.io/badges and collection see https://github.com/inttter/md-badges
 
-| |build| |release_version| |wheel| |supported_versions|
-| |docs| |pylint| |docs|
+| |build| |release_version| |wheel| 
+| |docs| |pylint| |supported_versions|
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main|
 
 
