@@ -43,3 +43,13 @@ Added
 **Note:** This release requires new data input:
 
 - 3 acceleration vectors: **X**, **Y** , **Z** 
+
+
+Changed
+-------
+- Replaced the old video and picture of the dmcview in the readme with a new video that include the new 3D acceleration.
+
+
+Fixed
+-----
+- Removed dublicated and broken badges that show in PyPI and github.
