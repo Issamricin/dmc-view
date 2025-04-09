@@ -134,7 +134,7 @@ License
 
 .. Local Image as link
 
-.. |dmc_gif| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/issue-146/media/simulator.gif
+.. |dmc_gif| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/master/media/simulator.gif
    :alt: Demo Preview
    :width: 800
    :height: 391
