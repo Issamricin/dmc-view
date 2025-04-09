@@ -136,4 +136,5 @@ License
 
 .. |dmc_gif| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/issue-146/media/simulator.gif
    :alt: Demo Preview
-   :width: 600
+   :width: 800
+   :height: 391
