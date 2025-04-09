@@ -47,7 +47,7 @@ Added
 
 Changed
 -------
-- Replaced the old video and picture of the dmcview in the readme with a new video that include the new 3D acceleration.
+- Replaced the old video and picture of the dmcview in the readme with a new video that includes the new 3D acceleration.
 
 
 Fixed
