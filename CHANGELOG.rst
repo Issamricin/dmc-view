@@ -52,4 +52,4 @@ Changed
 
 Fixed
 -----
-- Removed dublicated and broken badges that show in PyPI and github.
+- Removed duplicated and broken badges that show in PyPI and github.

@@ -9,6 +9,7 @@ Digital Magnetic Compass View  documentation!
    contents/development
    contents/usage
    contents/modules
+   contents/changelog
 
 
 Indices and tables
