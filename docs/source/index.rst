@@ -17,6 +17,12 @@ Digital Magnetic Compass View  documentation!
    contents/contributing
    contents/code_of_conduct
 
+.. toctree::
+   :maxdepth: 2
+   :caption: About:
+
+   contents/license
+
 
 Indices and tables
 ==================
