@@ -2,6 +2,35 @@
 Changelog
 =========
 
+
+0.3.0 (2025-04-13)
+=======================================
+
+| This release brings the new 3D acceleration support to the **dmcview** Python Package.
+
+Added
+-----
+- Added a 3D graph to the left of the compass display.
+- This visualizes real-time acceleration along the X, Y, Z axes.
+- Acceleration values will also be printed under the information section.
+- The simulator is improved to visualize this new 3D acceleration in action.
+
+**Note:** This release requires new data input:
+
+- 3 acceleration vectors: **X**, **Y** , **Z** 
+
+
+Changed
+-------
+- Replaced the old video and picture of the dmcview in the readme with a new video that includes the new 3D acceleration.
+- Improved the documentation to include the new added feature.
+
+
+Fixed
+-----
+- Removed duplicated and broken badges that show in PyPI and github.
+
+
 0.0.1 (2024-08-04)
 =======================================
 
@@ -26,30 +55,3 @@ Changelog
 .. LINKS
 
 .. _Cookiecutter Python Package: https://python-package-generator.readthedocs.io/en/master/
-
-
-0.3.0 (2025-04-10)
-=======================================
-
-| This release brings the new 3D acceleration support to the **dmcview** Python Package.
-
-Added
------
-- Added a 3D graph to the left of the compass display.
-- This visualizes real-time acceleration along the X, Y, Z axes.
-- Acceleration values will also be printed under the information section.
-- The simulator is improved to visualize this new 3D acceleration in action.
-
-**Note:** This release requires new data input:
-
-- 3 acceleration vectors: **X**, **Y** , **Z** 
-
-
-Changed
--------
-- Replaced the old video and picture of the dmcview in the readme with a new video that includes the new 3D acceleration.
-
-
-Fixed
------
-- Removed dublicated and broken badges that show in PyPI and github.

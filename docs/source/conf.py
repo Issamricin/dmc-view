@@ -73,6 +73,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinxcontrib.spelling', # https://sphinxcontrib-spelling.readthedocs.io/en/latest/
     'sphinx.ext.duration',
+    'myst_parser',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -118,4 +119,10 @@ extlinks = {
         + '%s',
         'issue ',
     ),
+}
+
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',  # Allow Markdown files
 }

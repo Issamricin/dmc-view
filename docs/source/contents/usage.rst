@@ -26,16 +26,18 @@ Simple Use Case
 
 .. code-block:: shell
 
-  dmcview -a 45.5 -d 5.6 -b 30.35
+  dmcview -a 45.5 -d 5.6 -b 30.35 -e 15.23 -ac 14.21
 
-| **a**: azimuth angle in degree.
-| **d**: declination angle in degree which is the difference between Real North and Magnetic North.
-| **b**: Bank or the angle of inclination of the object from horizontal axis in degree
+| **a**: Azimuth angle in degree.
+| **d**: Declination angle in degree which is the difference between Real North and Magnetic North.
+| **b**: Bank or the angle of inclination of the object from horizontal axis in degree.
+| **e**: Elevation or angular height of a point of interest above or below the horizon, in degrees.
+| **ac**: Acceleration of the object, using 3 points vector.
 
 ----------------------
 Running the Simulation
 ----------------------
-| The simulation  execution gives you a real device feeling 
+| The simulation  execution gives you a real device feeling.
 
 .. code-block:: shell
   
