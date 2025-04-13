@@ -3,7 +3,7 @@ Changelog
 =========
 
 
-0.3.0 (2025-04-10)
+0.3.0 (2025-04-13)
 =======================================
 
 | This release brings the new 3D acceleration support to the **dmcview** Python Package.
