@@ -1,6 +1,14 @@
 Digital Magnetic Compass View  documentation!
 =============================================
 
+| Welcome to the documentation for DMC View!
+| DMC View is a Python-based desktop application designed to receive input from a compatible device and present the data through an intuitive and user-friendly interface.
+
+| It simplifies the process of reading and visualizing sensor data, making it easier to interpret and understand complex information in real time.
+
+| The application is plug-and-play, requiring minimal setup—just connect your device and start visualizing immediately.
+
+
 
 .. toctree::
    :maxdepth: 2
