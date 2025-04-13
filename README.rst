@@ -6,8 +6,8 @@ Digital Magnatic Compass View
 
 .. start-badges see https://shields.io/badges and collection see https://github.com/inttter/md-badges
 
-| |build| |release_version| |wheel| |supported_versions|
-| |docs| |pylint| |docs|
+| |build| |release_version| |wheel| 
+| |docs| |pylint| |supported_versions|
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main|
 
 
@@ -19,7 +19,7 @@ Digital Magnatic Compass View
   
 |
 |
-| |dmc_image|
+|
 
 |dmc_gif|
 
@@ -134,9 +134,7 @@ License
 
 .. Local Image as link
 
-.. |dmc_image| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/master/media/dmc-view.png
-                :alt: DMC view which shows all the value. 2D view ; 3D view will contains 3 dimensions acceleration
-
 .. |dmc_gif| image:: https://raw.githubusercontent.com/Issamricin/dmc-view/master/media/simulator.gif
    :alt: Demo Preview
-   :width: 600
+   :width: 800
+   :height: 391
