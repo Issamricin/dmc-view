@@ -28,8 +28,9 @@ Features
 
 1. **dmcview** `python package`
 
-   a. View Object Azimuth, Inclindation(Elevation) and Bank; also View Declination(Offset from real North)  
-   b. View animation to reflect real DMC device in 2D. Acceleration is not implemented yet 
+   a. View Object Azimuth, Inclindation(Elevation), Bank, Declination(Offset from real North), and Acceleration. 
+   b. View animation to reflect real DMC device in 2D.
+   c. View acceleration in 3D.
 2. Tested against Linux(ubuntu-latest) `platforms` and `python` 3.12.3
 3. See `TODO <https://github.com/Issamricin/dmc-view/blob/master/TODO.rst>`_.
 
