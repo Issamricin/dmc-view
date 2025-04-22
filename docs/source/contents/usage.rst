@@ -34,7 +34,7 @@ Simple Use Case
 | **e**: Elevation or angular height of a point of interest above or below the horizon, in degrees.
 | **ac**: Acceleration of the object, using 3 points vector.
 
-
+|
 | Common Use Case for the dmcview in simulation mode
 
 .. code-block:: shell
