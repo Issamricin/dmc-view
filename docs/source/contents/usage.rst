@@ -22,11 +22,17 @@ Assuming you have 'activated' a `python virtual environment`:
 Simple Use Case
 ---------------
 
-| Common Use Case for the dmcview is 
+| Common Use Case for the dmcview in input mode
 
 .. code-block:: shell
 
-  dmcview -a 45.5 -d 5.6 -b 30.35 -e 15.23 -ac 14.21
+  dmcview -a 45.5 -d 5.6 -b 30.35 -e 15.23 -ac 14.21 13.0 14.5
+
+| Common Use Case for the dmcview in simulation modee
+
+.. code-block:: shell
+
+  dmcview -s Y
 
 | **a**: Azimuth angle in degree.
 | **d**: Declination angle in degree which is the difference between Real North and Magnetic North.

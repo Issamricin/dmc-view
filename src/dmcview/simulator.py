@@ -4,8 +4,8 @@ from random import uniform
 from PySide6.QtCore import QObject, QRunnable, QThreadPool, Signal, Slot, QThread
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 
-from compass import Compass
-from acceleration import Accelaration3D
+from dmcview.compass import Compass
+from dmcview.acceleration import Accelaration3D
 
 
 class SimulatorSignal(QObject):
@@ -69,10 +69,10 @@ class Simulator():
         
           
   
-def main()->None:
+def start_simulator()->None:
    sim = Simulator()
    sim.run()
  
 
 if __name__ == "__main__": # this is import so that it does not run from pytest
-    main()
+    start_simulator()

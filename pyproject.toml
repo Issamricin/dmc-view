@@ -1,19 +1,9 @@
-# BUILD
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-# Poetry see https://python-poetry.org/docs/pyproject/
-
-# Information required for building (sdist/wheel)
-## Also renders on pypi as 'subtitle'
-[tool.poetry]
+[project]
 name = "dmc-view"
 version = "0.3.0"
 description = "Digital Magnatic Compass View"
-authors = ["Iso", "Alan"]
-maintainers = ["Iso","Alan"]
+authors = [{name="Iso"}, {name="Alan"}] # must be an object
+maintainers = [{name="Iso"}, {name="Alan"}] # must be an object 
 license = "AGPL-3.0-only"
 readme = "README.rst"
 
@@ -45,6 +35,19 @@ classifiers = [
     "Topic :: Desktop Environment",
 ]
 
+############
+## Poetry ##
+############
+# BUILD
+# Poetry see https://python-poetry.org/docs/pyproject/
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+# Information required for building (sdist/wheel)
+## Also renders on pypi as 'subtitle'
+[tool.poetry]
 packages = [
     { include = "dmcview", from = "src" },
 ]
@@ -94,6 +97,8 @@ exclude = [
 [tool.poetry.dependencies]
 python = ">=3.10,<=3.13"
 pyside6= ">=6.6.1"
+matplotlib= ">=3.10.1"
+
 
 
 
