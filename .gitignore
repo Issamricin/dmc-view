@@ -28,6 +28,7 @@ pydoer-graphs/
 *.lock
 # VSC local env
 .venv/
+venv2/
 # pin-deps generated file 
 reqs.txt
 # auto-generated Sphinx api docs
