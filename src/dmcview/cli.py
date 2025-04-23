@@ -1,9 +1,10 @@
 """ The command line interface (CLI) parser """
 from argparse import ArgumentParser, Namespace
 
-from compass import Compass
+from dmcview.compass import Compass
+from dmcview.simulator import start_simulator
 
-from acceleration import  Accelaration3D
+from dmcview.acceleration import  Accelaration3D
 
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 from PySide6.QtCore import QTimer
@@ -82,16 +83,27 @@ def main()-> None:
         Declination angle from the real north to the magnetic north.
     -b : float
         Bank angle at the longitudinal and horizontal axis.
+
+    -ac: float float float 
+        X, Y and Z acceleration 
     
     Examples:
-        >>> python3 cli.py -a 45 -d 20 -b 2
+        >>> dmcview -a 45.5 -d 5.6 -b 30.35 -e 15.23 -ac 14.21 12.3 13.5 
+        >>> dmcview -s Y
     """
 
 
-    parser = ArgumentParser(description="dmcview Command Line Interface")
+    parser = ArgumentParser(prog="dmcview", usage="dmcview -a 45.5 -d 5.6 -b 30.35 -e 15.23 -ac 14.21 12.3 13.5  \n       dmcview -s Y",description="dmcview Command Line Interface")
 
-
-
+    parser.add_argument(
+        '-s',
+        help= 'Start simulator Y/N. If argument is not supplied or "N" is supplied, it will start input mode',
+        type= str,
+        default = 'N',
+        nargs='?',
+        metavar = 'simulation'
+               
+    )
     parser.add_argument(
         '-a',
         help= 'direction measured in degrees clockwise from north',
@@ -128,19 +140,27 @@ def main()-> None:
         '-ac',
         help='acceleration of the object, using 3 points vector',
         type=float,
-        nargs='?',
+        nargs='*',
         default=None, 
-        metavar='acceleration'
+        metavar='[x,y,z]'
     )
     
 
     args : Namespace = parser.parse_args()
-
-    azimuth: float = args.a if args.a is not None else get_float_input("Enter the azimuth angle in degrees; for example 40.45",0.0) # azimuth
-    declination: float = args.d if args.d is not None else get_float_input("Enter the declination angle in degrees; for example 30.0", 0.0) # declination
-    bank: float = args.b if args.b is not None else get_float_input("Enter the bank angle in degrees; for example -7.0", 0.0) # Inclination
-    elevation: float = args.e if args.e is not None else get_float_input("Enter the elevation in degrees; for example 25.21",0.0) # elevation
-    x,y,z = args.ac if args.ac is not None else get_acceleration_input("Enter the acceleration values(vectors: x,y,z); for example 12 12 0",0,0,0)
+   
+    simulation:str = args.s 
+    print(simulation)
+    if args.s is not None and args.s == 'Y':
+       start_simulator()
+    else :
+      start_input(args)
+   
+def start_input(args:Namespace):
+    azimuth: float = args.a if args.a is not None else get_float_input("Enter the azimuth angle in degrees; for example 40.45",45.5) # azimuth
+    declination: float = args.d if args.d is not None else get_float_input("Enter the declination angle in degrees; for example 30.0", 30.0) # declination
+    bank: float = args.b if args.b is not None else get_float_input("Enter the bank angle in degrees; for example -7.0", 5.0) # Inclination
+    elevation: float = args.e if args.e is not None else get_float_input("Enter the elevation in degrees; for example 25.21",20.0) # elevation
+    x,y,z = args.ac if args.ac is not None else get_acceleration_input("Enter the acceleration values(vectors: x,y,z); for example 12 12 13",0,0,0)
 
     app = QApplication()
     main_widget = QWidget()
@@ -174,6 +194,7 @@ def main()-> None:
 
     main_widget.show()
     app.exec()
+
 
 if __name__ == "__main__": # this is important so that it does not run from pytest 
     main()
