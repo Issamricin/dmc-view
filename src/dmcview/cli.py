@@ -9,6 +9,8 @@ from dmcview.acceleration import  Accelaration3D
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 from PySide6.QtCore import QTimer
 
+from dmcview import __version__
+
 
 def get_float_input(    
     prompt: str, 
@@ -144,6 +146,8 @@ def main()-> None:
         default=None, 
         metavar='[x,y,z]'
     )
+    parser.add_argument('--version', action='version', version=f'dmcview {__version__}')
+
     
 
     args : Namespace = parser.parse_args()
