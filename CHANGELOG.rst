@@ -3,6 +3,22 @@ Changelog
 =========
 
 
+0.4.0 (2025-04-23)
+=======================================
+
+| This release fixs the bugs and issues faced in the previous version.
+| The dmcview is now executable from the command line.
+
+Added
+-----
+- Added flag for the simulator and is now executable from the cli "dmcview -s Y".
+
+Fixed
+-----
+- The --version flag is now working well from the cli.
+- Dmcview is now executable from the command line. 
+
+
 0.3.0 (2025-04-13)
 =======================================
 

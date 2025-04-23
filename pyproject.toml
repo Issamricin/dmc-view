@@ -1,6 +1,6 @@
 [project]
 name = "dmc-view"
-version = "0.3.0"
+version = "0.4.0"
 description = "Digital Magnatic Compass View"
 authors = [{name="Iso"}, {name="Alan"}] # must be an object
 maintainers = [{name="Iso"}, {name="Alan"}] # must be an object 
