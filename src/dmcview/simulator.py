@@ -1,11 +1,10 @@
-import time
 from random import uniform
 
 from PySide6.QtCore import QObject, QRunnable, QThreadPool, Signal, Slot, QThread
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 
-from compass import Compass
-from acceleration import Accelaration3D
+from dmcview.compass import Compass
+from dmcview.acceleration import Accelaration3D
 
 
 class SimulatorSignal(QObject):
@@ -18,10 +17,11 @@ class SimulatorRunner(QRunnable):
     def __init__(self) -> None:
         super().__init__()
         self.signal = SimulatorSignal()
+        self.running = True
       
     @Slot()
     def run(self)-> None:
-        while True:
+        while self.running:
             azimuth = round(uniform(20.0,40.0),2)
             inclination = round(uniform(20.0,35.0),2)
             bank = round(uniform(30.0, 45.0),2)
@@ -31,35 +31,31 @@ class SimulatorRunner(QRunnable):
 
             print("Azimuth:{0}; Inclination(Elevation):{1}; Bank(Rotation):{2}; acceleration:{3}".format(azimuth,inclination,bank,[x,y,z]))
             self.signal.result.emit(str(azimuth), str(inclination),str(bank),str(x),str(y),str(z))
-            QThread.sleep(2.5)# two seconds
+            QThread.sleep(2)# two seconds
     
+    def stop(self):
+        self.running = False
     
-class Simulator():
-  
+class Simulator(QWidget):
   def __init__(self)-> None:
+        super().__init__()
         self.threadPool = QThreadPool()
         self.runner = SimulatorRunner()
         
-  def run(self)->None:
-      self.runner.signal.result.connect(self.__update)
-      self.threadPool.start(self.runner)
-     
-      app = QApplication()
-      main_widget = QWidget()
-      layout = QHBoxLayout(main_widget)
-      self.compass = Compass()
-  
-      layout.addWidget(self.compass)
-  
-      self.canvas = Accelaration3D()
-      self.canvas.setFixedSize(350,350)
-      layout.addWidget(self.canvas)
+        layout = QHBoxLayout(self)
+        self.compass = Compass()
+        layout.addWidget(self.compass)
 
-      self.compass.update_declination(10.5)
+        self.canvas = Accelaration3D()
+        self.canvas.setFixedSize(350, 350)
+        layout.addWidget(self.canvas)
 
-      main_widget.show()               
-      app.exec()
-     
+        self.runner.signal.result.connect(self.__update)
+        self.threadPool.start(self.runner)
+
+        self.compass.update_declination(10.5)
+        self.setWindowTitle("Simulator")
+
   def __update(self,azimuth:str, elevation:str, bank:str, x:str, y:str, z:str)->None: 
         self.compass.update_angle(float(azimuth))
         self.compass.set_elevation(float(elevation))
@@ -67,12 +63,19 @@ class Simulator():
         self.canvas.update_acceleration(round(float(x),1),round(float(y),1),round(float(z),1))
         
         
-          
+  def closeEvent(self, event):
+    # Stop any running threads/timers/simulations here
+    print("Shutting down simulator ...")
+    self.runner.stop()
+    event.accept()
+    
   
-def main()->None:
+def start_simulator()->None:
+   app = QApplication()
    sim = Simulator()
-   sim.run()
+   sim.show()
+   app.exec()
  
 
 if __name__ == "__main__": # this is import so that it does not run from pytest
-    main()
+    start_simulator()
