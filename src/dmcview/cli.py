@@ -146,7 +146,11 @@ def main()-> None:
         default=None, 
         metavar='[x,y,z]'
     )
-    parser.add_argument('--version', action='version', version=f'dmcview {__version__}')
+    parser.add_argument(
+        '--version', 
+        action='version', 
+        version=f'dmcview {__version__}'
+        )
 
     
 

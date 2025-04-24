@@ -3,7 +3,7 @@ Changelog
 =========
 
 
-0.4.0 (2025-04-23)
+0.3.1 (2025-04-24)
 =======================================
 
 | This release fixs the bugs and issues faced in the previous version.
