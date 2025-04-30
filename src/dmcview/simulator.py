@@ -1,6 +1,14 @@
 from random import uniform
 
-from PySide6.QtCore import QObject, QRunnable, QThread, QThreadPool, Signal, Slot
+from PySide6.QtCore import (
+    QEvent,
+    QObject,
+    QRunnable,
+    QThread,
+    QThreadPool,
+    Signal,
+    Slot,
+)
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QWidget
 
 from dmcview.acceleration import Accelaration3D
@@ -33,7 +41,7 @@ class SimulatorRunner(QRunnable):
             self.signal.result.emit(str(azimuth), str(inclination),str(bank),str(x),str(y),str(z))
             QThread.sleep(2)# two seconds
     
-    def stop(self):
+    def stop(self)->None:
         self.running = False
     
 class Simulator(QWidget):
@@ -63,7 +71,7 @@ class Simulator(QWidget):
         self.canvas.update_acceleration(round(float(x),1),round(float(y),1),round(float(z),1))
         
         
-  def closeEvent(self, event):
+  def closeEvent(self, event:QEvent)->None:
     # Stop any running threads/timers/simulations here
     print("Shutting down simulator ...")
     self.runner.stop()

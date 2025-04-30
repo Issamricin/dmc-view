@@ -9,7 +9,7 @@ from dmcview.accele3D_signal_manger import signal_manager
 
 
 class Accelaration3D(FigureCanvas):
-    def __init__(self, figure=None):
+    def __init__(self, figure:Figure=None)->None:
         super().__init__(figure)
 
         self.target_x = 0.0
