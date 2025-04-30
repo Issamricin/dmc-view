@@ -1,10 +1,10 @@
 from random import uniform
 
-from PySide6.QtCore import QObject, QRunnable, QThreadPool, Signal, Slot, QThread
-from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
+from PySide6.QtCore import QObject, QRunnable, QThread, QThreadPool, Signal, Slot
+from PySide6.QtWidgets import QApplication, QHBoxLayout, QWidget
 
-from dmcview.compass import Compass
 from dmcview.acceleration import Accelaration3D
+from dmcview.compass import Compass
 
 
 class SimulatorSignal(QObject):

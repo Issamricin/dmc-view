@@ -1,15 +1,13 @@
 """ The command line interface (CLI) parser """
 from argparse import ArgumentParser, Namespace
 
-from dmcview.compass import Compass
-from dmcview.simulator import start_simulator
-
-from dmcview.acceleration import  Accelaration3D
-
-from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QApplication, QHBoxLayout, QWidget
 
 from dmcview import __version__
+from dmcview.acceleration import Accelaration3D
+from dmcview.compass import Compass
+from dmcview.simulator import start_simulator
 
 
 def get_float_input(    

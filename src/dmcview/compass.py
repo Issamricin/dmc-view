@@ -13,7 +13,9 @@ from PySide6.QtGui import (
     QTransform,
 )
 from PySide6.QtWidgets import QWidget
+
 from dmcview.accele3D_signal_manger import signal_manager
+
 
 class Compass(QWidget):
     def __init__(self) -> None:
