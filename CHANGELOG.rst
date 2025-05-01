@@ -3,6 +3,17 @@ Changelog
 =========
 
 
+0.3.2 (2025-05-01)
+=======================================
+
+| This patch release improves tox.
+
+Improved
+--------
+- Tox is simplified and improved.
+- Things that were not needed are removed.
+
+
 0.3.1 (2025-04-24)
 =======================================
 
