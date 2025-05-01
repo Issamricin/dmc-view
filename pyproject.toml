@@ -7,7 +7,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "dmc-view"
-version = "0.3.1"
+version = "0.3.2"
 description = "Digital Magnatic Compass View"
 authors = [{name="Iso"}, {name="Alan"}] # must be an object
 maintainers = [{name="Iso"}, {name="Alan"}] # must be an object 
