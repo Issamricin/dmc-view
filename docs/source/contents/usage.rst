@@ -42,15 +42,15 @@ Simple Use Case
   dmcview -s Y
 
 
-----------------------
-Running the Simulation
-----------------------
-| The simulation  execution gives you a real device feeling.
+--------------
+Running PyTest 
+--------------
+| PyTest can be run from command line.
 
 .. code-block:: shell
   
-  python3 dmcview.simulation.py
+  python -m pip install -e . dmc-view[test]
+  pytest
 
-**Ctrl + C** to terminate the execution since the simulation will run for infinite time  
 
 

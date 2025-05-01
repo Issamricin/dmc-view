@@ -1,15 +1,13 @@
 """ The command line interface (CLI) parser """
 from argparse import ArgumentParser, Namespace
 
-from dmcview.compass import Compass
-from dmcview.simulator import start_simulator
-
-from dmcview.acceleration import  Accelaration3D
-
-from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout
 from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QApplication, QHBoxLayout, QWidget
 
 from dmcview import __version__
+from dmcview.acceleration import Accelaration3D
+from dmcview.compass import Compass
+from dmcview.simulator import start_simulator
 
 
 def get_float_input(    
@@ -45,7 +43,7 @@ def get_acceleration_input(
     x: float,
     y: float,
     z: float
-    ) -> float:
+    ) -> tuple[float,float,float]:
 
     while True:
         try:
@@ -53,15 +51,15 @@ def get_acceleration_input(
             try:
                 user_x = user_input[0] 
             except IndexError:   
-                user_x = x
+                user_x = str(x)
             try:
                 user_y = user_input[1]
             except IndexError:
-                user_y = y
+                user_y = str(y)
             try:
                 user_z = user_input[2]
             except IndexError:
-                user_z = z
+                user_z = str(z)
 
             return float(user_x),float(user_y),float(user_z)
         
@@ -163,12 +161,12 @@ def main()-> None:
     else :
       start_input(args)
    
-def start_input(args:Namespace):
+def start_input(args:Namespace)->None:
     azimuth: float = args.a if args.a is not None else get_float_input("Enter the azimuth angle in degrees; for example 40.45",45.5) # azimuth
     declination: float = args.d if args.d is not None else get_float_input("Enter the declination angle in degrees; for example 30.0", 30.0) # declination
     bank: float = args.b if args.b is not None else get_float_input("Enter the bank angle in degrees; for example -7.0", 5.0) # Inclination
     elevation: float = args.e if args.e is not None else get_float_input("Enter the elevation in degrees; for example 25.21",20.0) # elevation
-    x,y,z = args.ac if args.ac is not None else get_acceleration_input("Enter the acceleration values(vectors: x,y,z); for example 12 12 13",0,0,0)
+    x,y,z = args.ac if args.ac is not None else get_acceleration_input("Enter the acceleration values(vectors: x,y,z); for example 12 12 13",0.0,0.0,0.0)
 
     app = QApplication()
     main_widget = QWidget()

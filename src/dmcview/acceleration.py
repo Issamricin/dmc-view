@@ -1,12 +1,15 @@
+from decimal import ROUND_HALF_UP, Decimal
+
+import numpy as np
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
-import numpy as np
 from PySide6.QtCore import QTimer
+
 from dmcview.accele3D_signal_manger import signal_manager
-from decimal import Decimal, ROUND_HALF_UP
+
 
 class Accelaration3D(FigureCanvas):
-    def __init__(self, figure=None):
+    def __init__(self, figure:Figure=None)->None:
         super().__init__(figure)
 
         self.target_x = 0.0

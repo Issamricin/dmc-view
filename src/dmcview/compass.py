@@ -13,7 +13,9 @@ from PySide6.QtGui import (
     QTransform,
 )
 from PySide6.QtWidgets import QWidget
+
 from dmcview.accele3D_signal_manger import signal_manager
+
 
 class Compass(QWidget):
     def __init__(self) -> None:
@@ -117,7 +119,7 @@ class Compass(QWidget):
 
         
         
-    def receive_acceleration(self, x: float, y: float, z: float):
+    def receive_acceleration(self, x: float, y: float, z: float)->None:
         self.x = x
         self.y = y
         self.z = z
@@ -401,7 +403,7 @@ class Compass(QWidget):
     def update_angle(self, target_angle: float) -> None:
         self.target_angle = target_angle % 360
 
-    def update_declination(self, target_declination: float):
+    def update_declination(self, target_declination: float)->None:
         self.target_declination = target_declination % 360
 
     def __animate_declination(self) -> None:
