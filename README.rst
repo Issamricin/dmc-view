@@ -1,7 +1,8 @@
-DMC VIEW
-
-Digital Magnatic Compass View
-
+| **Digital Magnatic Compass View**
+.. image:: https://raw.githubusercontent.com/Issamricin/dmc-view/master/media/logo.png
+   :alt: Digital Magnatic Compass View 
+   :width: 300
+   :height: 200
 ------
 
 .. start-badges see https://shields.io/badges and collection see https://github.com/inttter/md-badges
@@ -139,3 +140,5 @@ License
    :alt: Demo Preview
    :width: 800
    :height: 391
+
+
