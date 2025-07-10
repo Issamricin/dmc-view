@@ -62,12 +62,6 @@ License
 * `GNU Affero General Public License v3.0`_
 
 
-License
-=======
-
-* Free software: GNU Affero General Public License v3.0
-
-
 
 .. LINKS
 
