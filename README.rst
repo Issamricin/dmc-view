@@ -28,38 +28,36 @@ Features
 
 1. **dmcview** `python package`
 
-   a. View Object Azimuth, Inclindation(Elevation), Bank, Declination(Offset from real North), and Acceleration. 
-   b. View animation to reflect real DMC device in 2D.
-   c. View acceleration in 3D.
+   a. View Object Azimuth, Inclindation(Elevation), Bank, Declination(Offset from real North), and Acceleration 
+   b. View animation to reflect real DMC device in 2D
+   c. View acceleration in 3D
 2. Tested against Linux(ubuntu-latest) `platforms` and `python` 3.12.3
-3. See `TODO <https://github.com/Issamricin/dmc-view/blob/master/TODO.rst>`_.
+3. `TODO <https://github.com/Issamricin/dmc-view/blob/master/TODO.rst>`_
 
 Technical Debt
 ==============
-See `Technical Debt <https://github.com/Issamricin/dmc-view/blob/master/TECHNICALDEBT.rst>`_.
+`Technical Debt <https://github.com/Issamricin/dmc-view/blob/master/TECHNICALDEBT.rst>`_
 
 Change Log
 ==========
- `Change Log <https://github.com/Issamricin/dmc-view/blob/master/CHANGELOG.rst>`_.
+`Change Log <https://github.com/Issamricin/dmc-view/blob/master/CHANGELOG.rst>`_.
 
 How to Contribute
 =================
- `Contribute <https://github.com/Issamricin/dmc-view/blob/master/CONTRIBUTING.md>`_.
+`Contribute <https://github.com/Issamricin/dmc-view/blob/master/CONTRIBUTING.md>`_
 
 Development
 ===========
-| `Development <https://github.com/Issamricin/dmc-view/blob/master/docs/source/contents/development.rst>`_.
+`Development <https://github.com/Issamricin/dmc-view/blob/master/docs/source/contents/development.rst>`_
 
 Quickstart
 ==========
-| `Usage <https://github.com/Issamricin/dmc-view/blob/master/docs/source/contents/usage.rst>`_.
+`Usage <https://github.com/Issamricin/dmc-view/blob/master/docs/source/contents/usage.rst>`_
 
 
 License
 =======
-
-
-* `GNU Affero General Public License v3.0`_
+`GNU Affero General Public License v3.0`_
 
 
 
