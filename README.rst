@@ -1,7 +1,6 @@
 | **Digital Magnatic Compass View**
 .. image:: https://raw.githubusercontent.com/Issamricin/dmc-view/master/media/logo.png
    :alt: Digital Magnatic Compass View 
-   :width: 300
    :height: 200
 ------
 
