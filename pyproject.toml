@@ -70,10 +70,10 @@ dependencies = [
 ## $ pip install -e .  dmc-view[test]
 [project.optional-dependencies]
 test = [
-  "pytest>=8.0.0",
-  "pytest-qt>=4.4.0",
-  "pytest-mock>=3.14",
-  "pytest-cov>4.1.0",
+  "pytest>=8.4.0",
+  "pytest-qt>=4.5.0",
+  "pytest-mock>=3.14.0",
+  "pytest-cov>6.2.0",
 ]
 
 
