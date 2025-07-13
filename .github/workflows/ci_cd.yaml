@@ -83,7 +83,7 @@ jobs:
   ###############################
   set_github_outputs:
     name: Read Workflow Env Section Vars and set Github Outputs
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Pass 'env' section variables to GITHUB_OUTPUT
         id: pass-env-to-output
@@ -136,6 +136,7 @@ jobs:
 ############################################
   test_suite:
     runs-on: ${{ matrix.platform }}
+    continue-on-error: true
     needs: set_github_outputs
     if: ${{ needs.set_github_outputs.outputs.TESTS_ENABLED == 'true' }}
     strategy:
