@@ -49,7 +49,7 @@ Running PyTest
 
 .. code-block:: shell
   
-  python -m pip install -e . dmc-view[test]
+  python -m pip install -e . dmcview[test]
   pytest
 
 
