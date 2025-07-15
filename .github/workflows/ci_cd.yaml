@@ -232,8 +232,8 @@ jobs:
           DIST_DIR=dist
           echo "DIST_DIR=${DIST_DIR}" >> $GITHUB_ENV
           mkdir ${DIST_DIR}
-          mv ".tox/${DIST_DIR}/dmcview-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
-          mv "${{ env.WHEEL_PATH }}" "${DIST_DIR}"
+          cp ".tox/${DIST_DIR}/dmcview-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
+          cp "${{ env.WHEEL_PATH }}" "${DIST_DIR}"
           tox -e check -v -s false
 
       ## UPLOAD CI ARTIFACTS - Distro Build(s), 1 sdist and 1 or more wheels ##
