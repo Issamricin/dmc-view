@@ -9,8 +9,11 @@ build-backend = "poetry.core.masonry.api"
 name = "dmcview"
 version = "0.3.2"
 description = "Digital Magnatic Compass View"
-authors = [{name="Iso"}, {name="Alan"}] # must be an object
-maintainers = [{name="Iso"}, {name="Alan"}] # must be an object 
+authors = [
+   {name="Iso"}, 
+   {name="Alan"}
+]
+maintainers = [{name="Iso"}, {name="Alan"}] # must be an object
 license = "AGPL-3.0-only"
 readme = "README.rst"
 
@@ -52,8 +55,6 @@ urls.Documentation = "https://dmc-view.readthedocs.io/"
 urls."Source Code" = "https://github.com/Issamricin/dmc-view"
 urls.Changelog = "https://github.com/Issamricin/dmc-view/blob/master/CHANGELOG.rst"
 urls."Code of Conduct" = "https://github.com/Issamricin/dmc-view/blob/master/CONTRIBUTING.md"
-
-
 
 
 
