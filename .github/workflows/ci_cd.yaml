@@ -141,7 +141,7 @@ jobs:
     strategy:
       matrix: ${{fromJSON(needs.set_github_outputs.outputs.matrix)}}
     env:
-      WHEELS_PIP_DIR: "wheels-pip"
+      WHEELS_PIP_DIR: "dist" # see tox.ini  env  DIST_DIR = dist
     steps:
       - run: echo "Platform -> ${{ matrix.platform }} , Python -> ${{ matrix.python-version }}"
       - name: Set up Python ${{ matrix.python-version }}
