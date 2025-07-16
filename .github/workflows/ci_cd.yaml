@@ -254,7 +254,7 @@ jobs:
  ###############################
   codecov_coverage_host:
     runs-on: ubuntu-latest
-    needs: test_suite
+    needs: [set_github_outputs, test_suite]
     if: ${{ needs.set_github_outputs.outputs.CODE_COVERAGE_ENABLED == 'true' }} 
     steps:
     - uses: actions/checkout@v4
