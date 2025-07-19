@@ -37,9 +37,8 @@ env:
   ##### JOB ON/OFF SWITCHES - Top/1st level overrides #####
   #########################################################
   RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false 
-  RUN_CODE_COVERAGE: "true"
   RUN_LINT_CHECKS: "false" # ditto 
-  DOCKER_JOB_ON: "false" # ditto 
+  DOCKER_JOB_ON: "true" # ditto 
   PUBLISH_ON_PYPI: "false" # ditto 
   DOCS_ON: "false" # ditto
   DRAW_DEPENDENCIES: "false" # ditto 
@@ -97,7 +96,6 @@ jobs:
             echo "matrix=$UBUNTU_PY313_STRATEGY" >> $GITHUB_OUTPUT
           fi
           echo "TESTS_ENABLED=$RUN_UNIT_TESTS" >> $GITHUB_OUTPUT
-          echo "CODE_COVERAGE_ENABLED=$RUN_CODE_COVERAGE" >> $GITHUB_OUTPUT
           echo "PUBLISH_ON_PYPI=$PUBLISH_ON_PYPI" >> $GITHUB_OUTPUT
       ## Docker - Pipeline Settings ##
       - id: derive_docker_policy
@@ -250,7 +248,7 @@ jobs:
 
 
  ###############################
- ### JOB: CODE COCERAGE HOST ###
+ ### JOB: CODE COVERAGE HOST ###
  ###############################
   codecov_coverage_host:
     runs-on: ubuntu-latest
@@ -282,7 +280,7 @@ jobs:
   docker_build:
     needs: [set_github_outputs, test_suite]
     uses: ./.github/workflows/docker.yml
-    if: false 
+    if: true 
     with:
       acceptance_policy: ${{ needs.set_github_outputs.outputs.PIPE_DOCKER_POLICY }}
       image_slug: "dmcview"
