@@ -21,8 +21,7 @@ on:
       - v*
 
 env:
-  ### STRESS TEST Job MATRIX ###
-  FULL_MATRIX_STRATEGY: "{\"platform\": [\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\": [\"3.8\", \"3.9\", \"3.10\", \"3.11\", \"3.12\", \"3.13\"]}"
+  ### Job MATRIX ###
   # Python 3.12 is in bugfix mode, same as 3.11 -> can start supporting 3.13 later 
   UBUNTU_PY313_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":[\"3.13\"]}"
  
@@ -177,7 +176,7 @@ jobs:
           echo "WHEEL_SIZE=$WHEEL_SIZE" >> $GITHUB_ENV
 
           # extract '1.12.5.dev0' from 'dmcview-1.12.5.dev0-py3-none-any.whl'
-          PEP_VERSION=$(echo $WHEEL_NAME | sed -E "s/dmcview-([^ ]+)-py3-none-any.whl/\1/")
+          PEP_VERSION=$(echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/')
 
           echo "PEP_VERSION=${PEP_VERSION}" >> $GITHUB_OUTPUT
 
@@ -234,8 +233,9 @@ jobs:
           path: ${{ env.DIST_DIR }}
           if-no-files-found: error
     outputs:
-      PEP_VERSION: ${{ steps.extract_wheel_info.outputs.PEP_VERSION }}
       TEST_RESULT: ${{'success'}}
+      PEP_VERSION: ${{ steps.extract_wheel_info.outputs.PEP_VERSION }}
+      
 
 
  ###############################
