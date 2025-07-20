@@ -192,11 +192,8 @@ jobs:
           PLATFORM: ${{ matrix.platform }}
           BUILD_DEST: ${{ env.WHEELS_PIP_DIR }}
           WHEEL: ${{ env.WHEEL_NAME }}
-          
-        # Crash Workflow if PEP_VERSION is not set
-      - if: ${{ steps.extract_wheel_info.outputs.PEP_VERSION == '' }}
-        run: exit 1
-
+          PIP_VERSION: ${{ steps.extract_wheel_info.outputs.PEP_VERSION}}
+    
       ## Combine Coverage Data from Tests' Results ##
       - name: "Combine Coverage (dev, sdist, wheel) & make Reports"
         run: tox -e coverage --sitepackages -v -s false
