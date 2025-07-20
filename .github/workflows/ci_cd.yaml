@@ -178,16 +178,16 @@ jobs:
           # extract '0.3.2' from 'dmcview-0.3.2-py3-none-any.whl'
           #echo "Alan=$WHEEL_NAME"
           #echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/'
-          PEP_VERSION=$(echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/')
-          PEP_VERSION=$(echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/')
-          echo "PEP_VERSION2=$PEP_VERSION"
-          echo "PEP_VERSION=${PEP_VERSION2}" >> $GITHUB_OUTPUT
+          WHEEL_VERSION=$(echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/')
+          WHEEL_VERSION=$(echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/')
+          echo "WHEEL_VERSION=$WHEEL_VERSION"
+          echo "WHEEL_VERSION=${WHEEL_VERSION}" >> $GITHUB_OUTPUT
 
       - run: 'echo "WHEEL_NAME: $WHEEL_NAME SIZE: $WHEEL_SIZE"'
-      - run: 'echo "PEP_VERSION: $PEP_VERSION2"'
+      - run: 'echo "WHEEL_VERSION: $WHEEL_VERSION"'
 
       # Crash Workflow if PEP_VERSION is not set
-      - if: ${{ steps.extract_wheel_info.outputs.PEP_VERSION == '' }}
+      - if: ${{ steps.extract_wheel_info.outputs.WHEEL_VERSION == '' }}
         run: exit 1
 
       ###### TEST SUITE RUN against Wheel ######
