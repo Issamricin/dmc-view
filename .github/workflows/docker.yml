@@ -64,9 +64,6 @@ on:
       tests_pass:
         required: false
         type: boolean
-      tests_run:
-        required: false
-        type: boolean
       # Defaults to CI/CD if unknown policy or not given
       acceptance_policy:
         required: false
@@ -99,10 +96,9 @@ jobs:
     # 1 0 = 2: CI/CD pure mode, aka Admit only if Pass, Require Pass, guarantee quality
     # 1 1 = 3: CI/CD with Bypass Opt, aka Admit Tested and when Test is OFF, Admit when Test OFF
 
-    if: always() && inputs.acceptance_policy != 0 && ( inputs.acceptance_policy == 1 || (
-        inputs.tests_pass && inputs.tests_run ) || (
-        inputs.acceptance_policy == 3 && inputs.tests_pass == false && inputs.tests_run == false )
-      )
+    if: always() && inputs.acceptance_policy != 0 &&  (inputs.acceptance_policy == 1 || inputs.tests_pass  || (inputs.acceptance_policy == 3 && inputs.tests_pass == false ))
+
+     
 
     runs-on: ubuntu-latest
     env:
@@ -155,7 +151,7 @@ jobs:
           echo === SECRETS ===
           echo ${DOCKER_PASSWORD}
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - run: echo ${{ github.ref }}
       - run: echo ${{ github.ref_name }}
