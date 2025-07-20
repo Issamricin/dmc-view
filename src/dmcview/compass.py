@@ -29,23 +29,25 @@ class Compass(QWidget):
         self.elevation = 0.0
         self.rotation = 0.0
 
-        #acceleration vectors
+        # acceleration vectors
         self.x = 0.0
         self.y = 0.0
         self.z = 0.0
 
-        self.signal_connected = False #So the first time the signal tries to discconnect it wont be able
-        
+        self.signal_connected = (
+            False  # So the first time the signal tries to discconnect it wont be able
+        )
+
         self.start_animation_timer()
 
     def resizeEvent(self, event: QResizeEvent) -> None:
         """
         triggers when screen resize happens
-        
+
         Args:
             event (QResizeEvent) : The QT size event
-        
-        """ 
+
+        """
 
         self.create_static_pixmap()
         super().resizeEvent(event)
@@ -88,38 +90,38 @@ class Compass(QWidget):
 
         self.draw_red_line(painter, center, radius)
 
-        font_size = max(12,self.width()//80)
+        font_size = max(12, self.width() // 80)
         line_spacing = font_size
 
         painter.setPen(QPen(Qt.black))
-        painter.setFont(QFont("Arial",font_size))
-        text_x = center.x() + radius + 47 # reduce the number to prevent capped text
+        painter.setFont(QFont("Arial", font_size))
+        text_x = center.x() + radius + 47  # reduce the number to prevent capped text
         text_y = center.y() - radius
 
         test_pos = QPointF(text_x, text_y)
-        azimuth_pos = QPointF(text_x,text_y + 4 * line_spacing)
-        declination_pos = QPointF(text_x,text_y + 8 * line_spacing)
-        rotation_pos = QPointF(text_x,text_y + 12 * line_spacing)
-        inclination_pos = QPointF(text_x,text_y + 16 * line_spacing)
-        acceleration_pos = QPointF(text_x,text_y + 20 * line_spacing)
-        acceleration_vec_pos = QPointF(text_x,text_y + 22 * line_spacing)
-        
+        azimuth_pos = QPointF(text_x, text_y + 4 * line_spacing)
+        declination_pos = QPointF(text_x, text_y + 8 * line_spacing)
+        rotation_pos = QPointF(text_x, text_y + 12 * line_spacing)
+        inclination_pos = QPointF(text_x, text_y + 16 * line_spacing)
+        acceleration_pos = QPointF(text_x, text_y + 20 * line_spacing)
+        acceleration_vec_pos = QPointF(text_x, text_y + 22 * line_spacing)
+
         if self.signal_connected:
-            signal_manager.data_signal.disconnect() # Avoid duplicate connections
+            signal_manager.data_signal.disconnect()  # Avoid duplicate connections
             self.signal_connected = True
         signal_manager.data_signal.connect(self.receive_acceleration)
-        
-        painter.drawText(test_pos, "Information: ")
-        painter.drawText(azimuth_pos,f"Azimuth: {round(self.current_angle,2)} °")
-        painter.drawText(declination_pos,f"Declination: {round(self.current_declination,2)} °")
-        painter.drawText(rotation_pos,f"Bank: {round(self.rotation,2)} °")
-        painter.drawText(inclination_pos,f"Elevation: {round(self.elevation,2)} °")
-        painter.drawText(acceleration_pos,"Acceleration:")
-        painter.drawText(acceleration_vec_pos,f"{self.x}, {self.y}, {self.z}")
 
-        
-        
-    def receive_acceleration(self, x: float, y: float, z: float)->None:
+        painter.drawText(test_pos, "Information: ")
+        painter.drawText(azimuth_pos, f"Azimuth: {round(self.current_angle,2)} °")
+        painter.drawText(
+            declination_pos, f"Declination: {round(self.current_declination,2)} °"
+        )
+        painter.drawText(rotation_pos, f"Bank: {round(self.rotation,2)} °")
+        painter.drawText(inclination_pos, f"Elevation: {round(self.elevation,2)} °")
+        painter.drawText(acceleration_pos, "Acceleration:")
+        painter.drawText(acceleration_vec_pos, f"{self.x}, {self.y}, {self.z}")
+
+    def receive_acceleration(self, x: float, y: float, z: float) -> None:
         self.x = x
         self.y = y
         self.z = z
@@ -186,12 +188,12 @@ class Compass(QWidget):
         triangle_x = center.x() + arrow_distance * math.cos(angle_rad)
         triangle_y = center.y() + arrow_distance * math.sin(angle_rad)
 
-        pen = QPen(Qt.red,1,Qt.SolidLine) 
-        pen2 = QPen(QColor("DarkBlue"),1,Qt.DashLine)
+        pen = QPen(Qt.red, 1, Qt.SolidLine)
+        pen2 = QPen(QColor("DarkBlue"), 1, Qt.DashLine)
 
         painter.setPen(pen)
 
-        painter.drawLine(center.x(),center.y(),triangle_x,triangle_y)
+        painter.drawLine(center.x(), center.y(), triangle_x, triangle_y)
 
         floating_triangle = QPolygonF(
             [
@@ -203,47 +205,53 @@ class Compass(QWidget):
 
         transform = QTransform()
         transform.translate(triangle_x, triangle_y)
-        transform.rotate(90-self.elevation)
+        transform.rotate(90 - self.elevation)
 
         rotated_triangle = transform.map(floating_triangle)
         painter.drawPolygon(rotated_triangle)
 
-
-        pen = QPen(Qt.black,1,Qt.DashLine) 
+        pen = QPen(Qt.black, 1, Qt.DashLine)
         painter.setPen(pen)
 
         arc2_radius = radius - 120
-        rect2 = QRectF(center.x() - arc2_radius,center.y() - arc2_radius, 2 * arc2_radius, 2 * arc2_radius)
-        startAngleIncli = 0 *16 # Inclination
+        rect2 = QRectF(
+            center.x() - arc2_radius,
+            center.y() - arc2_radius,
+            2 * arc2_radius,
+            2 * arc2_radius,
+        )
+        startAngleIncli = 0 * 16  # Inclination
 
-        if (self.elevation>270): # it is maxed at 90 but 
-            spanAngleIncli = 90 * 16.00 # make it float
-        elif (self.elevation>90):
-            spanAngleIncli = 0.00 # make it float
+        if self.elevation > 270:  # it is maxed at 90 but
+            spanAngleIncli = 90 * 16.00  # make it float
+        elif self.elevation > 90:
+            spanAngleIncli = 0.00  # make it float
         else:
-            spanAngleIncli = ( self.elevation) * 16 # float datatype (implicit)
-  
+            spanAngleIncli = (self.elevation) * 16  # float datatype (implicit)
+
         painter.resetTransform()
 
-        midPointAngelIncli = startAngleIncli + spanAngleIncli / 2 # Inclination
+        midPointAngelIncli = startAngleIncli + spanAngleIncli / 2  # Inclination
         mid_angel_rad_incli = math.radians(midPointAngelIncli / 16)
 
-        midpoint_incli_x = center.x() + arc2_radius * math.cos(mid_angel_rad_incli) # Inclination
+        midpoint_incli_x = center.x() + arc2_radius * math.cos(
+            mid_angel_rad_incli
+        )  # Inclination
         midpoint_incli_y = center.y() - arc2_radius * math.sin(mid_angel_rad_incli)
 
         label2 = "Elevation"
 
         painter.setPen(pen2)
         painter.drawArc(rect2, int(startAngleIncli), int(spanAngleIncli))
-        painter.drawText(QPointF(midpoint_incli_x + 11,midpoint_incli_y - 10), label2) # Inclination
+        painter.drawText(
+            QPointF(midpoint_incli_x + 11, midpoint_incli_y - 10), label2
+        )  # Inclination
 
         self.draw_rotating_magnetic_north(
             painter, center, radius, self.current_angle, self.current_declination
         )
 
-        self.draw_azimuth(
-            painter, center, radius, self.current_angle
-        )
+        self.draw_azimuth(painter, center, radius, self.current_angle)
 
     def draw_rotating_magnetic_north(
         self,
@@ -253,8 +261,8 @@ class Compass(QWidget):
         compass_angle: float,
         declination: float,
     ) -> None:
-        
-        dark_red = QColor(124,10,2)
+
+        dark_red = QColor(124, 10, 2)
 
         painter.setBrush(dark_red)
         painter.setPen(QPen(dark_red, 2))
@@ -278,37 +286,40 @@ class Compass(QWidget):
 
         painter.resetTransform()
 
-        
-        pen = QPen(dark_red,1,Qt.DashLine) 
+        pen = QPen(dark_red, 1, Qt.DashLine)
         painter.setPen(pen)
 
         arc_radius = radius + 25
 
-        rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
+        rect = QRectF(
+            center.x() - arc_radius, center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius
+        )
 
-        startAngle = 90 * 16 
+        startAngle = 90 * 16
 
-        if(self.current_declination>180):
-            spanAngle = (360 - self.current_declination)  * 16 
-        else: 
-            spanAngle = -self.current_declination * 16 # angle in 1/16th degree expected by Qt
+        if self.current_declination > 180:
+            spanAngle = (360 - self.current_declination) * 16
+        else:
+            spanAngle = -self.current_declination * 16  # angle in 1/16th degree expected by Qt
 
-    
         painter.drawArc(rect, int(startAngle), int(spanAngle))
 
-
         midPointAngel = startAngle + spanAngle / 2
-        AngelRad = math.radians(midPointAngel/16)
+        AngelRad = math.radians(midPointAngel / 16)
 
         midPoint_x = center.x() + arc_radius * math.cos(AngelRad)
         midPoint_y = center.y() - arc_radius * math.sin(AngelRad)
 
         label = "Declination"
 
-        if self.current_declination < 180: # each side has different alignment 
-            painter.drawText(QPointF(midPoint_x + 50,midPoint_y + 1 ),label) # +7 so it is not touching with the arc
+        if self.current_declination < 180:  # each side has different alignment
+            painter.drawText(
+                QPointF(midPoint_x + 50, midPoint_y + 1), label
+            )  # +7 so it is not touching with the arc
         else:
-            painter.drawText(QPointF(midPoint_x - 100,midPoint_y ),label) # -90 so it is not touching the circle
+            painter.drawText(
+                QPointF(midPoint_x - 100, midPoint_y), label
+            )  # -90 so it is not touching the circle
 
     def draw_azimuth(
         self,
@@ -317,8 +328,8 @@ class Compass(QWidget):
         radius: int,
         compass_angle: float,
     ) -> None:
-        
-        dark_green = QColor(87,108,67)
+
+        dark_green = QColor(87, 108, 67)
 
         painter.setBrush(dark_green)
         painter.setPen(QPen(dark_green, 2))
@@ -326,8 +337,8 @@ class Compass(QWidget):
         final_angle = compass_angle % 360
         rad_angle = math.radians(final_angle - 90)  # -90 to align correctly
 
-        marker_x = center.x() + (radius -20) * math.cos(rad_angle)
-        marker_y = center.y() + (radius -20) * math.sin(rad_angle)
+        marker_x = center.x() + (radius - 20) * math.cos(rad_angle)
+        marker_y = center.y() + (radius - 20) * math.sin(rad_angle)
 
         marker_size = 10
         magnetic_marker = QPolygonF(
@@ -342,40 +353,38 @@ class Compass(QWidget):
 
         painter.resetTransform()
 
-        
-        pen = QPen(dark_green,1,Qt.DashLine) 
+        pen = QPen(dark_green, 1, Qt.DashLine)
         painter.setPen(pen)
 
         arc_radius = radius - 20
 
-        rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
+        rect = QRectF(
+            center.x() - arc_radius, center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius
+        )
 
-        startAngle = 90 * 16 
+        startAngle = 90 * 16
 
-        if(self.current_angle>180):
-            spanAngle = (360 - self.current_angle)  * 16 
-        else: 
-            spanAngle = -self.current_angle * 16 # angle in 1/16th degree expected by Qt
+        if self.current_angle > 180:
+            spanAngle = (360 - self.current_angle) * 16
+        else:
+            spanAngle = -self.current_angle * 16  # angle in 1/16th degree expected by Qt
 
-    
         painter.drawArc(rect, int(startAngle), int(spanAngle))
 
-
         midPointAngel = startAngle + spanAngle / 2
-        AngelRad = math.radians(midPointAngel/16)
+        AngelRad = math.radians(midPointAngel / 16)
 
         midPoint_x = center.x() + arc_radius * math.cos(AngelRad)
         midPoint_y = center.y() - arc_radius * math.sin(AngelRad)
 
         label = "Azimuth"
 
-        if self.current_angle == 0: # each side has different alignment 
-            painter.drawText(QPointF(midPoint_x+12,midPoint_y+22),label)
-        elif self.current_angle < 180: # each side has different alignment 
-            painter.drawText(QPointF(midPoint_x-25,midPoint_y+25),label) 
+        if self.current_angle == 0:  # each side has different alignment
+            painter.drawText(QPointF(midPoint_x + 12, midPoint_y + 22), label)
+        elif self.current_angle < 180:  # each side has different alignment
+            painter.drawText(QPointF(midPoint_x - 25, midPoint_y + 25), label)
         else:
-            painter.drawText(QPointF(midPoint_x-10,midPoint_y+25),label)
-
+            painter.drawText(QPointF(midPoint_x - 10, midPoint_y + 25), label)
 
     def start_animation_timer(self) -> None:
         self.azimuth_timer = QTimer(self)
@@ -403,7 +412,7 @@ class Compass(QWidget):
     def update_angle(self, target_angle: float) -> None:
         self.target_angle = target_angle % 360
 
-    def update_declination(self, target_declination: float)->None:
+    def update_declination(self, target_declination: float) -> None:
         self.target_declination = target_declination % 360
 
     def __animate_declination(self) -> None:
@@ -444,26 +453,31 @@ class Compass(QWidget):
 
         painter.drawLine(transformed_line[0], transformed_line[1])
 
-        
-        pen = QPen(Qt.black,1,Qt.DashLine) 
+        pen = QPen(Qt.black, 1, Qt.DashLine)
         painter.setPen(pen)
 
-        arc_radius = radius - 40 # -40 so it is not touching the circle
+        arc_radius = radius - 40  # -40 so it is not touching the circle
 
-        rect = QRectF(center.x() - arc_radius,center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
+        rect = QRectF(
+            center.x() - arc_radius, center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius
+        )
 
-        startAngle = 16 * 180 # *180 so it is draw to the left of the circle
-        spanAngle = self.rotation * 16 # angle in 1/16th degree expected by Qt
+        startAngle = 16 * 180  # *180 so it is draw to the left of the circle
+        spanAngle = self.rotation * 16  # angle in 1/16th degree expected by Qt
 
-    
         painter.drawArc(rect, int(startAngle), int(spanAngle))
 
         midPointAngel = startAngle + spanAngle / 2
-        mid_angel_rad = math.radians(midPointAngel / 16) # angle in 1/16th degree expected by Qt
+        mid_angel_rad = math.radians(
+            midPointAngel / 16
+        )  # angle in 1/16th degree expected by Qt
 
-
-        midpoint_x = center.x() + arc_radius * math.cos(mid_angel_rad) + 10 #offset to the right 10 so it is not touching the arc
+        midpoint_x = (
+            center.x() + arc_radius * math.cos(mid_angel_rad) + 10
+        )  # offset to the right 10 so it is not touching the arc
         midpoint_y = center.y() - arc_radius * math.sin(mid_angel_rad)
 
         label = "Bank"
-        painter.drawText(QPointF(midpoint_x,midpoint_y - 2), label) # -2 so it is not touching line at 0 angle
+        painter.drawText(
+            QPointF(midpoint_x, midpoint_y - 2), label
+        )  # -2 so it is not touching line at 0 angle

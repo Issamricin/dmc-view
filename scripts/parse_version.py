@@ -34,7 +34,7 @@ def build_client_callback(data: MatchData, factory: ExceptionFactory) -> ClientC
         data = (data[0], data[1], [re.MULTILINE])
 
     def client_callback(file_path: str, regex: str) -> t.Tuple:
-        with open(file_path, 'r') as _file:
+        with open(file_path) as _file:
             contents = _file.read()
         match = getattr(re, data[1])(regex, contents, *data[2])
         if match:
@@ -62,8 +62,7 @@ software_release_parser = build_client_callback(
 version_file_parser = build_client_callback(
     (lambda match: (match.group(1),),),
     lambda file_path, reg, string: AttributeError(
-        "Could not find a match for regex {regex} when applied to:".format(regex=reg)
-        + "\n{content}".format(content=string)
+        f"Could not find a match for regex {reg} when applied to:\n{str} for the file path {file_path}"
     ),
 )
 
@@ -107,6 +106,7 @@ def parse_version(software_release_cfg: str) -> str:
 
 
 def get_arguments(sys_args: t.List[str]):
+    project_dir:str = ''
     if len(sys_args) == 1:  # no input path was given by user, as console arg
         project_dir = os.getcwd()
     if len(sys_args) > 1:

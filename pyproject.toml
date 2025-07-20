@@ -134,9 +134,10 @@ docs = ["Sphinx", "sphinx-autodoc-typehint", "sphinx-rtd-theme", "sphinxcontrib-
 dmcview = 'dmcview.cli:main'
  
 
-##########
+##############
 # TOOLS
-##########
+# CONFIG PLACE
+##############
 
 # see https://black.readthedocs.io/en/stable/  code format with max line 95
 [tool.black]
@@ -155,8 +156,34 @@ profile = 'black'
 [tool.bandit]
 tests = []
 skips = [
-    "B101","B311"
+    "B101", # This plugin test checks for the use of the Python assert keyword. https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html
+    "B311"  # https://bandit.readthedocs.io/en/latest/blacklists/blacklist_calls.html
 ]
+
+# RUFF covers the above so repeat is done again in one place
+# Linting and formatting with Ruff
+# see https://docs.astral.sh/ruff/configuration/
+[tool.ruff]
+#target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+    "ARG001", # unused arguments in functions
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "W191",  # indentation contains tabs
+    "B904",  # Allow raising exceptions without from e, for HTTPException
+]
+
 
 # see scripts/parse_version.py 
 [tool.software-release]
