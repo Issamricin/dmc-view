@@ -176,12 +176,11 @@ jobs:
           echo "WHEEL_SIZE=$WHEEL_SIZE" >> $GITHUB_ENV
 
           # extract '0.3.2' from 'dmcview-0.3.2-py3-none-any.whl'
-          #echo "Alan=$WHEEL_NAME"
           #echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/'
           WHEEL_VERSION=$(echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/')
-          WHEEL_VERSION=$(echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/')
           echo "WHEEL_VERSION=$WHEEL_VERSION"
-          echo "WHEEL_VERSION=${WHEEL_VERSION}" >> $GITHUB_OUTPUT
+          echo "WHEEL_VERSION=$WHEEL_VERSION" >> $GITHUB_OUTPUT
+           echo "WHEEL_VERSION=$WHEEL_VERSION" >> $GITHUB_ENV
 
       - run: 'echo "WHEEL_NAME: $WHEEL_NAME SIZE: $WHEEL_SIZE"'
       - run: 'echo "WHEEL_VERSION: $WHEEL_VERSION"'
