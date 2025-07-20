@@ -30,7 +30,7 @@ env:
   #########################################################
   RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false 
   RUN_LINT_CHECKS: "false" # ditto 
-  DOCKER_JOB_ON: "false" # ditto 
+  DOCKER_JOB_ON: "true" # ditto 
   PUBLISH_ON_PYPI: "false" # ditto 
   DOCS_ON: "false" # ditto
   DRAW_DEPENDENCIES: "false" # ditto 
@@ -40,7 +40,7 @@ env:
   # Override Docker Policy-dependent decision-making and
   # Accept any ALL (branch/build) to Publish to Dockerhub
   # if true, it will push image and ignore DOCKER_JOB_POLICY
-  ALWAYS_BUILD_N_PUBLSIH_DOCKER: "false"
+  ALWAYS_BUILD_N_PUBLSIH_DOCKER: "true"
 
   DOCKER_JOB_POLICY: "CDeployment"
   # - CDeployment : Builds and Publishes only if Tests ran and passed
