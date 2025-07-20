@@ -30,7 +30,7 @@ env:
   #########################################################
   RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false 
   RUN_LINT_CHECKS: "false" # ditto 
-  DOCKER_JOB_ON: "true" # ditto 
+  DOCKER_JOB_ON: "false" # ditto 
   PUBLISH_ON_PYPI: "false" # ditto 
   DOCS_ON: "false" # ditto
   DRAW_DEPENDENCIES: "false" # ditto 
@@ -40,7 +40,7 @@ env:
   # Override Docker Policy-dependent decision-making and
   # Accept any ALL (branch/build) to Publish to Dockerhub
   # if true, it will push image and ignore DOCKER_JOB_POLICY
-  ALWAYS_BUILD_N_PUBLSIH_DOCKER: "true"
+  ALWAYS_BUILD_N_PUBLSIH_DOCKER: "false"
 
   DOCKER_JOB_POLICY: "CDeployment"
   # - CDeployment : Builds and Publishes only if Tests ran and passed
@@ -176,6 +176,7 @@ jobs:
           echo "WHEEL_SIZE=$WHEEL_SIZE" >> $GITHUB_ENV
 
           # extract '1.12.5.dev0' from 'dmcview-1.12.5.dev0-py3-none-any.whl'
+          'echo Alan:$WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/'
           PEP_VERSION=$(echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/')
 
           echo "PEP_VERSION=${PEP_VERSION}" >> $GITHUB_OUTPUT
