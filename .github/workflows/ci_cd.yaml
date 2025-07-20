@@ -107,6 +107,7 @@ jobs:
     outputs:
       matrix: ${{ steps.pass-env-to-output.outputs.matrix }}
       TESTS_ENABLED: ${{ steps.pass-env-to-output.outputs.TESTS_ENABLED }}
+      DOCKER_JOB_ON: ${{ steps.pass-env-to-output.outputs.DOCKER_JOB_ON }}
       PUBLISH_ON_PYPI: ${{ steps.pass-env-to-output.outputs.PUBLISH_ON_PYPI }}
     ## Docker - Pipeline Settings ##
       PIPE_DOCKER_POLICY: ${{ steps.derive_docker_policy.outputs.POL }}
