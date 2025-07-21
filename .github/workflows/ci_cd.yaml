@@ -266,6 +266,21 @@ jobs:
           echo "Sent to Codecov: $file !"
         done
 
+###########################################
+### JOB: STATIC CODE ANALYSIS & LINTING ###
+###########################################
+  lint:
+    name: Static Code Analysis
+    needs: set_github_outputs
+    uses: ./.github/workflows/policy_lint.yml
+    if: ${{ needs.set_github_outputs.outputs.RUN_LINT_CHECKS == 'true' }}
+    with:
+      run_policy: ${{ needs.set_github_outputs.outputs.PIPE_SQA_POLICY }}
+      dedicated_branches: 'main, master, dev'
+      source_code_targets: 'src,tests,scripts'
+      python_version: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PY }}
+      pylint_threshold: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PYLINT_PASS_SCORE }}
+
 ##################################################
 ### JOB: DOCKER BUILD and PUBLISH ON DOCKERHUB ###
 ##################################################
@@ -346,22 +361,6 @@ jobs:
       allow_existing: true
     secrets:
       TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
-
-      
-###########################################
-### JOB: STATIC CODE ANALYSIS & LINTING ###
-###########################################
-  lint:
-    name: Static Code Analysis
-    needs: set_github_outputs
-    uses: ./.github/workflows/policy_lint.yml
-    if: ${{ needs.set_github_outputs.outputs.RUN_LINT_CHECKS == 'true' }}
-    with:
-      run_policy: ${{ needs.set_github_outputs.outputs.PIPE_SQA_POLICY }}
-      dedicated_branches: 'main, master, dev'
-      source_code_targets: 'src,tests,scripts'
-      python_version: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PY }}
-      pylint_threshold: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PYLINT_PASS_SCORE }}
 
 #################################################
 ### JOB: DOCS BUILD/TEST - DOCUMENTATION SITE ###
