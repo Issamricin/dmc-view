@@ -29,10 +29,11 @@ env:
   ##### JOB ON/OFF SWITCHES - Top/1st level overrides #####
   #########################################################
   RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false 
+  RUN_CODE_COVERAGE: "true" # ditto 
   RUN_LINT_CHECKS: "true" # ditto 
+  DOCS_ON: "true" # ditto
   DOCKER_JOB_ON: "true" # ditto 
   PUBLISH_ON_PYPI: "false" # ditto 
-  DOCS_ON: "false" # ditto
   DRAW_DEPENDENCIES: "false" # ditto 
   ###############################
 
@@ -56,7 +57,7 @@ env:
   PYLINT_SCORE_THRESHOLD: "4.5"
 
   #### DOCS Build/Test ####
-  ALWAYS_DOCS: "false"
+  ALWAYS_DOCS: "true"
   DOCS_JOB_POLICY: '2'  # {2, 3}
   DOCS_BUILDER_RUNTIME: "3.13"
 
@@ -84,7 +85,9 @@ jobs:
           BRANCH_NAME=${GITHUB_REF_NAME}
           echo "matrix=$UBUNTU_PY313_STRATEGY" >> $GITHUB_OUTPUT
           echo "TESTS_ENABLED=$RUN_UNIT_TESTS" >> $GITHUB_OUTPUT
-          echo "RUN_LINT_CHECKS"=$RUN_LINT_CHECKS >> $GITHUB_OUTPUT
+          echo "RUN_CODE_COVERAGE=$RUN_CODE_COVERAGE" >> $GITHUB_OUTPUT
+          echo "RUN_LINT_CHECKS"=$RUN_LINT_CHECKS" >> $GITHUB_OUTPUT
+          echo "DOCS_ON=$DOCS_ON" >> $GITHUB_OUTPUT
           echo "DOCKER_JOB_ON"=$DOCKER_JOB_ON >> $GITHUB_OUTPUT
           echo "PUBLISH_ON_PYPI=$PUBLISH_ON_PYPI" >> $GITHUB_OUTPUT
       ## Docker - Pipeline Settings ##
@@ -246,7 +249,7 @@ jobs:
   codecov_coverage_host:
     runs-on: ubuntu-latest
     needs: test_suite
-    if: true
+    if: ${{ needs.set_github_outputs.outputs.RUN_CODE_COVERAGE == 'true' }}
     steps:
     - uses: actions/checkout@v4
     - name: Get Codecov binary
@@ -280,6 +283,19 @@ jobs:
       source_code_targets: 'src,tests,scripts'
       python_version: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PY }}
       pylint_threshold: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PYLINT_PASS_SCORE }}
+
+#################################################
+### JOB: DOCS BUILD/TEST - DOCUMENTATION SITE ###
+#################################################
+  docs:
+    name: Build Documentation
+    needs: set_github_outputs
+    uses: ./.github/workflows/policy_docs.yml
+    if: ${{ needs.set_github_outputs.outputs.DOCS_ON == 'true' }}
+    with:
+      run_policy: '${{ needs.set_github_outputs.outputs.PIPE_DOCS_POLICY }}'
+      python_version: ${{ needs.set_github_outputs.outputs.PIPE_DOCS_PY }}
+      command: 'tox -s false -e pin-deps -- -E docs && tox -e docs --sitepackages -vv -s false'
 
 ##################################################
 ### JOB: DOCKER BUILD and PUBLISH ON DOCKERHUB ###
@@ -361,19 +377,6 @@ jobs:
       allow_existing: true
     secrets:
       TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
-
-#################################################
-### JOB: DOCS BUILD/TEST - DOCUMENTATION SITE ###
-#################################################
-  docs:
-    name: Build Documentation
-    needs: set_github_outputs
-    uses: ./.github/workflows/policy_docs.yml
-    if: false
-    with:
-      run_policy: '${{ needs.set_github_outputs.outputs.PIPE_DOCS_POLICY }}'
-      python_version: ${{ needs.set_github_outputs.outputs.PIPE_DOCS_PY }}
-      command: 'tox -s false -e pin-deps -- -E docs && tox -e docs --sitepackages -vv -s false'
 
 ##########################################
 ### JOB: DRAW PYTHON DEPENDENCY GRAPHS ###
