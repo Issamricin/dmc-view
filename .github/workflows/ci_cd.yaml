@@ -291,7 +291,7 @@ jobs:
     name: Build Documentation
     needs: set_github_outputs
     uses: ./.github/workflows/policy_docs.yml
-    if: ${{ needs.set_github_outputs.outputs.DOCS_ON == 'true' }}
+    if: ${{ needs.set_github_outputs.DOCS_ON == 'true' }}
     with:
       run_policy: '${{ needs.set_github_outputs.outputs.PIPE_DOCS_POLICY }}'
       python_version: ${{ needs.set_github_outputs.outputs.PIPE_DOCS_PY }}
@@ -302,7 +302,7 @@ jobs:
 ##################################################
 # Ref Page: https://automated-workflows.readthedocs.io/en/main/ref_docker/
   docker_build:
-    needs: [set_github_outputs, test_suite]
+    needs: [set_github_outputs, test_suite, codecov_coverage_host, lint]
     uses: ./.github/workflows/docker.yml
     if: ${{ needs.set_github_outputs.outputs.DOCKER_JOB_ON == 'true' }} 
     with:
