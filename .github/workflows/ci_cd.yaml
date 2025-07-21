@@ -29,7 +29,7 @@ env:
   ##### JOB ON/OFF SWITCHES - Top/1st level overrides #####
   #########################################################
   RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false 
-  RUN_LINT_CHECKS: "false" # ditto 
+  RUN_LINT_CHECKS: "true" # ditto 
   DOCKER_JOB_ON: "true" # ditto 
   PUBLISH_ON_PYPI: "false" # ditto 
   DOCS_ON: "false" # ditto
@@ -48,7 +48,7 @@ env:
   ############################
 
   #### STATIC CODE ANALYSIS Job ####
-  ALWAYS_LINT: "false"
+  ALWAYS_LINT: "true"
   LINT_JOB_POLICY: '2'  # {2, 3}
   ## Python Runtime version to set the Job runner with ##
   STATIC_ANALYSIS_PY: "3.13"
@@ -79,7 +79,7 @@ jobs:
     steps:
       - name: Pass 'env' section variables to GITHUB_OUTPUT
         id: pass-env-to-output
-        run: |
+        run: | # pip character means multi command line 
           # set the matrix strategy to Full Matrix Stress Test if on master/main or stress-test branch or any tag
           BRANCH_NAME=${GITHUB_REF_NAME}
           echo "matrix=$UBUNTU_PY313_STRATEGY" >> $GITHUB_OUTPUT

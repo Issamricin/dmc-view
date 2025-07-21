@@ -34,7 +34,7 @@ on:
       dedicated_branches:
         required: false
         type: string
-        default: 'master, main, dev'
+        default: 'master, main, dev, develop'
       source_code_targets:
         required: false
         type: string
