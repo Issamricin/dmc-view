@@ -274,7 +274,7 @@ jobs:
 ###########################################
   lint:
     name: Static Code Analysis
-    needs: set_github_outputs
+    needs: [set_github_outputs, test_suite]
     uses: ./.github/workflows/policy_lint.yml
     if: ${{ needs.set_github_outputs.outputs.RUN_LINT_CHECKS == 'true' }}
     with:
