@@ -171,4 +171,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
+          tags: ${{ github.ref_name }}/${{ github.event.repository.name }}:latest
