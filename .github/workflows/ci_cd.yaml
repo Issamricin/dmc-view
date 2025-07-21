@@ -248,7 +248,7 @@ jobs:
  ###############################
   codecov_coverage_host:
     runs-on: ubuntu-latest
-    needs: test_suite
+    needs: [set_github_outputs, test_suite]
     if: ${{ needs.set_github_outputs.outputs.RUN_CODE_COVERAGE == 'true' }}
     steps:
     - uses: actions/checkout@v4
@@ -291,7 +291,7 @@ jobs:
     name: Build Documentation
     needs: set_github_outputs
     uses: ./.github/workflows/policy_docs.yml
-    if: ${{ needs.set_github_outputs.DOCS_ON == 'true' }}
+    if: ${{ needs.set_github_outputs.outputs.DOCS_ON == 'true' }}
     with:
       run_policy: '${{ needs.set_github_outputs.outputs.PIPE_DOCS_POLICY }}'
       python_version: ${{ needs.set_github_outputs.outputs.PIPE_DOCS_PY }}
