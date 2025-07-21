@@ -42,11 +42,11 @@ RUN adduser \
     appuser
 
 # native graphical liberary 
-#
-RUN  apt update && apt upgrade -y &&  apt install -y libx11-6 libxext-dev  libxrender-dev libxinerama-dev \
-      libxi-dev libxrandr-dev libxcursor-dev libxtst-dev libglib2.0-0 \
-      libgl1-mesa-glx libxkbcommon-x11-0 libegl1 libfontconfig1 libdbus-1-3 \
-      libxcb-cursor0 
+# commented out until the issue is sorted see app.py comments 
+#RUN  apt update && apt upgrade -y &&  apt install -y libx11-6 libxext-dev  libxrender-dev libxinerama-dev \
+#      libxi-dev libxrandr-dev libxcursor-dev libxtst-dev libglib2.0-0 \
+#      libgl1-mesa-glx libxkbcommon-x11-0 libegl1 libfontconfig1 libdbus-1-3 \
+#      libxcb-cursor0 
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
