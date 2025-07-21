@@ -178,9 +178,9 @@ jobs:
       - name: Build & push Docker image 
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: alalnmehio/dmc-view
+          image: alalnmehio/dmc-view # this shows from URL part repository  alalnmehio/dmc-view/ see push on the right top
           tags: latest
-          registry: docker.io
+          registry: docker.io # docker hub
           dockerfile: Dockerfile
-          username: ${{ 'alalnmehio' }}
+          username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
