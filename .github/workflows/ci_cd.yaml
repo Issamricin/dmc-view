@@ -302,7 +302,7 @@ jobs:
 ##################################################
 # Ref Page: https://automated-workflows.readthedocs.io/en/main/ref_docker/
   docker_build:
-    needs: [set_github_outputs, test_suite, codecov_coverage_host, lint]
+    needs: [set_github_outputs, test_suite]
     uses: ./.github/workflows/docker.yml
     if: ${{ needs.set_github_outputs.outputs.DOCKER_JOB_ON == 'true' }} 
     with:
