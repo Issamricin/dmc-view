@@ -84,6 +84,7 @@ jobs:
           BRANCH_NAME=${GITHUB_REF_NAME}
           echo "matrix=$UBUNTU_PY313_STRATEGY" >> $GITHUB_OUTPUT
           echo "TESTS_ENABLED=$RUN_UNIT_TESTS" >> $GITHUB_OUTPUT
+          echo "RUN_LINT_CHECKS"=$RUN_LINT_CHECKS >> $GITHUB_OUTPUT
           echo "DOCKER_JOB_ON"=$DOCKER_JOB_ON >> $GITHUB_OUTPUT
           echo "PUBLISH_ON_PYPI=$PUBLISH_ON_PYPI" >> $GITHUB_OUTPUT
       ## Docker - Pipeline Settings ##
@@ -107,6 +108,7 @@ jobs:
     outputs:
       matrix: ${{ steps.pass-env-to-output.outputs.matrix }}
       TESTS_ENABLED: ${{ steps.pass-env-to-output.outputs.TESTS_ENABLED }}
+      RUN_LINT_CHECKS: ${{steps.pass-env-to-output.outputs.RUN_LINT_CHECKS}}
       DOCKER_JOB_ON: ${{ steps.pass-env-to-output.outputs.DOCKER_JOB_ON }}
       PUBLISH_ON_PYPI: ${{ steps.pass-env-to-output.outputs.PUBLISH_ON_PYPI }}
     ## Docker - Pipeline Settings ##
@@ -353,7 +355,7 @@ jobs:
     name: Static Code Analysis
     needs: set_github_outputs
     uses: ./.github/workflows/policy_lint.yml
-    if: false
+    if: ${{ needs.set_github_outputs.outputs.RUN_LINT_CHECKS == 'true' }}
     with:
       run_policy: ${{ needs.set_github_outputs.outputs.PIPE_SQA_POLICY }}
       dedicated_branches: 'main, master, dev'
