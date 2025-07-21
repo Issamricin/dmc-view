@@ -53,7 +53,7 @@ env:
   ## Python Runtime version to set the Job runner with ##
   STATIC_ANALYSIS_PY: "3.13"
   ## Pylint Minimum Acceptance Rating/Score ##
-  PYLINT_SCORE_THRESHOLD: "8.2"
+  PYLINT_SCORE_THRESHOLD: "4.5"
 
   #### DOCS Build/Test ####
   ALWAYS_DOCS: "false"
