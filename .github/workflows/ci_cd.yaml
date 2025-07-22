@@ -30,7 +30,8 @@ env:
   #########################################################
   RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false  
   RUN_LINT_CHECKS: "true" # ditto 
-  DOCKER_JOB_ON: "true" # ditto 
+  DOCS_ON: "true"
+  DOCKER_JOB_ON: "false" # ditto 
   PUBLISH_ON_PYPI: "false" # ditto 
   DRAW_DEPENDENCIES: "false" # ditto 
   ###############################
@@ -87,22 +88,30 @@ jobs:
           echo "DOCKER_JOB_ON"=$DOCKER_JOB_ON >> $GITHUB_OUTPUT
           echo "PUBLISH_ON_PYPI=$PUBLISH_ON_PYPI" >> $GITHUB_OUTPUT
       ## Docker - Pipeline Settings ##
-      - id: derive_docker_policy
+      # see https://docs.github.com/en/actions/reference/evaluate-expressions-in-workflows-and-actions
+      - name: Derive Docker Policy
+        id: derive_docker_policy
         run: echo "POL=${{ (env.DOCKER_JOB_ON != 'true' && '0') || (env.ALWAYS_BUILD_N_PUBLSIH_DOCKER == 'true' && '1') || (env.DOCKER_JOB_POLICY == 'CDeployment' && '2') || (env.DOCKER_JOB_POLICY == 'CDelivery' && '3') }}" >> $GITHUB_OUTPUT
       ## Static Code Analysis - Pipeline Settings ##
-      - id: derive_sqa_policy
+      - name: Derive SQA Policy
+        id: derive_sqa_policy
         run: echo "POL=${{ (env.RUN_LINT_CHECKS != 'true' && '0') || (env.ALWAYS_LINT == 'true' && '1') || env.LINT_JOB_POLICY }}" >> $GITHUB_OUTPUT
-      - id: read_sqa_py
+      - name: Read SQA PY
+        id: read_sqa_py
         run: echo SQA_PY=${{ env.STATIC_ANALYSIS_PY }} >> $GITHUB_OUTPUT
-      - id: read_pylint_baseline_score
+      - name: Read Pylint Base Score
+        id: read_pylint_baseline_score
         run: echo PYLINT_BASELINE_SCORE=${{ env.PYLINT_SCORE_THRESHOLD }} >> $GITHUB_OUTPUT
       ## Docs Build/Test - Pipeline Settings ##
-      - id: derive_docs_policy
+      - name: Derive Docs Policy
+        id: derive_docs_policy
         run: echo "POL=${{ (env.DOCS_ON != 'true' && '0') || (env.ALWAYS_DOCS == 'true' && '1') || env.DOCS_JOB_POLICY }}" >> $GITHUB_OUTPUT
-      - id: read_docs_py
+      - name: Read Docs Py      
+        id: read_docs_py
         run: echo DOCS_PY=${{ env.DOCS_BUILDER_RUNTIME }} >> $GITHUB_OUTPUT
       ## Code Visualization - Pipeline Settings ##
-      - id: derive_code_viz_policy
+      - name: Derive Code Viz Policy
+        id: derive_code_viz_policy
         run: echo "POL=${{ (env.DRAW_DEPENDENCIES != 'true' && '0') || (env.ALWAYS_CODE_VIZ == 'true' && '1') || env.CODE_VIZ_POLICY }}" >> $GITHUB_OUTPUT
     outputs:
       matrix: ${{ steps.pass-env-to-output.outputs.matrix }}

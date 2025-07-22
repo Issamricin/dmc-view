@@ -44,7 +44,7 @@ on:
         required: false
       ## Parametrizing Runtime Environment (ie py version)
       python_version:
-        default: '3.10'
+        default: '3.13'
         type: string
         description: 'Python Interpreter Version to use for Docs Build Environment'
         required: false
@@ -123,11 +123,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install tox==3.28
 
-      - name: Install Build dependencies
-        if: ${{ matrix.platform == 'macos-latest' && matrix.python-version != '3.6' }}
-        run: brew install enchant
-
       - name: Build Documentation and Test
         if: ${{ matrix.platform == 'ubuntu-latest' || matrix.python-version  != '3.6' }}
         run: ${{ inputs.command }}
-        # run: tox -e docs --sitepackages -vv -s false
