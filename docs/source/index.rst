@@ -12,9 +12,17 @@ Digital Magnetic Compass View  documentation!
 
 .. toctree::
    :maxdepth: 2
+   :caption: Usage:
 
    contents/usage
+   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API:
+
    contents/modules
+   
 
 .. toctree::
    :maxdepth: 2
@@ -28,9 +36,9 @@ Digital Magnetic Compass View  documentation!
 .. toctree::
    :maxdepth: 2
    :caption: About:
-
-   contents/license
-
+   
+   contents/about
+ 
 
 Indices and tables
 ==================
