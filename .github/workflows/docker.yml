@@ -159,12 +159,17 @@ jobs:
       - run: echo ${{ github.ref_name }}
       - run: echo "IMAGE_TAG=${{ inputs.image_tag || github.ref_name }}" >> $GITHUB_ENV
       
-      - name: Build & push Docker image 
-        uses: mr-smithers-excellent/docker-build-push@v6
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          image: alalnmehio/dmc-view # this shows from URL part repository  alalnmehio/dmc-view/ see push on the right top
-          tags: latest
-          registry: docker.io # docker hub
-          dockerfile: Dockerfile
           username: ${{ vars.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest

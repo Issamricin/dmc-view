@@ -31,7 +31,7 @@ env:
   RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false  
   RUN_LINT_CHECKS: "true" # ditto 
   DOCS_ON: "true"
-  DOCKER_JOB_ON: "false" # ditto 
+  DOCKER_JOB_ON: "true" # ditto 
   PUBLISH_ON_PYPI: "false" # ditto 
   DRAW_DEPENDENCIES: "false" # ditto 
   ###############################
