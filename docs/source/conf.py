@@ -20,11 +20,17 @@
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here.
+from subprocess import run
 import sys
+import os
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2].joinpath("src")))
 
 
+def get_version()->str:
+    file_path =  str(Path(__file__).resolve().parents[2].joinpath("Scripts")) + os.path.sep + 'parse_version.py'
+    version = run([sys.executable, file_path])
+    return str(version)
 
 def get_templated_vars():
     return type(
@@ -33,7 +39,7 @@ def get_templated_vars():
         dict(
             project_slug='dmc-view',
             package_name='dmcview',
-            author_name='Holm Consulting',
+            author_name='Iso',
             year='2024',
             version='0.0.1',
             github_username='Issamricin',
@@ -57,7 +63,7 @@ copyright = '{year}, {name}'.format(
 author = variables.author_name
 
 # The full version, including alpha/beta/rc tags
-release = variables.version
+release = get_version()
 
 # -- General configuration ---------------------------------------------------
 
@@ -123,5 +129,4 @@ extlinks = {
 
 source_suffix = {
     '.rst': 'restructuredtext'
-   # '.md': 'markdown',  # Allow Markdown files
 }
