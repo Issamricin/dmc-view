@@ -30,7 +30,9 @@ pydoer-graphs/
 *.lock
 # VSC local env
 venv
-# pin-deps generated file 
+# poetry pin-deps generated file 
 reqs.txt
+# poetry .readthedocs.yaml 
+req-docs.txt
 # auto-generated Sphinx api docs
 .docs
