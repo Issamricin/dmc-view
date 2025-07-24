@@ -1,5 +1,6 @@
 [MASTER]
 # https://docs.pylint.org/index.html
+# Sample file : https://github.com/pylint-dev/pylint/blob/main/examples/pylintrc
 # A comma-separated list of package or module names from where C extensions may
 # be loaded. Extensions are loading into the active Python interpreter and may
 # run arbitrary code.
