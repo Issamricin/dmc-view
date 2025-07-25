@@ -36,3 +36,6 @@ reqs.txt
 req-docs.txt
 # auto-generated Sphinx api docs
 .docs
+
+# manifest file 
+MANIFEST.in
