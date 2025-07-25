@@ -392,7 +392,7 @@ jobs:
       run_policy: '${{ needs.set_github_outputs.outputs.PIPE_CODE_VIZ_POLICY }}'
       branches: 'main, master, dev'
       source_code_targets: 'src'
-      python_version: '3.10'
+      python_version: '3.13'
       artifacts_dir: 'dependency-graphs'
 
 ##################################
