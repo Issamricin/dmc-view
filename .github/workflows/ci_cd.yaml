@@ -31,10 +31,10 @@ env:
   RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false  
   RUN_LINT_CHECKS: "true" # ditto 
   DOCS_ON: "true"
-  DOCKER_JOB_ON: "false" # ditto 
-  PUBLISH_ON_PYPI: "false" # ditto 
+  DOCKER_JOB_ON: "true" # ditto 
   DRAW_DEPENDENCIES: "true" # ditto 
-  ###############################
+  PUBLISH_ON_PYPI: "false" # ditto 
+  ##############################
 
   ### DOCKER Job Policy ####
   # Override Docker Policy-dependent decision-making and
@@ -256,7 +256,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test_suite
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.2.2
     - name: Get Codecov binary
       run: |
         curl -Os https://uploader.codecov.io/latest/linux/codecov
@@ -327,7 +327,7 @@ jobs:
       RELEASE_BR: ${{ vars.RELEASE_BRANCH || 'release' }}
       MAIN_BR: ${{ vars.MAIN_BRANCH || 'main' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
       - run: git branch --track "${{ env.RELEASE_BR }}" "origin/${{ env.RELEASE_BR }}"

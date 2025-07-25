@@ -152,7 +152,7 @@ jobs:
           echo ${DOCKER_PASSWORD}
 
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         
 
       - run: echo ${{ github.ref }}
