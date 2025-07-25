@@ -31,7 +31,7 @@ env:
   RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false  
   RUN_LINT_CHECKS: "true" # ditto 
   DOCS_ON: "true"
-  DOCKER_JOB_ON: "true" # ditto 
+  DOCKER_JOB_ON: "false" # ditto 
   PUBLISH_ON_PYPI: "false" # ditto 
   DRAW_DEPENDENCIES: "true" # ditto 
   ###############################
@@ -85,7 +85,6 @@ jobs:
           echo "matrix=$UBUNTU_PY313_STRATEGY" >> $GITHUB_OUTPUT
           echo "TESTS_ENABLED=$RUN_UNIT_TESTS" >> $GITHUB_OUTPUT
           echo "RUN_LINT_CHECKS=$RUN_LINT_CHECKS" >> $GITHUB_OUTPUT
-          echo "DOCKER_JOB_ON"=$DOCKER_JOB_ON >> $GITHUB_OUTPUT
           echo "PUBLISH_ON_PYPI=$PUBLISH_ON_PYPI" >> $GITHUB_OUTPUT
       ## Docker - Pipeline Settings ##
       # see https://docs.github.com/en/actions/reference/evaluate-expressions-in-workflows-and-actions
@@ -309,7 +308,6 @@ jobs:
   docker_build:
     needs: [set_github_outputs, test_suite]
     uses: ./.github/workflows/docker.yml
-    if: ${{ needs.set_github_outputs.outputs.DOCKER_JOB_ON == 'true' }} 
     with:
       acceptance_policy: ${{ needs.set_github_outputs.outputs.PIPE_DOCKER_POLICY }}
       image_slug: "dmcview"
@@ -390,7 +388,6 @@ jobs:
     needs: set_github_outputs
     name: Code Visualization of Python Imports as Graphs, in .svg
     uses: ./.github/workflows/python_imports.yml
-    if: false
     with:
       run_policy: '${{ needs.set_github_outputs.outputs.PIPE_CODE_VIZ_POLICY }}'
       branches: 'main, master, dev'
