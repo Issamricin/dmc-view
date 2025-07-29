@@ -34,7 +34,7 @@ on:
       dedicated_branches:
         required: false
         type: string
-        default: 'master, main, dev'
+        default: 'master, main, dev, develop'
       source_code_targets:
         required: false
         type: string
@@ -78,7 +78,7 @@ jobs:
 
       - if: ${{ env.SHOULD_DERIVE_FROM_DIFF }}
         name: 'POLICY: 2, 3 -> Checkout Code to compute DIFF'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 2
 
@@ -115,9 +115,9 @@ jobs:
     needs: lint_policy
     if: always() && needs.lint_policy.outputs.RUN_SQA == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
       - name: Set up Python ${{ inputs.python_version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5.6.0
         with:
           python-version: ${{ inputs.python_version }}
       - name: Install dependencies
@@ -149,9 +149,9 @@ jobs:
     needs: lint_policy
     if: always() && needs.lint_policy.outputs.RUN_SQA == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
       - name: Set up Python ${{ inputs.python_version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5.6.0
         with:
           python-version: ${{ inputs.python_version }}
       - name: Install dependencies

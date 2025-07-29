@@ -1,4 +1,3 @@
-===========
 Development
 ===========
 
@@ -13,7 +12,7 @@ Development
 
 .. code-block:: shell
 
-    git clone git@github.com:alanmehio/dmc-view.git
+    git clone git@github.com:Issamricin/dmc-view.git
     cd dmc-view
 
 | Make the project in edit mode  
@@ -37,6 +36,8 @@ To run the simulator run the below code from the python interactive
     simulator = Simulator()
     simulator.run()
  
+.. code-block:: shell
+    dmcview -s Y
 
 Development Notes
 ~~~~~~~~~~~~~~~~~
@@ -49,8 +50,8 @@ Testing, Documentation Building, Scripts, CI/CD, Static Code Analysis for this p
 
    a. **Test Job Matrix**, spanning different `platform`'s and `python version`'s
 
-      1. Platforms: `ubuntu-latest`, `macos-latest`, `windows-latest`
-      2. Python Interpreters: `3.8`, `3.9`, `3.10`, `3.11`
+      1. Platforms: `ubuntu-latest`
+      2. Python Interpreters:  `3.13`
    b. **Continuous Deployment**
    
       `Production`
@@ -77,25 +78,31 @@ Prerequisites
 
 You need to have `Python` and  `PySide6`  installed for Development
 
+API Documentation
+-----------------
+We follow Google style documentation for packages, modules, classes, methods 
 
 .. LINKS
 
-.. _tox: https://tox.wiki/en/latest/
+| `Tox <https://tox.wiki/en/latest/>`__ 
 
-.. _pytest: https://docs.pytest.org/en/7.1.x/
+| `Pytest <https://docs.pytest.org/en/7.1.x/>`__ 
 
-.. _build: https://github.com/pypa/build
+| `Build <https://github.com/pypa/build>`__ 
 
-.. _Dockerhub: https://hub.docker.com/
+| `Docker <https://hub.docker.com/>`__ 
 
-.. _pypi.org: https://pypi.org/
+| `pypi.org <https://pypi.org/>`__ 
 
-.. _test.pypi.org: https://test.pypi.org/
+| `test.pypi.org <https://test.pypi.org/>`__ 
 
-.. _mypy: https://mypy.readthedocs.io/en/stable/
+| `mypy <https://mypy.readthedocs.io/en/stable/>`__ 
 
-.. _Ruff: https://docs.astral.sh/ruff/
+| `Ruff <https://docs.astral.sh/ruff/>`__ 
 
-.. _isort: https://pycqa.github.io/isort/
+| `Isort <https://pycqa.github.io/isort/>`__ 
 
-.. _black: https://black.readthedocs.io/en/stable/
+| `Black <https://black.readthedocs.io/en/stable/>`__ 
+
+| `Google API docs <https://www.sphinx-doc.org/en/master/usage/extensions/example_google.html>`__ 
+

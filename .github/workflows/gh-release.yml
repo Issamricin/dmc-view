@@ -33,7 +33,7 @@ jobs:
       # Download Artifacts from CI
       - name: Download built Distro Artifacts
         if: ${{ inputs.artifact }}
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.3.0
         with:
           name: ${{ inputs.artifact }}
           path: dist-local
@@ -41,7 +41,7 @@ jobs:
       - run: ls -l dist-local
         if: ${{ inputs.artifact }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
 
       - name: Create a Github Release, from Tag on Master
       # To be consistent with already published GH Releases at time of writing (2024/01):

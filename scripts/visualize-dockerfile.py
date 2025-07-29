@@ -13,17 +13,17 @@ def parse_dockerfile(dockerfile_path):
     copies = {}
     # Line match at current line
     current_stage = None
-    stage_name_reg = r'[\w:\.\-_]+'
+    stage_name_reg = r"[\w:\.\-_]+"
     stage_reg = re.compile(
-        rf'^FROM\s+(?P<stage>{stage_name_reg})\s+[Aa][Ss]\s+(?P<alias>{stage_name_reg})'
+        rf"^FROM\s+(?P<stage>{stage_name_reg})\s+[Aa][Ss]\s+(?P<alias>{stage_name_reg})"
     )
 
     copy_from_reg = re.compile(
-        rf'^COPY\s+\-\-from=(?P<prev_stage>{stage_name_reg})\s+'
-        + r'(?P<path>[\w\.\-:/_\${}]+)\s+'
+        rf"^COPY\s+\-\-from=(?P<prev_stage>{stage_name_reg})\s+"
+        + r"(?P<path>[\w\.\-:/_\${}]+)\s+"
     )
 
-    with open(dockerfile_path, 'r') as f:
+    with open(dockerfile_path) as f:
         lines = f.readlines()
 
         for line in lines:
@@ -33,15 +33,15 @@ def parse_dockerfile(dockerfile_path):
             # each stage has a unique alias in the Dockerfile
             stage_match = stage_reg.match(line)
             if stage_match:  # FROM <a> AS <b>
-                current_stage = stage_match.group('alias')
+                current_stage = stage_match.group("alias")
 
                 # we create an empty list for pointing to "prev" stages
                 stages[current_stage] = []
                 copies[current_stage] = []
                 try:
-                    previous_stage = stage_match.group('stage')
+                    previous_stage = stage_match.group("stage")
                 except AttributeError as error:
-                    print(f'[DEBUG] Line: {line}')
+                    print(f"[DEBUG] Line: {line}")
                     print(f"Error: {error}")
                     raise error
                 # Add instructions to current stage
@@ -50,8 +50,8 @@ def parse_dockerfile(dockerfile_path):
             else:
                 match = copy_from_reg.match(line)
                 if match:  # COPY --from=<a> <source_path> <target_path>
-                    previous_stage: str = match.group('prev_stage')
-                    path_copied: str = match.group('path')
+                    previous_stage: str = match.group("prev_stage")
+                    path_copied: str = match.group("path")
                     copies[current_stage].append((previous_stage, path_copied))
 
     return stages, copies
@@ -59,7 +59,7 @@ def parse_dockerfile(dockerfile_path):
 
 def generate_mermaid_flow_chart(dockerfile_dag):
     stages: t.Dict[str, t.List[str]] = dockerfile_dag[0]
-    thick_line_with_arrow = '-->'
+    thick_line_with_arrow = "-->"
     copies: t.Dick[str, t.List[t.Tuple[str, str]]] = dockerfile_dag[1]
     dotted_arrow_with_text = '-. "{text}" .->'
 
@@ -92,7 +92,7 @@ def generate_mermaid_flow_chart(dockerfile_dag):
 
 
 ## Embed Mermaid to MARKDOWN ##
-def generate_markdown(dockerfile_path, output_path):
+def generate_markdown(dockerfile_path):
     dockerfile_dag = parse_dockerfile(dockerfile_path)
 
     flow_chart = generate_mermaid_flow_chart(dockerfile_dag)
@@ -106,32 +106,32 @@ def generate_markdown(dockerfile_path, output_path):
 
 
 ## Embed Mermaid to RST ##
-def generate_rst(dockerfile_path, output_path):
+def generate_rst(dockerfile_path):
     dockerfile_dag = parse_dockerfile(dockerfile_path)
 
     flow_chart = generate_mermaid_flow_chart(dockerfile_dag)
 
-    TAB = 3 * ' '
+    TAB = 3 * " "
     # "Dockerfile Flow Chart\n"
     # f"====================\n\n"
     # f"Dockerfile: {dockerfile_path}\n\n"
-    rst = ".. mermaid::\n\n" + '\n'.join([TAB + x for x in flow_chart.split('\n')])
+    rst = ".. mermaid::\n\n" + "\n".join([TAB + x for x in flow_chart.split("\n")])
     return rst
 
 
 def parse_cli_args() -> t.Tuple[Path, t.Optional[str]]:
-    parser = argparse.ArgumentParser(description='Process Dockerfile paths.')
+    parser = argparse.ArgumentParser(description="Process Dockerfile paths.")
 
     parser.add_argument(
-        'dockerfile_path', nargs='?', default='Dockerfile', help='Path to the Dockerfile'
+        "dockerfile_path", nargs="?", default="Dockerfile", help="Path to the Dockerfile"
     )
     parser.add_argument(
-        '-o', '--output', help='Output path. If not specified, print to stdout.'
+        "-o", "--output", help="Output path. If not specified, print to stdout."
     )
     parser.add_argument(
-        '--rst',
-        help='Whether to generate RST content. Default MD',
-        action='store_true',
+        "--rst",
+        help="Whether to generate RST content. Default MD",
+        action="store_true",
         default=False,
     )
     args = parser.parse_args()
@@ -144,18 +144,18 @@ def parse_cli_args() -> t.Tuple[Path, t.Optional[str]]:
     return dockerfile, args
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     dockerfile_path, args = parse_cli_args()
     output_path = args.output
     if args.rst:
-        content: str = generate_rst(dockerfile_path, output_path)
+        content: str = generate_rst(dockerfile_path)
     else:
-        content: str = generate_markdown(dockerfile_path, output_path)
+        content: str = generate_markdown(dockerfile_path)
     if output_path is None:
         print(content)
         sys.exit(0)
 
-    with open(output_path, 'w') as f:
+    with open(output_path, "w") as f:
         f.write(content)
 
     print(f"{'RST' if args.rst else 'MARKDOWN'} generated and saved to {output_path}")

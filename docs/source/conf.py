@@ -17,10 +17,20 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here
+
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here.
+from subprocess import run
+import sys
 import os
-#sys.path.insert(0, os.path.abspath(os.path.join('../..', 'src', variables.package_name)))
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2].joinpath("src")))
 
 
+def get_version()->str:
+    file_path =  str(Path(__file__).resolve().parents[2].joinpath("Scripts")) + os.path.sep + 'parse_version.py'
+    version = run([sys.executable, file_path])
+    return str(version)
 
 def get_templated_vars():
     return type(
@@ -29,10 +39,10 @@ def get_templated_vars():
         dict(
             project_slug='dmc-view',
             package_name='dmcview',
-            author_name='Holm Consulting',
+            author_name='Iso',
             year='2024',
             version='0.0.1',
-            github_username='alanmehio',
+            github_username='Issamricin',
             repo_name='dmc-view',
         ),
     )
@@ -53,7 +63,7 @@ copyright = '{year}, {name}'.format(
 author = variables.author_name
 
 # The full version, including alpha/beta/rc tags
-release = variables.version
+release = get_version()
 
 # -- General configuration ---------------------------------------------------
 
@@ -67,13 +77,9 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.doctest',
     'sphinx.ext.extlinks',  # External Links Configuration: Dynamic Urls
-    'sphinx.ext.ifconfig',
     'sphinx.ext.napoleon',  # Allow parsing of docstrings using Google format
     'sphinx.ext.todo', # Support for todo items see  https://www.sphinx-doc.org/en/master/usage/extensions/todo.html
-    'sphinx.ext.viewcode',
-    'sphinxcontrib.spelling', # https://sphinxcontrib-spelling.readthedocs.io/en/latest/
-    'sphinx.ext.duration',
-    'myst_parser',
+    'sphinx.ext.duration'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -89,7 +95,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-
 html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -123,6 +128,5 @@ extlinks = {
 
 
 source_suffix = {
-    '.rst': 'restructuredtext',
-    '.md': 'markdown',  # Allow Markdown files
+    '.rst': 'restructuredtext'
 }

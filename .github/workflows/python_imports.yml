@@ -30,7 +30,7 @@ on:
       python_version:
         required: false
         type: string
-        default: '3.10'
+        default: '3.13'
       artifacts_dir:
         required: false
         type: string
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     if: always() && inputs.run_policy != 0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 2
       - if: ${{ !contains('1, 2, 3', inputs.run_policy) }}
@@ -92,9 +92,9 @@ jobs:
     if: needs.check_trigger_draw_dependency_graphs.outputs.DRAW_GRAPHS == 'true'
     name: Draw Python Dependencies as Graphs, in .svg
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.2.2
     - name: Set up Python ${{ inputs.python_version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5.6.0
       with:
         python-version: '${{ inputs.python_version }}'
     - name: Install tox
@@ -103,12 +103,15 @@ jobs:
         python -m pip install tox==3.28
     - name: Install dependencies (ie dot binary of graphviz)
       run: |
-        sudo apt-get update -y --allow-releaseinfo-change
-        sudo apt-get install -y graphviz
+        sudo apt update -y --allow-releaseinfo-change
+        sudo apt install -y graphviz
     - name: Draw Dependency Graphs as .svg files
+      # FIXME:
+      # see https://docs.github.com/en/actions/tutorials/store-and-share-data
+      # see https://github.com/actions/upload-artifact?tab=readme-ov-file#examples
       run: tox -e pydeps -vv -s false
     - name: Upload Dependency Graphs as artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.6.2
       with:
         name: ${{ inputs.artifacts_dir }}
         path: pydeps/

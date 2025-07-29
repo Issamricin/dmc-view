@@ -1,28 +1,70 @@
-FROM python:3.9.16-slim-bullseye as builder
+# syntax=docker/dockerfile:1
 
-COPY poetry.lock pyproject.toml ./
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Dockerfile reference guide at
+# https://docs.docker.com/go/dockerfile-reference/
 
-# Determine where to install poetry
-ENV POETRY_HOME=/opt/poetry
+# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
+# Tutorial https://docs.docker.com/guides/python/containerize/
+# Exammple https://docs.docker.com/reference/samples/python/
 
-# Install Poetry & generate a requirements.txt file
-RUN python -c 'from urllib.request import urlopen; print(urlopen("https://install.python-poetry.org").read().decode())' | python && \
-    "$POETRY_HOME/bin/poetry" export -f requirements.txt > requirements.txt
+ARG PYTHON_VERSION=3.12
+FROM python:${PYTHON_VERSION}-slim
 
-FROM python:3.9.16-slim-bullseye as install
+# Prevents Python from writing pyc files.
+ENV PYTHONDONTWRITEBYTECODE=1
 
-# Keep the requirements.txt file from the builder image
-COPY --from=builder requirements.txt .
+# Keeps Python from buffering stdout and stderr to avoid situations where
+# the application crashes without emitting any logs due to buffering.
+ENV PYTHONUNBUFFERED=1
 
-# Pre emptively add the user's bin folder to PATH
-ENV PATH="/root/.local/bin:$PATH"
+ENV MPLCONFIGDIR=/tmp
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends build-essential && \
-    pip install -U pip && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    pip install --no-cache-dir --user -r requirements.txt
+ENV XDG_RUNTIME_DIR=/tmp
+ENV QT_QPA_PLATFORM=xcb
+#ENV  QT_QPA_PLATFORM=wayland
+#ENV XDG_SESSION_TYPE=x11
+#ENV DISPLAY=
 
-COPY . .
-RUN pip install --no-cache-dir --user .
+
+WORKDIR /.
+
+# Create a non-privileged user that the app will run under.
+# See https://docs.docker.com/go/dockerfile-user-best-practices/
+ARG UID=10001
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    appuser
+
+# native graphical liberary 
+# commented out until the issue is sorted see app.py comments 
+#RUN  apt update && apt upgrade -y &&  apt install -y libx11-6 libxext-dev  libxrender-dev libxinerama-dev \
+#      libxi-dev libxrandr-dev libxcursor-dev libxtst-dev libglib2.0-0 \
+#      libgl1-mesa-glx libxkbcommon-x11-0 libegl1 libfontconfig1 libdbus-1-3 \
+#      libxcb-cursor0 
+
+# Download dependencies as a separate step to take advantage of Docker's caching.
+# Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
+# Leverage a bind mount to requirements.txt to avoid having to copy them into
+# into this layer.
+RUN --mount=type=cache,target=/root/.cache/pip \
+    --mount=type=bind,source=requirements.txt,target=requirements.txt \
+    python -m pip install -r requirements.txt
+   
+
+# Switch to the non-privileged user to run the application.
+USER appuser
+
+# Copy the source code into the container.
+COPY ./src .
+
+# Expose the port that the application listens on.
+#EXPOSE 8000
+
+# Run the application by executing the python module (file)
+CMD ["python3", "-m", "app", "-s=Y"]

@@ -55,11 +55,11 @@ jobs:
     env:
       DIST_DIR: ${{ inputs.dist_folder || 'dist' }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.2.2
     # TODO only Download Build Artifacts
     # For python, Builds typically are files: *.tar.gz, *.whl, cython builds, etc.
     - name: Download Source & Wheel distributions
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4.3.0
       with:
         path: ${{ inputs.artifacts_path }}
 

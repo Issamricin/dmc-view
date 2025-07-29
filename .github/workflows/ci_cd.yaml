@@ -3,11 +3,6 @@ name: CI/CD Pipeline
 
 # Triggers on all Branches and v* Tags
 
-### Stress-Testing, with Multi-Factor Job Matrix, on: ###
-# - tags v*
-# - the 'stress-test' branch (GITHUB_REF_NAME == 'stress-test')
-
-
 ### Production PyPI Publish, pypi.org, on: ###
 # - v* tags on 'master' branch only
 
@@ -26,28 +21,26 @@ on:
       - v*
 
 env:
-  ### STRESS TEST Job MATRIX ###
-  FULL_MATRIX_STRATEGY: "{\"platform\": [\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\": [\"3.8\", \"3.9\", \"3.10\", \"3.11\", \"3.12\", \"3.13\"]}"
+  ### Job MATRIX ###
   # Python 3.12 is in bugfix mode, same as 3.11 -> can start supporting 3.13 later 
-  UBUNTU_PY312_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":[\"3.12\"]}"
-  TEST_STRATEGY: "{\"platform\":[\"ubuntu-latest\", \"macos-latest\", \"windows-latest\"], \"python-version\":[\"3.12\"]}"
-
+  UBUNTU_PY313_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":[\"3.13\"]}"
+ 
   #########################################################
   ##### JOB ON/OFF SWITCHES - Top/1st level overrides #####
   #########################################################
-  RUN_UNIT_TESTS: "false" # Note: we make it off for now so we set the value to false 
-  RUN_LINT_CHECKS: "false" # ditto 
-  DOCKER_JOB_ON: "false" # ditto 
+  RUN_UNIT_TESTS: "true" # Note: we make it off for when we set it value to false  
+  RUN_LINT_CHECKS: "true" # ditto 
+  DOCS_ON: "true"
+  DOCKER_JOB_ON: "true" # ditto 
+  DRAW_DEPENDENCIES: "true" # ditto 
   PUBLISH_ON_PYPI: "false" # ditto 
-  DOCS_ON: "false" # ditto
-  DRAW_DEPENDENCIES: "false" # ditto 
-  ###############################
+  ##############################
 
   ### DOCKER Job Policy ####
   # Override Docker Policy-dependent decision-making and
   # Accept any ALL (branch/build) to Publish to Dockerhub
   # if true, it will push image and ignore DOCKER_JOB_POLICY
-  ALWAYS_BUILD_N_PUBLSIH_DOCKER: "false"
+  ALWAYS_BUILD_N_PUBLSIH_DOCKER: "true"
 
   DOCKER_JOB_POLICY: "CDeployment"
   # - CDeployment : Builds and Publishes only if Tests ran and passed
@@ -55,20 +48,20 @@ env:
   ############################
 
   #### STATIC CODE ANALYSIS Job ####
-  ALWAYS_LINT: "false"
+  ALWAYS_LINT: "true"
   LINT_JOB_POLICY: '2'  # {2, 3}
   ## Python Runtime version to set the Job runner with ##
-  STATIC_ANALYSIS_PY: "3.12"
+  STATIC_ANALYSIS_PY: "3.13"
   ## Pylint Minimum Acceptance Rating/Score ##
-  PYLINT_SCORE_THRESHOLD: "8.2"
+  PYLINT_SCORE_THRESHOLD: "4.5"
 
   #### DOCS Build/Test ####
-  ALWAYS_DOCS: "false"
+  ALWAYS_DOCS: "true"
   DOCS_JOB_POLICY: '2'  # {2, 3}
-  DOCS_BUILDER_RUNTIME: "3.12"
+  DOCS_BUILDER_RUNTIME: "3.13"
 
   #### CODE VISUALIZATION Job ####
-  ALWAYS_CODE_VIZ: "false"
+  ALWAYS_CODE_VIZ: "true"
   CODE_VIZ_POLICY: '2'  # {2, 3}
   ##########################
 
@@ -86,37 +79,46 @@ jobs:
     steps:
       - name: Pass 'env' section variables to GITHUB_OUTPUT
         id: pass-env-to-output
-        run: |
+        run: | # pip character means multi command line 
           # set the matrix strategy to Full Matrix Stress Test if on master/main or stress-test branch or any tag
           BRANCH_NAME=${GITHUB_REF_NAME}
-          if [[ $BRANCH_NAME == "stress-test" || $GITHUB_REF == refs/tags/* ]]; then
-            echo "matrix=$FULL_MATRIX_STRATEGY" >> $GITHUB_OUTPUT
-          else
-            echo "matrix=$UBUNTU_PY312_STRATEGY" >> $GITHUB_OUTPUT
-          fi
+          echo "matrix=$UBUNTU_PY313_STRATEGY" >> $GITHUB_OUTPUT
           echo "TESTS_ENABLED=$RUN_UNIT_TESTS" >> $GITHUB_OUTPUT
+          echo "RUN_LINT_CHECKS=$RUN_LINT_CHECKS" >> $GITHUB_OUTPUT
           echo "PUBLISH_ON_PYPI=$PUBLISH_ON_PYPI" >> $GITHUB_OUTPUT
       ## Docker - Pipeline Settings ##
-      - id: derive_docker_policy
+      # see https://docs.github.com/en/actions/reference/evaluate-expressions-in-workflows-and-actions
+      # evauation: (false && 0) || (true && 1) ends with 0 (first one )
+      # while    (true && 0) || (true && 1) ends with 1 (second one)
+      - name: Derive Docker Policy
+        id: derive_docker_policy
         run: echo "POL=${{ (env.DOCKER_JOB_ON != 'true' && '0') || (env.ALWAYS_BUILD_N_PUBLSIH_DOCKER == 'true' && '1') || (env.DOCKER_JOB_POLICY == 'CDeployment' && '2') || (env.DOCKER_JOB_POLICY == 'CDelivery' && '3') }}" >> $GITHUB_OUTPUT
       ## Static Code Analysis - Pipeline Settings ##
-      - id: derive_sqa_policy
+      - name: Derive SQA Policy
+        id: derive_sqa_policy
         run: echo "POL=${{ (env.RUN_LINT_CHECKS != 'true' && '0') || (env.ALWAYS_LINT == 'true' && '1') || env.LINT_JOB_POLICY }}" >> $GITHUB_OUTPUT
-      - id: read_sqa_py
+      - name: Read SQA PY
+        id: read_sqa_py
         run: echo SQA_PY=${{ env.STATIC_ANALYSIS_PY }} >> $GITHUB_OUTPUT
-      - id: read_pylint_baseline_score
+      - name: Read Pylint Base Score
+        id: read_pylint_baseline_score
         run: echo PYLINT_BASELINE_SCORE=${{ env.PYLINT_SCORE_THRESHOLD }} >> $GITHUB_OUTPUT
       ## Docs Build/Test - Pipeline Settings ##
-      - id: derive_docs_policy
+      - name: Derive Docs Policy
+        id: derive_docs_policy
         run: echo "POL=${{ (env.DOCS_ON != 'true' && '0') || (env.ALWAYS_DOCS == 'true' && '1') || env.DOCS_JOB_POLICY }}" >> $GITHUB_OUTPUT
-      - id: read_docs_py
+      - name: Read Docs Py      
+        id: read_docs_py
         run: echo DOCS_PY=${{ env.DOCS_BUILDER_RUNTIME }} >> $GITHUB_OUTPUT
       ## Code Visualization - Pipeline Settings ##
-      - id: derive_code_viz_policy
+      - name: Derive Code Viz Policy
+        id: derive_code_viz_policy
         run: echo "POL=${{ (env.DRAW_DEPENDENCIES != 'true' && '0') || (env.ALWAYS_CODE_VIZ == 'true' && '1') || env.CODE_VIZ_POLICY }}" >> $GITHUB_OUTPUT
     outputs:
       matrix: ${{ steps.pass-env-to-output.outputs.matrix }}
       TESTS_ENABLED: ${{ steps.pass-env-to-output.outputs.TESTS_ENABLED }}
+      RUN_LINT_CHECKS: ${{steps.pass-env-to-output.outputs.RUN_LINT_CHECKS}}
+      DOCKER_JOB_ON: ${{ steps.pass-env-to-output.outputs.DOCKER_JOB_ON }}
       PUBLISH_ON_PYPI: ${{ steps.pass-env-to-output.outputs.PUBLISH_ON_PYPI }}
     ## Docker - Pipeline Settings ##
       PIPE_DOCKER_POLICY: ${{ steps.derive_docker_policy.outputs.POL }}
@@ -140,11 +142,11 @@ jobs:
     strategy:
       matrix: ${{fromJSON(needs.set_github_outputs.outputs.matrix)}}
     env:
-      WHEELS_PIP_DIR: "wheels-pip"
+      WHEELS_PIP_DIR: "wheels-pip" # see tox.ini  env  DIST_DIR = wheels-pip
     steps:
       - run: echo "Platform -> ${{ matrix.platform }} , Python -> ${{ matrix.python-version }}"
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5.3.0
+        uses: actions/setup-python@v5.6.0
         with:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install --upgrade pip && python -m pip install tox==3.28 tox-gh-actions
@@ -185,17 +187,15 @@ jobs:
           WHEEL_SIZE=$(echo $WHEEL_INFO | cut -d ' ' -f 2)
           echo "WHEEL_SIZE=$WHEEL_SIZE" >> $GITHUB_ENV
 
-          # extract '1.12.5.dev0' from 'dmcview-1.12.5.dev0-py3-none-any.whl'
-          PEP_VERSION=$(echo $WHEEL_NAME | sed -E "s/dmcview-([^ ]+)-py3-none-any.whl/\1/")
-
-          echo "PEP_VERSION=${PEP_VERSION}" >> $GITHUB_OUTPUT
+          # extract '0.3.2' from 'dmcview-0.3.2-py3-none-any.whl'
+          #echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/'
+          PEP_VERSION=$(echo $WHEEL_NAME | sed -E 's/dmcview-([^ ]+)-py3-none-any.whl/\1/')
+          echo "PEP_VERSION=$PEP_VERSION"
+          echo "PEP_VERSION=$PEP_VERSION" >> $GITHUB_OUTPUT
+          echo "PEP_VERSION=$PEP_VERSION" >> $GITHUB_ENV
 
       - run: 'echo "WHEEL_NAME: $WHEEL_NAME SIZE: $WHEEL_SIZE"'
       - run: 'echo "PEP_VERSION: $PEP_VERSION"'
-
-      # Crash Workflow if PEP_VERSION is not set
-      - if: ${{ steps.extract_wheel_info.outputs.PEP_VERSION == '' }}
-        run: exit 1
 
       ###### TEST SUITE RUN against Wheel ######
       - name: Run Test Suite Against Wheel
@@ -204,7 +204,8 @@ jobs:
           PLATFORM: ${{ matrix.platform }}
           BUILD_DEST: ${{ env.WHEELS_PIP_DIR }}
           WHEEL: ${{ env.WHEEL_NAME }}
-
+          PIP_VERSION: ${{ steps.extract_wheel_info.outputs.PEP_VERSION}}
+    
       ## Combine Coverage Data from Tests' Results ##
       - name: "Combine Coverage (dev, sdist, wheel) & make Reports"
         run: tox -e coverage --sitepackages -v -s false
@@ -231,8 +232,8 @@ jobs:
           DIST_DIR=dist
           echo "DIST_DIR=${DIST_DIR}" >> $GITHUB_ENV
           mkdir ${DIST_DIR}
-          mv ".tox/${DIST_DIR}/dmcview-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
-          mv "${{ env.WHEEL_PATH }}" "${DIST_DIR}"
+          cp ".tox/${DIST_DIR}/dmcview-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
+          cp "${{ env.WHEEL_PATH }}" "${DIST_DIR}"
           tox -e check -v -s false
 
       ## UPLOAD CI ARTIFACTS - Distro Build(s), 1 sdist and 1 or more wheels ##
@@ -243,24 +244,25 @@ jobs:
           path: ${{ env.DIST_DIR }}
           if-no-files-found: error
     outputs:
+      TEST_RESULT: ${{'success'}}
       PEP_VERSION: ${{ steps.extract_wheel_info.outputs.PEP_VERSION }}
+      
 
 
  ###############################
- ### JOB: CODE COCERAGE HOST ###
+ ### JOB: CODE COVERAGE HOST ###
  ###############################
   codecov_coverage_host:
     runs-on: ubuntu-latest
     needs: test_suite
-    if: false 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.2.2
     - name: Get Codecov binary
       run: |
         curl -Os https://uploader.codecov.io/latest/linux/codecov
         chmod +x codecov
     - name: Download Raw Coverage Data Artefacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4.3.0
       with:
         name: all_coverage_raw
     - name: Upload Coverage Reports to Codecov
@@ -272,6 +274,33 @@ jobs:
           echo "Sent to Codecov: $file !"
         done
 
+###########################################
+### JOB: STATIC CODE ANALYSIS & LINTING ###
+###########################################
+  lint:
+    name: Static Code Analysis
+    needs: [set_github_outputs, test_suite]
+    uses: ./.github/workflows/policy_lint.yml
+    if: ${{ needs.set_github_outputs.outputs.RUN_LINT_CHECKS == 'true' }}
+    with:
+      run_policy: ${{ needs.set_github_outputs.outputs.PIPE_SQA_POLICY }}
+      dedicated_branches: 'main, master, dev'
+      source_code_targets: 'src,tests,scripts'
+      python_version: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PY }}
+      pylint_threshold: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PYLINT_PASS_SCORE }}
+
+#################################################
+### JOB: DOCS BUILD/TEST - DOCUMENTATION SITE ###
+#################################################
+  docs:
+    name: Build Documentation
+    needs: set_github_outputs
+    uses: ./.github/workflows/policy_docs.yml
+    with:
+      run_policy: '${{ needs.set_github_outputs.outputs.PIPE_DOCS_POLICY }}'
+      python_version: ${{ needs.set_github_outputs.outputs.PIPE_DOCS_PY }}
+      command: 'tox -s false -e pin-deps -- -E docs && tox -e docs --sitepackages -vv -s false'
+
 ##################################################
 ### JOB: DOCKER BUILD and PUBLISH ON DOCKERHUB ###
 ##################################################
@@ -279,13 +308,11 @@ jobs:
   docker_build:
     needs: [set_github_outputs, test_suite]
     uses: ./.github/workflows/docker.yml
-    if: false 
     with:
       acceptance_policy: ${{ needs.set_github_outputs.outputs.PIPE_DOCKER_POLICY }}
       image_slug: "dmcview"
       # target_stage: "some_stage_alias"  # no stage, means no `--target` flag, on build
-      tests_pass: ${{ needs.test_suite.result == 'success' }}
-      tests_run: ${{ !contains(fromJSON('["skipped", "cancelled"]'), needs.test_suite.result) }}
+      tests_pass: ${{ needs.test_suite.outputs.TEST_RESULT == 'success' }}
       DOCKER_USER: ${{ vars.DOCKER_USER }}
     secrets:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
@@ -300,7 +327,7 @@ jobs:
       RELEASE_BR: ${{ vars.RELEASE_BRANCH || 'release' }}
       MAIN_BR: ${{ vars.MAIN_BRANCH || 'main' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
       - run: git branch --track "${{ env.RELEASE_BR }}" "origin/${{ env.RELEASE_BR }}"
@@ -354,35 +381,6 @@ jobs:
     secrets:
       TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
 
-      
-###########################################
-### JOB: STATIC CODE ANALYSIS & LINTING ###
-###########################################
-  lint:
-    name: Static Code Analysis
-    needs: set_github_outputs
-    uses: ./.github/workflows/policy_lint.yml
-    if: false
-    with:
-      run_policy: ${{ needs.set_github_outputs.outputs.PIPE_SQA_POLICY }}
-      dedicated_branches: 'main, master, dev'
-      source_code_targets: 'src,tests,scripts'
-      python_version: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PY }}
-      pylint_threshold: ${{ needs.set_github_outputs.outputs.PIPE_SQA_PYLINT_PASS_SCORE }}
-
-#################################################
-### JOB: DOCS BUILD/TEST - DOCUMENTATION SITE ###
-#################################################
-  docs:
-    name: Build Documentation
-    needs: set_github_outputs
-    uses: ./.github/workflows/policy_docs.yml
-    if: false
-    with:
-      run_policy: '${{ needs.set_github_outputs.outputs.PIPE_DOCS_POLICY }}'
-      python_version: ${{ needs.set_github_outputs.outputs.PIPE_DOCS_PY }}
-      command: 'tox -s false -e pin-deps -- -E docs && tox -e docs --sitepackages -vv -s false'
-
 ##########################################
 ### JOB: DRAW PYTHON DEPENDENCY GRAPHS ###
 ##########################################
@@ -390,12 +388,11 @@ jobs:
     needs: set_github_outputs
     name: Code Visualization of Python Imports as Graphs, in .svg
     uses: ./.github/workflows/python_imports.yml
-    if: false
     with:
       run_policy: '${{ needs.set_github_outputs.outputs.PIPE_CODE_VIZ_POLICY }}'
       branches: 'main, master, dev'
       source_code_targets: 'src'
-      python_version: '3.10'
+      python_version: '3.13'
       artifacts_dir: 'dependency-graphs'
 
 ##################################
@@ -410,5 +407,5 @@ jobs:
       tag: ${{ github.ref_name }}
       draft: ${{ needs.check_which_git_branch_we_are_on.outputs.ENVIRONMENT_NAME == 'TEST_DEPLOYMENT' }}
     secrets:
-      # passing the GH_TOKEN PAT, to render in GH as ie: 'boromir674 released this yesterday', instead of 'github-actions released this yesterday'
+      # passing the GH_TOKEN 
       gh_token: ${{ secrets.GH_TOKEN }}

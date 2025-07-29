@@ -44,7 +44,7 @@ on:
         required: false
       ## Parametrizing Runtime Environment (ie py version)
       python_version:
-        default: '3.10'
+        default: '3.13'
         type: string
         description: 'Python Interpreter Version to use for Docs Build Environment'
         required: false
@@ -76,7 +76,7 @@ jobs:
 
       - if: ${{ env.SHOULD_DERIVE_FROM_DIFF }}
         name: 'POLICY: 2, 3 -> Checkout Code to compute DIFF'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 2
 
@@ -113,9 +113,9 @@ jobs:
     needs: docs_policy
     if: always() && needs.docs_policy.outputs.RUN_DOCS == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
       - name: Set up Python ${{ inputs.python_version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5.6.0
         with:
           python-version: ${{ inputs.python_version }}
       - name: Install Tox
@@ -123,11 +123,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install tox==3.28
 
-      - name: Install Build dependencies
-        if: ${{ matrix.platform == 'macos-latest' && matrix.python-version != '3.6' }}
-        run: brew install enchant
-
       - name: Build Documentation and Test
         if: ${{ matrix.platform == 'ubuntu-latest' || matrix.python-version  != '3.6' }}
         run: ${{ inputs.command }}
-        # run: tox -e docs --sitepackages -vv -s false
