@@ -73,7 +73,7 @@ License
 .. Build Status
 .. Github Actions: Test Workflow Status for specific branch <branch>
 
-.. |build| image:: https://img.shields.io/github/workflow/status/Issamricin/dmc-view/Test%20Python%20Package/master?label=build&logo=github-actions&logoColor=%233392FF
+.. |build| image:: https://github.com/Issamricin/dmc-view/actions/workflows/ci_cd.yaml/badge.svg
     :alt: GitHub Workflow Status (branch)
     :target: https://github.com/Issamricin/dmc-view/actions/
 
