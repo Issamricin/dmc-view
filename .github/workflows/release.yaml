@@ -1,0 +1,49 @@
+name: Release to TEST PyPI
+on:
+  push:
+    tags: ["test-*"] # test-1.0.0 trigger to deploy on test pypi while 1.0.0 is on production pypi
+
+env:
+  dists-artifact-name: python-package-distributions
+  FORCE_COLOR: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6.4.3 # https://github.com/marketplace/actions/astral-sh-setup-uv
+        with:
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build package
+        run: uv build --python 3.13 --python-preference only-managed --sdist --wheel . --out-dir dist
+      - name: Store the distribution packages
+        uses: actions/upload-artifact@v4 
+        with:
+          name: ${{ env.dists-artifact-name }}
+          path: dist/*
+
+  release:
+    needs:
+      - build
+    runs-on: ubuntu-24.04
+    environment:
+      name: release-test-pypi
+      url: https://test.pypi.org/project/forked-dmcview/${{ github.ref_name }} #  prod: https://pypi.org/project . github.ref_name : The short ref name of the branch or tag that triggered the workflow run
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+      - name: Download all the dists
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.dists-artifact-name }}
+          path: dist/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@v1.12.4 # https://github.com/pypa/gh-action-pypi-publish
+        with:
+          attestations: true
