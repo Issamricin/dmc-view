@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-24.04
     environment:
       name: release-test-pypi
-      url: https://test.pypi.org/project/forked-dmcview/${{ github.ref_name }} #  prod: https://pypi.org/project . github.ref_name : The short ref name of the branch or tag that triggered the workflow run
+      url: https://test.pypi.org/project/alandmcview/${{ github.ref_name }} #  prod: https://pypi.org/project . github.ref_name : The short ref name of the branch or tag that triggered the workflow run
     permissions:
       id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
