@@ -43,7 +43,7 @@ jobs:
         with:
           name: ${{ env.dists-artifact-name }}
           path: dist/
-      - name: Publish to PyPI
+      - name: Publish to Test PyPI
         uses: pypa/gh-action-pypi-publish@v1.12.4 # https://github.com/pypa/gh-action-pypi-publish
         with:
           attestations: true
