@@ -1,7 +1,7 @@
 name: Release to TEST PyPI
 on:
   push:
-    tags: ["test-*"] # test-1.0.0 trigger to deploy on test pypi while 1.0.0 is on production pypi
+    tags: ["*"] # test-1.0.0 trigger to deploy on test pypi while 1.0.0 is on production pypi
 
 env:
   dists-artifact-name: python-package-distributions
