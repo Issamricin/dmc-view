@@ -45,12 +45,9 @@ Change Log
 ==========
 `Change Log <https://github.com/Issamricin/dmc-view/blob/master/CHANGELOG.rst>`_.
 
-How to Contribute
-=================
-`Contribute <https://github.com/Issamricin/dmc-view/blob/master/CONTRIBUTING.md>`_
 
-Development
-===========
+Developer Guide
+===============
 `Development <https://github.com/Issamricin/dmc-view/blob/master/docs/source/contents/development.rst>`_
 
 Quickstart
