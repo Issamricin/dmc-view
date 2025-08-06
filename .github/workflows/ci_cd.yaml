@@ -4,11 +4,11 @@ name: CI/CD Pipeline
 # Triggers on all Branches and v* Tags
 
 ### Production PyPI Publish, pypi.org, on: ###
-# - v* tags on 'master' branch only
+# - release-* tags on 'master' branch only
 
 ### Staging/Test PyPI Publish, test.pypi.org, on: ###
 ## Test PyPI publish on: ##
-# - v*-rc 'pre-release' tags on 'release' branch
+# - test-*  tags
 
 ### Dockerhub publish on ###
 # - all branches and tags
@@ -17,8 +17,6 @@ on:
   push:
     branches:
       - "*"
-    tags:
-      - v*
 
 env:
   ### Job MATRIX ###
@@ -33,7 +31,6 @@ env:
   DOCS_ON: "true"
   DOCKER_JOB_ON: "true" # ditto 
   DRAW_DEPENDENCIES: "true" # ditto 
-  PUBLISH_ON_PYPI: "false" # ditto 
   ##############################
 
   ### DOCKER Job Policy ####
@@ -41,7 +38,6 @@ env:
   # Accept any ALL (branch/build) to Publish to Dockerhub
   # if true, it will push image and ignore DOCKER_JOB_POLICY
   ALWAYS_BUILD_N_PUBLSIH_DOCKER: "true"
-
   DOCKER_JOB_POLICY: "CDeployment"
   # - CDeployment : Builds and Publishes only if Tests ran and passed
   # - CDelivery   : Builds and Publishes if Tests Passed or if Tests were Skipped
@@ -80,12 +76,10 @@ jobs:
       - name: Pass 'env' section variables to GITHUB_OUTPUT
         id: pass-env-to-output
         run: | # pip character means multi command line 
-          # set the matrix strategy to Full Matrix Stress Test if on master/main or stress-test branch or any tag
-          BRANCH_NAME=${GITHUB_REF_NAME}
+          # set the matrix strategy
           echo "matrix=$UBUNTU_PY313_STRATEGY" >> $GITHUB_OUTPUT
           echo "TESTS_ENABLED=$RUN_UNIT_TESTS" >> $GITHUB_OUTPUT
           echo "RUN_LINT_CHECKS=$RUN_LINT_CHECKS" >> $GITHUB_OUTPUT
-          echo "PUBLISH_ON_PYPI=$PUBLISH_ON_PYPI" >> $GITHUB_OUTPUT
       ## Docker - Pipeline Settings ##
       # see https://docs.github.com/en/actions/reference/evaluate-expressions-in-workflows-and-actions
       # evauation: (false && 0) || (true && 1) ends with 0 (first one )
@@ -119,7 +113,6 @@ jobs:
       TESTS_ENABLED: ${{ steps.pass-env-to-output.outputs.TESTS_ENABLED }}
       RUN_LINT_CHECKS: ${{steps.pass-env-to-output.outputs.RUN_LINT_CHECKS}}
       DOCKER_JOB_ON: ${{ steps.pass-env-to-output.outputs.DOCKER_JOB_ON }}
-      PUBLISH_ON_PYPI: ${{ steps.pass-env-to-output.outputs.PUBLISH_ON_PYPI }}
     ## Docker - Pipeline Settings ##
       PIPE_DOCKER_POLICY: ${{ steps.derive_docker_policy.outputs.POL }}
     ## Static Code Analysis - Pipeline Settings ##
@@ -317,69 +310,6 @@ jobs:
     secrets:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-  #############################################
-  ### JOB: Signal for Automated PyPI Upload ###
-  #############################################
-  check_which_git_branch_we_are_on:
-    runs-on: ubuntu-latest
-    if: ${{ startsWith(github.event.ref, 'refs/tags/v') }}
-    env:
-      RELEASE_BR: ${{ vars.RELEASE_BRANCH || 'release' }}
-      MAIN_BR: ${{ vars.MAIN_BRANCH || 'main' }}
-    steps:
-      - uses: actions/checkout@v4.2.2
-        with:
-          fetch-depth: 0
-      - run: git branch --track "${{ env.RELEASE_BR }}" "origin/${{ env.RELEASE_BR }}"
-
-      - name: "Check if '${{ github.ref }}' tag is on '${{ env.MAIN_BR }}' branch"
-        uses: rickstaa/action-contains-tag@v1
-        id: main_contains_tag
-        with:
-          reference: ${{ env.MAIN_BR }}
-          tag: "${{ github.ref }}"
-      - name: "Check if '${{ github.ref }}' tag is on '${{ env.RELEASE_BR }}' branch"
-        uses: rickstaa/action-contains-tag@v1
-        id: release_contains_tag
-        with:
-          reference: ${{ env.RELEASE_BR }}
-          tag: "${{ github.ref }}"
-
-      - name: Pick Production or Test Environment, if tag on master or release branch respectively
-        id: set_environment_name
-        run: |
-          DEPLOY=true
-          if [[ "${{ steps.main_contains_tag.outputs.retval }}" == "true" ]]; then
-            echo "ENVIRONMENT_NAME=PROD_DEPLOYMENT" >> $GITHUB_OUTPUT
-          elif [[ "${{ steps.release_contains_tag.outputs.retval }}" == "true" ]]; then
-            echo "ENVIRONMENT_NAME=TEST_DEPLOYMENT" >> $GITHUB_OUTPUT
-          else
-            echo "A tag was pushed but not on master or release branch. No deployment will be done."
-            DEPLOY=false
-          fi
-          echo "AUTOMATED_DEPLOY=$DEPLOY" >> $GITHUB_OUTPUT
-    outputs:
-      ENVIRONMENT_NAME: ${{ steps.set_environment_name.outputs.ENVIRONMENT_NAME }}
-      AUTOMATED_DEPLOY: ${{ steps.set_environment_name.outputs.AUTOMATED_DEPLOY }}
-
-  ########################
-  ### JOB: PYPI UPLOAD ###
-  ########################
-  pypi_publish:
-    needs: [set_github_outputs, test_suite, check_which_git_branch_we_are_on]
-    uses: ./.github/workflows/pypi_env.yml
-    if: false 
-    with:
-      should_trigger: ${{ needs.set_github_outputs.outputs.PUBLISH_ON_PYPI == 'true' && needs.check_which_git_branch_we_are_on.outputs.AUTOMATED_DEPLOY == 'true' }}
-      distro_name: dmcview
-      distro_version: ${{ needs.test_suite.outputs.PEP_VERSION }}
-      pypi_env: '${{ needs.check_which_git_branch_we_are_on.outputs.ENVIRONMENT_NAME }}'
-      artifacts_path: downloaded-artifacts
-
-      require_wheel: true
-      allow_existing: true
-    secrets:
-      TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
 
 ##########################################
 ### JOB: DRAW PYTHON DEPENDENCY GRAPHS ###
@@ -394,18 +324,3 @@ jobs:
       source_code_targets: 'src'
       python_version: '3.13'
       artifacts_dir: 'dependency-graphs'
-
-##################################
-### JOB: Make a Github Release ###
-##################################
-  gh_release:
-    needs: [test_suite, check_which_git_branch_we_are_on]
-    if: ${{ needs.check_which_git_branch_we_are_on.outputs.AUTOMATED_DEPLOY == 'true' }}
-    uses: ./.github/workflows/gh-release.yml
-    name: 'GH Release'
-    with:
-      tag: ${{ github.ref_name }}
-      draft: ${{ needs.check_which_git_branch_we_are_on.outputs.ENVIRONMENT_NAME == 'TEST_DEPLOYMENT' }}
-    secrets:
-      # passing the GH_TOKEN 
-      gh_token: ${{ secrets.GH_TOKEN }}
