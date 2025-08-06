@@ -7,14 +7,14 @@ build-backend = "poetry.core.masonry.api"
 [project]
 name = "alandmcview"
 version = "0.3.2"
-description = "DMC View"
+description = "Digital Magnatic Compass View"
 authors = [
    {name="Iso"}, 
    {name="Alan"}
 ]
 maintainers = [{name="Iso"}, {name="Alan"}] # must be an object
 license = "AGPL-3.0-only"
-readme = "README.rst"
+readme = {file = "README.rst", content-type = "text/x-rst"}
 
 homepage = "https://github.com/Issamricin/dmc-view"
 repository = "https://github.com/Issamricin/dmc-view"
