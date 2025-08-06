@@ -1,5 +1,5 @@
-Development
-===========
+Developer Guide
+===============
 
 | Insall `pip` 
  
@@ -21,26 +21,52 @@ Development
 
     pip install -e .
 
-Then, for any changes in the code you can execute it from command line
+
+Publish Notes
+-------------
+below are steps to test the publish on pypi see workflow files for publish on pypi test server (release_test.yaml)
+If you do update for the README.rst , please copy and paste into  `RST-Check <https://rsted.info.ucl.ac.be/>`__ 
 
 .. code-block:: shell
+    git clone git@github.com:Issamricin/dmc-view.git
+    python -m venv .venv 
 
-    python
-    
 
-To run the simulator run the below code from the python interactive 
+You need to install tox on to run the workflow tox task or env run task 
+TODO: below tox env run needs to completed by Iso
 
 .. code-block:: shell
+    python -m pip install tox 
 
-    from dmcview.simulator import Simulator
-    simulator = Simulator()
-    simulator.run()
- 
+Below is to build and check the twine for pypi publish in case an error in the markup you need to check rst online 
+ `Guide on validting RST markup<https://packaging.python.org/en/latest/guides/making-a-pypi-friendly-readme/#validating-restructuredtext-markup/>`__ 
+
+
 .. code-block:: shell
-    dmcview -s Y
+    python -m build -s
+    python -m build --wheel
+    python -m pip install --upgrade twine
+    twine check dist/*
 
-Development Notes
-~~~~~~~~~~~~~~~~~
+Now you need to have your test project setup on testpypi created ( publishing crate project )
+`Publishing <https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/>`__ 
+so to trigger the workflow you need to create a test tag and push it so it triggers the release_test.yaml
+Before you do that update your package version in the toml, tox and __init__.py file . 
+TODO: Iso you need to find a way to make all from one place 
+suppose my package release is 0.3.3 ( release candidate version for production)
+so the tag is test-0.3.3
+
+.. code-block:: shell
+    git tag test-0.3.3
+    git push origin --tags
+
+`Git Basic Tag Commands <https://git-scm.com/book/en/v2/Git-Basics-Tagging/>`__ 
+
+
+
+   
+Developer Notes
+---------------
 Testing, Documentation Building, Scripts, CI/CD, Static Code Analysis for this project.
 
 1. **Test Suite**, using `pytest`_, located in `tests` dir

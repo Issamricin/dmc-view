@@ -30,7 +30,6 @@ Digital Magnetic Compass View  documentation!
 
    contents/development
    contents/changelog
-   contents/contributing
    contents/code_of_conduct
 
 .. toctree::
