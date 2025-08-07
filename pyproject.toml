@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "dmcview"
-version = "0.3.2"
+version = "0.3.3"
 description = "Digital Magnatic Compass View"
 authors = [
    {name="Iso"}, 
