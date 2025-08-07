@@ -3,6 +3,16 @@ Changelog
 =========
 
 
+0.3.3 (2025-07-08)
+=======================================
+
+| This patch improve the workflow of the project.
+
+Added
+-----
+- Full automation has been achieved for the software life cycle.
+
+
 0.3.2 (2025-05-01)
 =======================================
 
