@@ -29,28 +29,31 @@ Steps to test the publish on pypi see workflow files for publish on pypi test se
 | If you do update for the README.rst , please copy and paste into  `RST-Check <https://rsted.info.ucl.ac.be/>`__ 
 
 .. code-block:: shell
-    git clone git@github.com:Issamricin/dmc-view.git
-    python -m venv .venv 
+
+   git clone git@github.com:Issamricin/dmc-view.git
+   python -m venv .venv 
 
 
 You need to install tox on to run the workflow tox task or env run task 
 
-| **TODO: below tox env run needs to completed by Iso**
+| **TODO: below tox env run needs to completed**
 
 .. code-block:: shell
-    python -m pip install tox 
+
+   python -m pip install tox 
 
 | Below is to build and check the twine for pypi publish in case an error in the markup you need to check rst online 
 
  `Making Friendly PyPi Package  <https://packaging.python.org/en/latest/guides/making-a-pypi-friendly-readme/>`__ 
 
-
 .. code-block:: shell
-    python -m build -s
-    python -m build --wheel
-    python -m pip install --upgrade twine
-    twine check dist/*
 
+   python -m build -s
+   python -m build --wheel
+   python -m pip install --upgrade twine
+   twine check dist/* 
+    
+ 
 Now you need to have your test project setup on testpypi 
 `Publishing <https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/>`__ 
 so to trigger the workflow you need to create a test tag and push it so it triggers the release_test.yaml
