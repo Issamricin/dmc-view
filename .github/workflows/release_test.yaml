@@ -36,7 +36,7 @@ jobs:
 
     environment:
       name: testpypi
-      url: https://test.pypi.org/p/dmc-view  # Replace <package-name> with your PyPI project name; see https://test.pypi.org/manage/account/publishing
+      url: https://test.pypi.org/p/dmcview  # Replace <package-name> with your PyPI project name; see https://test.pypi.org/manage/account/publishing
 
     permissions:
       id-token: write  # IMPORTANT: mandatory for trusted publishing
