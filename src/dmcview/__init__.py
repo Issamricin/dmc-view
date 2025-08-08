@@ -7,4 +7,4 @@
   there is no need to configure. It is just plug and play approach with different internal adapter
 """
 
-__version__ = "0.3.3"
+__version__ = "0.3.4"
