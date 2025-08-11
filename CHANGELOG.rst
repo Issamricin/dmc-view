@@ -3,7 +3,7 @@ Changelog
 =========
 
 
-0.3.3 (2025-07-08)
+0.3.3 (2025-08-11)
 =======================================
 
 | This patch improve the workflow of the project.
