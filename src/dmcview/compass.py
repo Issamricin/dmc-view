@@ -1,3 +1,11 @@
+"""
+This package represent how to dorw an circle, the 4 Direction ,
+show the user input as text, 
+Drow the Elevation, Bank, and Azimuth inside the circle
+
+
+"""
+
 import math
 
 from PySide6.QtCore import QEvent, QPointF, QRectF, Qt, QTimer
@@ -53,7 +61,15 @@ class Compass(QWidget):
         super().resizeEvent(event)
 
     def create_static_pixmap(self) -> None:
+        """
+        This method generates an circale :
+            A black-outlined circle (offset slightly left of center) with QPainter class
+            Cardinal direction markers (N, E, S, W) via `draw_cardinal_points()` using drawEllipse method
+            Radial lines from center using draw_lines() method
 
+            returns:
+                paint the circle in left side of the 
+        """
         self.static_pixmap = QPixmap(self.size())
         self.static_pixmap.fill(Qt.transparent)
 
@@ -77,6 +93,18 @@ class Compass(QWidget):
         painter.end()
 
     def paintEvent(self, event: QEvent) -> None:
+        """
+        This method dorw as text information values about the azimuth, declination, bank angle, elevation, acceleration
+        in the right side of the circle 
+
+        Args:
+            event(QEvent) : class represent an event such paint event.
+        
+        
+        Drows:
+            drow as text the user values that have been input to the program
+        
+        """
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
@@ -128,7 +156,18 @@ class Compass(QWidget):
         self.update()
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        '''
+        This method creates the 4 directions and the lines inside the circle and there propirtes (size, thin, color)
+        Args:
+            painter(QPainter) : used for drawing on the emulater.
+            center (QPointF) : represent the center of the shape in 2D graphics.
+            radius (int) : represent the distanc form the center of the shape to it's edge.
+
+            Drows:
+                drows the circle and it's 4 diractions.
+        '''
         painter.setPen(QPen(Qt.black, 2))
+
         font = QFont("Arial", 14, QFont.Bold)
         painter.setFont(font)
 
@@ -154,7 +193,9 @@ class Compass(QWidget):
             painter.drawLine(QPointF(outer_x, outer_y), QPointF(inner_x, inner_y))
 
     def draw_lines(self, painter: QPainter, center: QPointF, radius: int) -> None:
-
+        """
+        This method represent the X and Y line inside the circle
+        """
         painter.setPen(QPen(Qt.black, 2))
 
         painter.drawLine(
@@ -177,7 +218,9 @@ class Compass(QWidget):
             )
 
     def draw_arrow(self, painter: QPainter, center: QPointF, radius: int) -> None:
-
+        """
+        This method represnt how Drow the evaluation and the Arrow Proprites
+        """
         painter.setBrush(QBrush(Qt.red))
         painter.setPen(QPen(Qt.red, 2))
 
