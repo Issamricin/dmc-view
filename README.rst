@@ -4,8 +4,8 @@
    :alt: Digital Magnatic Compass View 
    :height: 200
 
-**COMMUNITY VERSION**
----------------------
+COMMUNITY VERSION
+-----------------
 
 .. start-badges see https://shields.io/badges and collection see https://github.com/inttter/md-badges
 
