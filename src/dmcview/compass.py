@@ -1,5 +1,16 @@
-import math
+"""
+This package represent how to dorw an circle, the 4 Direction ,
+show the user input as text,
+Drow the Elevation, Bank, and Azimuth inside the circle .
+Using:
+    QEvent: Events like mouse clicks.
+    QPoint: specifying position of shapes.
+    QRectF: for drowing
+    Qt: for color, event types ....
+    QTimer: creat Timers in Qt.
+"""
 
+import math
 from PySide6.QtCore import QEvent, QPointF, QRectF, Qt, QTimer
 from PySide6.QtGui import (
     QBrush,
@@ -19,6 +30,19 @@ from dmcview.accele3D_signal_manger import signal_manager
 
 class Compass(QWidget):
     def __init__(self) -> None:
+        """
+        args:
+            setWindowTitle (str): when application is runinig this title will show up.
+            setMinimumSize(int, int): (width, height) size of the windows.
+            current_angle (float): represent direction compass currently pointing to.
+            target_angle (float):  It allows for smooth transitions between angles when the compass is updated.
+            target_declination (float):  used to adjust the compass reading based on the local magnetic declination.
+            current_declination (float): will be updated based on the user's input or sensor data.
+            elevation (float): angle of the compass relative to the horizontal plane.
+            rotation (float):  represents the bank angle 
+
+
+        """
         super().__init__()
         self.setWindowTitle("Digital Magnetic Compass")
         self.setMinimumSize(600, 420)
@@ -53,7 +77,15 @@ class Compass(QWidget):
         super().resizeEvent(event)
 
     def create_static_pixmap(self) -> None:
+        """
+        This method generates a circle:
+          A black-outlined circle (offset slightly to the left of center) using the QPainter class.
+          Cardinal direction markers (N, E, S, W) via `draw_cardinal_points()`, using the drawEllipse method.
+          Radial lines from the center using the `draw_lines()` method.
 
+        Returns:
+          Paints the circle on the left side of the widget.
+        """
         self.static_pixmap = QPixmap(self.size())
         self.static_pixmap.fill(Qt.transparent)
 
@@ -77,6 +109,17 @@ class Compass(QWidget):
         painter.end()
 
     def paintEvent(self, event: QEvent) -> None:
+        """
+        This method draws text information values about the azimuth, declination, bank angle, elevation,
+        and acceleration on the right side of the circle.
+
+        Args:
+        event (QEvent): Class representing an event, such as a paint event.
+
+        Draws:
+        Displays as text the user values that have been input into the program.
+
+        """
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
@@ -128,6 +171,17 @@ class Compass(QWidget):
         self.update()
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """
+        This method generates a circle:
+        A black-outlined circle (offset slightly to the left of center) using the QPainter class.
+        Cardinal direction markers (N, E, S, W) via `draw_cardinal_points()`, using the drawEllipse method.
+        Radial lines from the center using the `draw_lines()` method.
+
+        Returns:
+        
+        Paints the circle on the left side of the widget.
+
+        """
         painter.setPen(QPen(Qt.black, 2))
         font = QFont("Arial", 14, QFont.Bold)
         painter.setFont(font)
@@ -154,6 +208,9 @@ class Compass(QWidget):
             painter.drawLine(QPointF(outer_x, outer_y), QPointF(inner_x, inner_y))
 
     def draw_lines(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """
+        This method is for the in lines around the circle from the inside.
+        """
 
         painter.setPen(QPen(Qt.black, 2))
 
@@ -177,6 +234,13 @@ class Compass(QWidget):
             )
 
     def draw_arrow(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """
+        This method creates an arrow that indicates the elevation angle and draws an arc to represent
+        the elevation visually. 
+        This method enhances the usability and aesthetics of the digital magnetic compass application.
+        args: It determines how far the arrow will extend from the center.
+
+        """
 
         painter.setBrush(QBrush(Qt.red))
         painter.setPen(QPen(Qt.red, 2))
@@ -261,6 +325,11 @@ class Compass(QWidget):
         compass_angle: float,
         declination: float,
     ) -> None:
+        """
+        This method draws a magnetic north indicator along with a declination arc 
+        args:
+            declination (float): The magnetic declination in degrees.
+        """
 
         dark_red = QColor(124, 10, 2)
 
@@ -328,6 +397,15 @@ class Compass(QWidget):
         radius: int,
         compass_angle: float,
     ) -> None:
+        """
+          Calculate the azimuth position based on compass angle and draw it with specified properties.
+        
+        Args:
+            painter: QPainter object for drawing operations
+            center: Center point (QPointF) of the compass
+            radius: Radius of the compass circle
+            compass_angle: Current compass angle in degrees
+        """
 
         dark_green = QColor(87, 108, 67)
 
@@ -440,6 +518,10 @@ class Compass(QWidget):
         self.update()
 
     def draw_red_line(self, painter: QPainter, center: QPointF, radius: int) -> None:
+        """
+        This method represent the magnetic north direction on a compass, taking into account the magnetic declination.
+        It uses a QPainter to draw shapes and text on a graphical interface, typically in a Qt application.
+        """
         painter.setPen(QPen(Qt.red, 2))
 
         line_length = radius * 2
