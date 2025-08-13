@@ -9,6 +9,15 @@ from dmcview.accele3D_signal_manger import signal_manager
 
 
 class Accelaration3D(FigureCanvas):
+    """
+This class represents the right side of the widget window that appears.
+It depends on the acceleration value provided by the user in (x, y, z).
+We run this class in main.
+We use the Figure module in Matplotlib to display a 3D window, and it uses the add_subplot() method
+to represent the entire canvas for the plot.
+
+
+    """
     def __init__(self, figure: Figure = None) -> None:
         super().__init__(figure)
 
@@ -32,12 +41,17 @@ class Accelaration3D(FigureCanvas):
 
         self.quiver = self.ax.quiver(
             0, 0, 0, 0, 0, 0, color="red", linewidth=2, arrow_length_ratio=0.3
-        )
+        ) #this is for the arrow
 
         self.ax.view_init(azim=-115, elev=20, roll=3)
         self.start_acceleration_timer()
 
     def update_acceleration_vector(self) -> None:
+        """
+      In this method, we use Decimal to round the floating-point number.
+      Draws the arrow that represents the acceleration value provided by the user.
+
+        """
 
         if self.target_x < self.x:
             self.target_x += self.value
