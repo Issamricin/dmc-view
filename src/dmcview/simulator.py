@@ -53,6 +53,11 @@ class SimulatorRunner(QRunnable):
 
 
 class Simulator(QWidget):
+    """
+    The simulator class Load, initiate and keep track of all models being simulated,Keep track of time,
+    Initialize the plots.
+    this class loads from SimulatorRunner() class 
+    """
     def __init__(self) -> None:
         super().__init__()
         self.threadPool = QThreadPool()
@@ -75,6 +80,9 @@ class Simulator(QWidget):
     def __update(
         self, azimuth: str, elevation: str, bank: str, x: str, y: str, z: str
     ) -> None:
+        """
+        This method update the values from compass file.
+        """
         self.compass.update_angle(float(azimuth))
         self.compass.set_elevation(float(elevation))
         self.compass.set_rotation(float(bank))
