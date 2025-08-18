@@ -16,6 +16,8 @@
 #     - Triggered on a v* tag (ie v1.0.0)
 #     - Docs Source Files (ie docs/) changed, compared to previous commit
 #  3. Run Docs, if Source Files changed, compared to previous commit
+env:
+  PYTHON_VERSION: ${{ vars.PYTHON_VERSION }}
 
 on:
   workflow_call:
@@ -44,7 +46,7 @@ on:
         required: false
       ## Parametrizing Runtime Environment (ie py version)
       python_version:
-        default: '3.13'
+        default: '${{ env.PYTHON_VERSION }}'
         type: string
         description: 'Python Interpreter Version to use for Docs Build Environment'
         required: false

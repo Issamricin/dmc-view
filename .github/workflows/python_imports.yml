@@ -10,6 +10,8 @@
 #     - Triggered on a v* tag (ie v1.0.0)
 #     - Source (business logic) Code (no tests) changed
 #  3. Draw if Source (business logic) Code (no tests) changed
+env:
+  PYTHON_VERSION: ${{ vars.PYTHON_VERSIONS }}
 
 on:
   workflow_call:
@@ -30,7 +32,7 @@ on:
       python_version:
         required: false
         type: string
-        default: '3.13'
+        default: '${{ env.PYTHON_VERSION }}'
       artifacts_dir:
         required: false
         type: string

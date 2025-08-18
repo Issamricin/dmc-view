@@ -22,6 +22,8 @@
 #     - Triggered on a v* tag (ie v1.0.0)
 #     - Source Code changed, compared to previous commit
 #  3. Run SQA, if Source Code changed, compared to previous commit
+env:
+  PYTHON_VERSION: ${{ vars.PYTHON_VERSION }}
 
 on:
   workflow_call:
@@ -43,7 +45,7 @@ on:
       python_version:
         required: false
         type: string
-        default: '3.10'
+        default: '${{ env.PYTHON_VERSION }}'
       ## Parametrizing Code Analysis Acceptance Criteria
       pylint_threshold:
         required: false
