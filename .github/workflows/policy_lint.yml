@@ -24,6 +24,7 @@
 #  3. Run SQA, if Source Code changed, compared to previous commit
 env:
   PYTHON_VERSION: ${{ vars.PYTHON_VERSION }}
+  TOX_VERSION: ${{ vars.TOX_VERSION }}
 
 on:
   workflow_call:
@@ -125,7 +126,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install tox==3.28
+          python -m pip install tox==${{ env.TOX_VERSION }}
 
       ## Isort ##
       - name: 'Isort: Require Semantic and Alphabetic order of the Python Imports'
@@ -159,7 +160,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install tox==3.28
+          python -m pip install tox==${{ env.TOX_VERSION }}
 
       ## Pylint (legacy) ##
       - name: Run Pylint tool on Python Code Base
