@@ -10,6 +10,9 @@
 #     - Triggered on a v* tag (ie v1.0.0)
 #     - Source (business logic) Code (no tests) changed
 #  3. Draw if Source (business logic) Code (no tests) changed
+env:
+  PYTHON_VERSION: ${{ vars.PYTHON_VERSIONS }}
+  TOX_VERSION: ${{ vars.TOX_VERSION }}
 
 on:
   workflow_call:
@@ -30,7 +33,7 @@ on:
       python_version:
         required: false
         type: string
-        default: '3.13'
+        default: '${{ env.PYTHON_VERSION }}'
       artifacts_dir:
         required: false
         type: string
@@ -100,7 +103,7 @@ jobs:
     - name: Install tox
       run: |
         python -m pip install --upgrade pip
-        python -m pip install tox==3.28
+        python -m pip install tox== ${{ env.TOX_VERSION}}
     - name: Install dependencies (ie dot binary of graphviz)
       run: |
         sudo apt update -y --allow-releaseinfo-change
