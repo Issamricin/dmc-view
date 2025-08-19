@@ -11,7 +11,7 @@
 #     - Source (business logic) Code (no tests) changed
 #  3. Draw if Source (business logic) Code (no tests) changed
 env:
-  PYTHON_VERSION: ${{ vars.PYTHON_VERSIONS }}
+  PYTHON_VERSION: ${{ vars.PYTHON_VERSION }}
   TOX_VERSION: ${{ vars.TOX_VERSION }}
 
 on:
@@ -33,7 +33,7 @@ on:
       python_version:
         required: false
         type: string
-        default: '${{ env.PYTHON_VERSION }}'
+        default: '${{  vars.PYTHON_VERSION }}'
       artifacts_dir:
         required: false
         type: string
