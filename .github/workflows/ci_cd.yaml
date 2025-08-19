@@ -21,8 +21,7 @@ on:
 env:
   ### Job MATRIX ###
   # Python 3.12 is in bugfix mode, same as 3.11 -> can start supporting 3.13 later 
-  UBUNTU_PY313_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":[\"3.13\"]}"
-  PYTHON_VERSION: ${{ vars.PYTHON_VERSION }}
+  UBUNTU_PY313_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":[\"${{ vars.PYTHON_VERSION }}\"]}"
   TOX_VERSION: ${{ vars.TOX_VERSION }}
  
   #########################################################
@@ -139,11 +138,11 @@ jobs:
     env:
       WHEELS_PIP_DIR: "wheels-pip" # see tox.ini  env  DIST_DIR = wheels-pip
     steps:
-      - run: echo "Platform -> ${{ matrix.platform }} , Python -> ${{ env.PYTHON_VERSION }}"
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
+      - run: echo "Platform -> ${{ matrix.platform }} , Python -> ${{ matrix.python-version }}"
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5.6.0
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: ${{ matrix.python-version }}
       - run: python -m pip install --upgrade pip && python -m pip install tox==${{ env.TOX_VERSION }} tox-gh-actions
 
       - uses: actions/checkout@v4.2.2
@@ -208,14 +207,14 @@ jobs:
       - name: Rename Coverage Files
         shell: bash
         run: |
-          mv ./.tox/coverage.xml ./coverage-${{ matrix.platform }}-${{ env.PYTHON_VERSION }}.xml
+          mv ./.tox/coverage.xml ./coverage-${{ matrix.platform }}-${{ matrix.python-version }}.xml
 
       ## UPLOAD CI ARTIFACTS - Coverage Reports ##
       - name: "Upload Test Coverage as Artifacts"
         uses: actions/upload-artifact@v4.6.0
         with:
           name: all_coverage_raw
-          path: coverage-${{ matrix.platform }}-${{ env.PYTHON_VERSION }}.xml
+          path: coverage-${{ matrix.platform }}-${{ matrix.python-version }}.xml
           if-no-files-found: error
 
       - name: Check for compliance with Python Best Practices
@@ -235,7 +234,7 @@ jobs:
       - name: Upload Source & Wheel distributions as Artefacts
         uses: actions/upload-artifact@v4.6.0
         with:
-          name: dist-${{ matrix.platform }}-${{ env.PYTHON_VERSION }}
+          name: dist-${{ matrix.platform }}-${{ matrix.python-version }}
           path: ${{ env.DIST_DIR }}
           if-no-files-found: error
     outputs:
@@ -324,5 +323,5 @@ jobs:
       run_policy: '${{ needs.set_github_outputs.outputs.PIPE_CODE_VIZ_POLICY }}'
       branches: 'main, master, dev'
       source_code_targets: 'src'
-      python_version: '${{ env.PYTHON_VERSION }}'
+      python_version: ${{ matrix.python-version }}
       artifacts_dir: 'dependency-graphs'
