@@ -10,7 +10,7 @@ from dmcview.accele3D_signal_manger import signal_manager
 
 class Accelaration3D(FigureCanvas):
     """
-    This clas display a 3D window.
+    This class displays a 3D window.
 
     It depends on the acceleration value provided by the user in (x, y, z), and it uses the add_subplot()
     method to represent the entire canvas for the plot.
@@ -49,7 +49,7 @@ class Accelaration3D(FigureCanvas):
         """
         Draws the arrow that represents the acceleration value provided by the user.
 
-        This method use Decimal to round the floating-point number.
+        This method uses Decimal to round the floating-point number.
 
 
         """
