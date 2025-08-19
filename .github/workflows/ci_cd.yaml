@@ -21,7 +21,7 @@ on:
 env:
   ### Job MATRIX ###
   # Python 3.12 is in bugfix mode, same as 3.11 -> can start supporting 3.13 later 
-  UBUNTU_PY313_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":${{ vars.PYTHON_VERSION }}}"
+  UBUNTU_PY313_STRATEGY: "{\"platform\":[\"ubuntu-latest\"], \"python-version\":[\"${{ vars.PYTHON_VERSION }}\"]}"
   TOX_VERSION: ${{ vars.TOX_VERSION }}
  
   #########################################################
@@ -323,5 +323,5 @@ jobs:
       run_policy: '${{ needs.set_github_outputs.outputs.PIPE_CODE_VIZ_POLICY }}'
       branches: 'main, master, dev'
       source_code_targets: 'src'
-      python_version: 'matrix.python-version'
+      python_version: ${{ matrix.python-version }}
       artifacts_dir: 'dependency-graphs'
