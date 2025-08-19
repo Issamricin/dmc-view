@@ -24,7 +24,11 @@ class SimulatorSignal(QObject):
 
 
 class SimulatorRunner(QRunnable):
+    """class extends QRunnable to run in a separate thread.
 
+       It generates random values for azimuth, elevation (inclination), bank, and acceleration.
+
+       """
     def __init__(self) -> None:
         super().__init__()
         self.signal = SimulatorSignal()
@@ -54,9 +58,10 @@ class SimulatorRunner(QRunnable):
 
 class Simulator(QWidget):
     """
+    This class represents the main GUI.
+
     The simulator class Load, initiate and keep track of all models being simulated,Keep track of time,
     Initialize the plots.
-    this class loads from SimulatorRunner() class 
     """
     def __init__(self) -> None:
         super().__init__()
@@ -81,7 +86,7 @@ class Simulator(QWidget):
         self, azimuth: str, elevation: str, bank: str, x: str, y: str, z: str
     ) -> None:
         """
-        This method update the values from compass file.
+        This method update the compass new values from SimulatorRunner class .
         """
         self.compass.update_angle(float(azimuth))
         self.compass.set_elevation(float(elevation))
