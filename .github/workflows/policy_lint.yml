@@ -46,7 +46,7 @@ on:
       python_version:
         required: false
         type: string
-        default: '${{ env.PYTHON_VERSION }}'
+        default: '${{ vars.PYTHON_VERSION }}'
       ## Parametrizing Code Analysis Acceptance Criteria
       pylint_threshold:
         required: false
