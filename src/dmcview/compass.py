@@ -19,7 +19,7 @@ from dmcview.accele3D_signal_manger import signal_manager
 
 class Compass(QWidget):
     """
-    Drow azimuth, declination, bank, and elevation class.
+    Draw azimuth, declination, bank, and elevation class.
 
     Represent how to draw a circle, the 4 Directions (W, N, E, S), and how the user inputs as text,
     Draw the Elevation, Bank, and Azimuth inside the circle.
@@ -512,10 +512,15 @@ class Compass(QWidget):
 
     def draw_red_line(self, painter: QPainter, center: QPointF, radius: int) -> None:
         """
-        This method draws an arc to visually represent the bank.
+        This method draws an arc to represent the bank visually.
        
         represent the magnetic north direction on a compass, it uses a QPainter to draw
         shapes and text on a graphical interface, typically in a Qt application.
+
+        Args:
+            painter (QPainter): An instance of QPainter used for drawing operations on the widget.
+            center (QPointF): The center point of the compass, represented as a QPointF object.
+            radius (int): The radius of the compass circle, which determines the size and position of the drawn elements.
 
         """
         painter.setPen(QPen(Qt.red, 2))
