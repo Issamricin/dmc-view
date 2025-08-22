@@ -48,6 +48,7 @@ You need to install tox on to run the workflow tox task or env run task
 
 .. code-block:: shell
 
+   python -m pip install build 
    python -m build -s
    python -m build --wheel
    python -m pip install --upgrade twine
@@ -59,7 +60,6 @@ Now you need to have your test project setup on testpypi
 so to trigger the workflow you need to create a test tag and push it so it triggers the release_test.yaml
 Before you do that update your package version in the toml, tox and __init__.py file
 
-| **TODO: Iso you need to find a way to make all from one place**
 | suppose my package release is 0.3.3 
 | Test tag  is **test-0.3.3**
 | Prod tag is **release-0.3.3**
