@@ -16,7 +16,7 @@ from dmcview.compass import Compass
 
 
 class SimulatorSignal(QObject):
-    """Define the signals available from a running worker thread"""
+    """ Define the signals available from a running worker thread"""
 
     result = Signal(
         str, str, str, str, str, str
@@ -24,7 +24,12 @@ class SimulatorSignal(QObject):
 
 
 class SimulatorRunner(QRunnable):
+    """
+    class extends QRunnable to run in a separate thread.
 
+    It generates random values for azimuth, elevation (inclination), bank, and acceleration.
+
+    """
     def __init__(self) -> None:
         super().__init__()
         self.signal = SimulatorSignal()
@@ -53,6 +58,13 @@ class SimulatorRunner(QRunnable):
 
 
 class Simulator(QWidget):
+    """
+    This class represents the main GUI.
+
+    The simulator class Load, initiates and keeps track of all models being simulated, keeps track of time,
+    Initialize the plots.
+
+    """
     def __init__(self) -> None:
         super().__init__()
         self.threadPool = QThreadPool()
@@ -75,6 +87,9 @@ class Simulator(QWidget):
     def __update(
         self, azimuth: str, elevation: str, bank: str, x: str, y: str, z: str
     ) -> None:
+        """
+        This method updates the compass's new values from the SimulatorRunner class.
+        """
         self.compass.update_angle(float(azimuth))
         self.compass.set_elevation(float(elevation))
         self.compass.set_rotation(float(bank))

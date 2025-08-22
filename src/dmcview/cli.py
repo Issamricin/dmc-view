@@ -38,6 +38,21 @@ def get_float_input(prompt: str, default: float) -> float:
 def get_acceleration_input(
     prompt: str, x: float, y: float, z: float
 ) -> tuple[float, float, float]:
+    """
+    Get three acceleration values from the user, and provide default values.
+
+    Args:
+        prompt (str): contains the message to display to the user when asking for input.
+        x (float): represent the default value for the x of acceleration.
+        y (float): represent the default value for the y of acceleration.
+        z (float): represent the default value for the z of acceleration.
+
+    Return:
+        tuple: the x,y and z values.
+
+    Raises:
+        ValueError: if (x, y, z) are not numeric values.
+    """
 
     while True:
         try:
