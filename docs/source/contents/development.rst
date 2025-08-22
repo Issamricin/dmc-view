@@ -36,11 +36,22 @@ Steps to test the publish on pypi see workflow files for publish on pypi test se
 
 You need to install tox on to run the workflow tox task or env run task 
 
-| **TODO: below tox env run needs to completed**
+| **tox check list before you push to remote repo**
 
 .. code-block:: shell
 
    python -m pip install tox 
+   tox -v -s false -e pin-deps
+   tox -e type -v -s false
+   tox -v -s false | tee test_output.log
+   tox -e coverage --sitepackages -v -s false
+   tox -e wheel-test -s false
+   tox -e check -v -s false
+   tox -e isort -vv -s false
+   tox -e black -vv -s false
+   tox -e ruff -vv -s false
+   tox -e prospector -vv -s false
+ 
 
 | Below is to build and check the twine for pypi publish in case an error in the markup you need to check rst online 
 
