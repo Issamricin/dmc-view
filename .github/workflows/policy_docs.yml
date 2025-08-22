@@ -16,6 +16,9 @@
 #     - Triggered on a v* tag (ie v1.0.0)
 #     - Docs Source Files (ie docs/) changed, compared to previous commit
 #  3. Run Docs, if Source Files changed, compared to previous commit
+env:
+  PYTHON_VERSION: ${{ vars.PYTHON_VERSION }}
+  TOX_VERSION: ${{ vars.TOX_VERSION }}
 
 on:
   workflow_call:
@@ -44,7 +47,7 @@ on:
         required: false
       ## Parametrizing Runtime Environment (ie py version)
       python_version:
-        default: '3.13'
+        default: '${{ vars.PYTHON_VERSION }}'
         type: string
         description: 'Python Interpreter Version to use for Docs Build Environment'
         required: false
@@ -121,7 +124,7 @@ jobs:
       - name: Install Tox
         run: |
           python -m pip install --upgrade pip
-          python -m pip install tox==3.28
+          python -m pip install tox==${{ env.TOX_VERSION }}
 
       - name: Build Documentation and Test
         if: ${{ matrix.platform == 'ubuntu-latest' || matrix.python-version  != '3.6' }}
