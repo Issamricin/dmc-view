@@ -1,4 +1,4 @@
-| **Digital Magnatic Compass View**
+| **Digital Magnetic Compass View**
 
 .. image:: https://raw.githubusercontent.com/Issamricin/dmc-view/master/media/logo.png
    :alt: Digital Magnatic Compass View 
