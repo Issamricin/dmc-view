@@ -29,34 +29,48 @@ Steps to test the publish on pypi see workflow files for publish on pypi test se
 | If you do update for the README.rst , please copy and paste into  `RST-Check <https://rsted.info.ucl.ac.be/>`__ 
 
 .. code-block:: shell
-    git clone git@github.com:Issamricin/dmc-view.git
-    python -m venv .venv 
+
+   git clone git@github.com:Issamricin/dmc-view.git
+   python -m venv .venv 
 
 
 You need to install tox on to run the workflow tox task or env run task 
 
-| **TODO: below tox env run needs to completed by Iso**
+| **tox check list before you push to remote repo**
 
 .. code-block:: shell
-    python -m pip install tox 
+
+   python -m pip install tox 
+   tox -v -s false -e pin-deps
+   tox -e type -v -s false
+   tox -v -s false | tee test_output.log
+   tox -e coverage --sitepackages -v -s false
+   tox -e wheel-test -s false
+   tox -e check -v -s false
+   tox -e isort -vv -s false
+   tox -e black -vv -s false
+   tox -e ruff -vv -s false
+   tox -e prospector -vv -s false
+ 
 
 | Below is to build and check the twine for pypi publish in case an error in the markup you need to check rst online 
 
  `Making Friendly PyPi Package  <https://packaging.python.org/en/latest/guides/making-a-pypi-friendly-readme/>`__ 
 
-
 .. code-block:: shell
-    python -m build -s
-    python -m build --wheel
-    python -m pip install --upgrade twine
-    twine check dist/*
 
+   python -m pip install build 
+   python -m build -s
+   python -m build --wheel
+   python -m pip install --upgrade twine
+   twine check dist/* 
+    
+ 
 Now you need to have your test project setup on testpypi 
 `Publishing <https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/>`__ 
 so to trigger the workflow you need to create a test tag and push it so it triggers the release_test.yaml
 Before you do that update your package version in the toml, tox and __init__.py file
 
-| **TODO: Iso you need to find a way to make all from one place**
 | suppose my package release is 0.3.3 
 | Test tag  is **test-0.3.3**
 | Prod tag is **release-0.3.3**
