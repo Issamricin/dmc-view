@@ -1,5 +1,6 @@
 
 import math
+
 from PySide6.QtCore import QEvent, QPointF, QRectF, Qt, QTimer
 from PySide6.QtGui import (
     QBrush,
@@ -63,7 +64,7 @@ class Compass(QWidget):
     def create_static_pixmap(self) -> None:
         """
         Create a black-outlined circle.
-       
+
         (offset slightly to the left of center)using the QPainter class.
 
 
@@ -96,7 +97,7 @@ class Compass(QWidget):
     def paintEvent(self, event: QEvent) -> None:
         """
         Draws as text the user values.
-       
+
         Type the azimuth, declination, bank angle, elevation, and acceleration on the right side of the circle.
         Args:
         event (QEvent): Class representing an event, such as a paint event.
@@ -159,8 +160,8 @@ class Compass(QWidget):
 
     def draw_cardinal_points(self, painter: QPainter, center: QPointF, radius: int) -> None:
         """
-        Create cardinal direction markers (N, E, S, W).        
-        
+        Create cardinal direction markers (N, E, S, W).
+
         Radial lines from the center using the `draw_lines()` method.
 
         args:
@@ -220,10 +221,10 @@ class Compass(QWidget):
     def draw_arrow(self, painter: QPainter, center: QPointF, radius: int) -> None:
         """
         Creates an arrow that indicates the elevation angle.
-         
+
         draws an arc to represent the elevation visually, and it uses trigonometric calculations to
         determine positions and transformations to ensure that the arrowhead is correctly oriented
-       
+
         args:
         Radius: It determines how far the arrow will extend from its center.
 
@@ -388,7 +389,7 @@ class Compass(QWidget):
     ) -> None:
         """
         Calculate the azimuth position based on the compass angle and draw it with specified properties.
-        
+
         Args:
             painter: QPainter object for drawing operations.
             center: Center point (QPointF) of the compass.
@@ -513,7 +514,7 @@ class Compass(QWidget):
     def draw_red_line(self, painter: QPainter, center: QPointF, radius: int) -> None:
         """
         This method draws an arc to represent the bank visually.
-       
+
         represent the magnetic north direction on a compass, it uses a QPainter to draw
         shapes and text on a graphical interface, typically in a Qt application.
 
