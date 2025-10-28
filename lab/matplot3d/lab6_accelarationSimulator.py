@@ -68,3 +68,4 @@ if __name__ == "__main__":
     window = DynamicAccelaration3D()
     window.show()
     sys.exit(app.exec_())
+    

@@ -94,7 +94,7 @@ class Compass(QWidget):
 
         painter.end()
 
-    def paintEvent(self, event: QEvent) -> None:
+    def paintEvent(self, _: QEvent) -> None:
         """
         Draws as text the user values.
 
@@ -546,12 +546,12 @@ class Compass(QWidget):
             center.x() - arc_radius, center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius
         )
 
-        startAngle = 16 * 180  # *180 so it is draw to the left of the circle
-        spanAngle = self.rotation * 16  # angle in 1/16th degree expected by Qt
+        START_ANGLE = 16 * 180  # *180 so it is draw to the left of the circle
+        span_angle = self.rotation * 16  # angle in 1/16th degree expected by Qt
 
-        painter.drawArc(rect, int(startAngle), int(spanAngle))
+        painter.drawArc(rect, int(START_ANGLE), int(span_angle))
 
-        midPointAngel = startAngle + spanAngle / 2
+        midPointAngel = START_ANGLE + span_angle / 2
         mid_angel_rad = math.radians(
             midPointAngel / 16
         )  # angle in 1/16th degree expected by Qt

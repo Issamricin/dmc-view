@@ -51,7 +51,7 @@ tox -e live-html
 ```
 
 This will compile the documentation (into html) and start watching the files for changes, recompiling as you save.
-You can open it in your browser at http://127.0.0.1:8000 !
+You can open it in your browser at <http://127.0.0.1:8000> !
 
 ### Submit Feedback
 
@@ -218,9 +218,9 @@ How to prioritize pull requests, from most to least important:
 * Features.
 
 #### Pull Requests Review Guidelines
-- Think carefully about the long-term implications of the change. How will it affect existing projects that are dependent on this? If this is complicated, do we really want to maintain it forever?
-- Take the time to get things right, PRs almost always require additional improvements to meet the bar for quality. **Be very strict about quality.**
-- When you merge a pull request take care of closing/updating every related issue explaining how they were affected by those changes. Also, remember to add the author to `AUTHORS.md`.
+* Think carefully about the long-term implications of the change. How will it affect existing projects that are dependent on this? If this is complicated, do we really want to maintain it forever?
+* Take the time to get things right, PRs almost always require additional improvements to meet the bar for quality. **Be very strict about quality.**
+* When you merge a pull request take care of closing/updating every related issue explaining how they were affected by those changes. Also, remember to add the author to `AUTHORS.md`.
 
 ### Process: Issues
 
