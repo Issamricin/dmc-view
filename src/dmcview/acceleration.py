@@ -5,7 +5,7 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from PySide6.QtCore import QTimer
 
-from dmcview.accele3D_signal_manger import signal_manager
+from dmcview.accele_signal_manger import signal_manager
 
 
 class Accelaration3D(FigureCanvas):

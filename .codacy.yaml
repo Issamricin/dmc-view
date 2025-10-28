@@ -1,3 +1,5 @@
 exclude_paths:
   - docs/source/conf.py
   - lab/**
+  - .github/**
+  - scripts/**
