@@ -47,7 +47,7 @@ class Compass(QWidget):
 
         self.start_animation_timer()
 
-    def resizeEvent(self, event: QResizeEvent) -> None:
+    def resizeEvent(self, event: QResizeEvent) -> None: # pylint: disable=invalid-name
         """
         triggers when the screen is resized.
 
@@ -93,7 +93,7 @@ class Compass(QWidget):
 
         painter.end()
 
-    def paintEvent(self, _: QEvent) -> None:
+    def paintEvent(self, _: QEvent) -> None: # pylint: disable=invalid-name
         """
         Draws as text the user values.
 
@@ -310,7 +310,6 @@ class Compass(QWidget):
         painter: QPainter,
         center: QPointF,
         radius: int,
-        compass_angle: float,
         declination: float,
     ) -> None:
         """

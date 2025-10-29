@@ -19,7 +19,6 @@ Report bugs at [https://github.com/Issamricin/dmc-view/issues](https://github.co
 
 Stambling upon a Bug means encountering different behaviour than the expected/advertised one. When you are reporting a bug, please include the following infromation by filling in [the template](https://github.com/Issamricin/dmc-view/blob/develop/.github/ISSUE_TEMPLATE/bug_report.md).
 
-
 * Your operating system name and version.
 * Any details about your local setup that might be helpful in troubleshooting.
 * If you can, provide detailed steps to reproduce the bug.
@@ -66,44 +65,44 @@ If you are proposing a feature:
 Here's how to set up `dmc-view` for local development.
 
 1. Fork the `dmc-view` repo on GitHub.
-2. Clone your fork locally:
+1. Clone your fork locally:
 
-```bash
-git clone git@github.com:Issamricin/dmc-view.git
-```
+ ```bash
+ git clone git@github.com:Issamricin/dmc-view.git
+ ```
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenv installed, this is how you set up your fork for local development:
+1. Install your local copy into a virtualenv. Assuming you have virtualenv installed, this is how you set up your fork for local development:
 
-```bash
-cd dmc-view
-virtualenv env --python=python3
-source env/bin/activate
-pip install -e .
-```
+ ```bash
+ cd dmc-view
+ virtualenv env --python=python3
+ source env/bin/activate
+ pip install -e .
+ ```
 
-4. Create a branch for local development:
+1. Create a branch for local development:
 
-```bash
-git checkout -b name-of-your-bugfix-or-feature
-```
+ ```bash
+ git checkout -b name-of-your-bugfix-or-feature
+ ```
 
 Now you can make your changes locally.
 
 1. When you're done making changes, check that your changes pass the tests locally:
 
-```bash
-pip install tox
-alias tox='PKG_VERSION=$(./scripts/parse_version.py) tox'
-tox
-```
+ ```bash
+ pip install tox
+ alias tox='PKG_VERSION=$(./scripts/parse_version.py) tox'
+ tox
+ ```
 
 Please note that tox runs test test suite against multiple python versions, if they are found available on the host machine.
 
 If you want to produce a built tar.gz and wheel distributions:
 
-```bash
-tox -e check && tox -e build
-```
+ ```bash
+ tox -e check && tox -e build
+ ```
 
 1. Ensure that your feature or commit is fully covered by tests. Check the coverage report that should be visible on the console when you run tox
 
@@ -111,13 +110,13 @@ You report will be placed to `htmlcov` directory. Please do not include this dir
 
 1. Commit your changes and push your branch to GitHub:
 
-```bash
-git add -p
-git commit -m "Your detailed description of your changes."
-git push origin name-of-your-bugfix-or-feature
-```
+ ```bash
+ git add -p
+ git commit -m "Your detailed description of your changes."
+ git push origin name-of-your-bugfix-or-feature
+ ```
 
-8. Submit a pull request through the GitHub website.
+1. Submit a pull request through the GitHub website.
 
 ## Contributor Guidelines
 
