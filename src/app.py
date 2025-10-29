@@ -32,9 +32,11 @@ print(
     'qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.'
 )
 print(
-    "This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem."
+    "This application failed to start because no Qt platform plugin could be initialized." \
+    " Reinstalling the application may fix this problem."
 )
 print(
-    "Available platform plugins are: wayland-egl, vnc, linuxfb, vkkhrdisplay, eglfs, minimal, offscreen, minimalegl, xcb, wayland."
+    "Available platform plugins are:" \
+    " wayland-egl, vnc, linuxfb, vkkhrdisplay, eglfs, minimal, offscreen, minimalegl, xcb, wayland."
 )
 print("Error End:")

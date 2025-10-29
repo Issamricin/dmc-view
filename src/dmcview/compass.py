@@ -1,4 +1,3 @@
-
 import math
 
 from PySide6.QtCore import QEvent, QPointF, QRectF, Qt, QTimer
@@ -273,19 +272,19 @@ class Compass(QWidget):
             2 * arc2_radius,
             2 * arc2_radius,
         )
-        START_ANGLE_INCLI = 0 * 16  # Inclination
+        start_angle_incli = 0 * 16  # Inclination
 
         if self.elevation > 270:  # it is maxed at 90 but
-            SPAN_ANGLE_INCLI = 90 * 16.00  # make it float
+            span_angle_incli = 90 * 16.00  # make it float
         elif self.elevation > 90:
-            SPAN_ANGLE_INCLI = 0.00  # make it float
+            span_angle_incli = 0.00  # make it float
         else:
-            SPAN_ANGLE_INCLI = (self.elevation) * 16  # float datatype (implicit)
+            span_angle_incli = (self.elevation) * 16  # float datatype (implicit)
 
         painter.resetTransform()
 
-        midPointAngelIncli = START_ANGLE_INCLI + SPAN_ANGLE_INCLI / 2  # Inclination
-        mid_angel_rad_incli = math.radians(midPointAngelIncli / 16)
+        mid_point_angel_incli = start_angle_incli + span_angle_incli / 2  # Inclination
+        mid_angel_rad_incli = math.radians(mid_point_angel_incli / 16)
 
         midpoint_incli_x = center.x() + arc2_radius * math.cos(
             mid_angel_rad_incli
@@ -295,7 +294,7 @@ class Compass(QWidget):
         label2 = "Elevation"
 
         painter.setPen(pen2)
-        painter.drawArc(rect2, int(START_ANGLE_INCLI), int(SPAN_ANGLE_INCLI))
+        painter.drawArc(rect2, int(start_angle_incli), int(span_angle_incli))
         painter.drawText(
             QPointF(midpoint_incli_x + 11, midpoint_incli_y - 10), label2
         )  # Inclination
@@ -354,20 +353,20 @@ class Compass(QWidget):
             center.x() - arc_radius, center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius
         )
 
-        START_ANGLE = 90 * 16
+        start_angle = 90 * 16
 
         if self.current_declination > 180:
             span_angle = (360 - self.current_declination) * 16
         else:
             span_angle = -self.current_declination * 16  # angle in 1/16th degree expected by Qt
 
-        painter.drawArc(rect, int(START_ANGLE), int(span_angle))
+        painter.drawArc(rect, int(start_angle), int(span_angle))
 
-        mid_point_angel = START_ANGLE + span_angle / 2
-        AngelRad = math.radians(mid_point_angel / 16)
+        mid_point_angel = start_angle + span_angle / 2
+        angel_rad = math.radians(mid_point_angel / 16)
 
-        mid_point_x = center.x() + arc_radius * math.cos(AngelRad)
-        mid_point_y = center.y() - arc_radius * math.sin(AngelRad)
+        mid_point_x = center.x() + arc_radius * math.cos(angel_rad)
+        mid_point_y = center.y() - arc_radius * math.sin(angel_rad)
 
         label = "Declination"
 
@@ -433,13 +432,13 @@ class Compass(QWidget):
         start_angle = 90 * 16
 
         if self.current_angle > 180:
-            spanAngle = (360 - self.current_angle) * 16
+            span_angle = (360 - self.current_angle) * 16
         else:
-            spanAngle = -self.current_angle * 16  # angle in 1/16th degree expected by Qt
+            span_angle = -self.current_angle * 16  # angle in 1/16th degree expected by Qt
 
-        painter.drawArc(rect, int(start_angle), int(spanAngle))
+        painter.drawArc(rect, int(start_angle), int(span_angle))
 
-        mid_point_angel = start_angle + spanAngle / 2
+        mid_point_angel = start_angle + span_angle / 2
         angel_rad = math.radians(mid_point_angel / 16)
 
         mid_point_x = center.x() + arc_radius * math.cos(angel_rad)
@@ -521,7 +520,7 @@ class Compass(QWidget):
         Args:
             painter (QPainter): An instance of QPainter used for drawing operations on the widget.
             center (QPointF): The center point of the compass, represented as a QPointF object.
-            radius (int): The radius of the compass circle, which determines the size and position of the drawn elements.
+            radius (int): The radius of the compass circle, determines the size and position of the drawn elements.
 
         """
         painter.setPen(QPen(Qt.red, 2))
@@ -551,9 +550,9 @@ class Compass(QWidget):
 
         painter.drawArc(rect, int(start_angle), int(span_angle))
 
-        midPointAngel = start_angle + span_angle / 2
+        mid_point_angel = start_angle + span_angle / 2
         mid_angel_rad = math.radians(
-            midPointAngel / 16
+            mid_point_angel / 16
         )  # angle in 1/16th degree expected by Qt
 
         midpoint_x = (

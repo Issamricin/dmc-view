@@ -3,13 +3,11 @@
 Thank you for considering reading this guide!
 Contributions are welcome :)
 
-
-* [Types of Contributions](#Types-of-Contributions)
-* [Contributor Setup](#Setting-Up-the-Code-for-Local-Development)
-* [Contributor Guidelines](#Contributor-Guidelines)
-* [Contributor Testing](#Testing-with-tox)
-* [Core Committer Guide](#Core-Committer-Guide)
-
+* [Types of Contributions](#types-of-contributions)
+* [Contributor Setup](#setting-up-the-code-for-local-development)
+* [Contributor Guidelines](#contributor-guidelines)
+* [Contributor Testing](#testing-with-tox)
+* [Core Committer Guide](#core-committer-guide
 
 ## Types of Contributions
 
@@ -29,7 +27,7 @@ Stambling upon a Bug means encountering different behaviour than the expected/ad
 
 ### Fix Bugs
 
-Look through the GitHub issues for bugs. Anything tagged with "bug" is open to whoever wants to implement it. See [Contributor Setup](#Setting-Up-the-Code-for-Local-Development) to get started.
+Look through the GitHub issues for bugs. Anything tagged with "bug" is open to whoever wants to implement it. See [Contributor Setup](#setting-up-the-code-for-local-development) to get started.
 
 ### Implement Features
 
@@ -37,7 +35,7 @@ Look through the GitHub issues for features. Anything tagged with "enhancement" 
 
 Please do not combine multiple feature enhancements into a single pull request.
 
-See [Contributor Setup](#Setting-Up-the-Code-for-Local-Development) to get started.
+See [Contributor Setup](#setting-up-the-code-for-local-development) to get started.
 
 ### Write Documentation
 
@@ -165,7 +163,6 @@ To only run test cases matching the string 'smoke_test', using python 3.8:
 tox -e py38 -- -k 'smoke_test'
 ```
 
-
 ## Core Committer Guide
 
 ### Vision and Scope
@@ -194,7 +191,6 @@ DMC View is designed to do one thing, and do that one thing very well.
 
 * Cover the important use cases and as little as possible beyond that :)
 
-
 #### Inclusive
 
 * Cross-platform and cross-version support
@@ -204,7 +200,6 @@ DMC View is designed to do one thing, and do that one thing very well.
 * Aim for high test coverage and covering corner cases
 * No pull requests will be accepted that drop test coverage on any platform
 * Stable APIs that tool builders can rely on
-
 
 ### Process: Pull Requests
 
@@ -218,6 +213,7 @@ How to prioritize pull requests, from most to least important:
 * Features.
 
 #### Pull Requests Review Guidelines
+
 * Think carefully about the long-term implications of the change. How will it affect existing projects that are dependent on this? If this is complicated, do we really want to maintain it forever?
 * Take the time to get things right, PRs almost always require additional improvements to meet the bar for quality. **Be very strict about quality.**
 * When you merge a pull request take care of closing/updating every related issue explaining how they were affected by those changes. Also, remember to add the author to `AUTHORS.md`.
@@ -235,6 +231,6 @@ The roadmap(issues) located [here](https://github.com/Issamricin/dmc-view/issues
 
 Due dates are flexible.
 
-### Process: Release:
+### Process: Release
 
 * Follow semantic versioning. Look at: [http://semver.org](http://semver.org)
