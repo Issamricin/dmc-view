@@ -300,7 +300,7 @@ class Compass(QWidget):
         )  # Inclination
 
         self.draw_rotating_magnetic_north(
-            painter, center, radius, self.current_angle, self.current_declination
+            painter, center, radius, self.current_declination
         )
 
         self.draw_azimuth(painter, center, radius, self.current_angle)

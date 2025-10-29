@@ -12,6 +12,7 @@ COMMUNITY VERSION
 | |build| |release_version| |wheel| 
 | |docs| |pylint| |supported_versions|
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main|
+| |codacy|
 
 
 |
@@ -121,9 +122,9 @@ License
     :target: https://docs.astral.sh/ruff/
 
 
-.. Local linux command: CTRL+Shift+Alt+R key 
-
-.. Local Image and YouTube Vedio as link
+.. |codacy| image:: https://app.codacy.com/project/badge/Grade/9d883627ff974ff9a6721700c2909ac1
+    :alt: Codacy
+    :target: https://app.codacy.com/gh/Issamricin/dmc-view/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
 
 .. Local Image as link
 
