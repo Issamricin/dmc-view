@@ -46,7 +46,8 @@ class SimulatorRunner(QRunnable):
             z = 0.0
 
             print(
-                f"Azimuth:{azimuth}; Inclination(Elevation):{inclination}; Bank(Rotation):{bank}; acceleration:{ [x, y, z]}"
+                f"Azimuth:{azimuth}; Inclination(Elevation):{inclination}; Bank(Rotation):{bank}; \
+                acceleration:{ [x, y, z]}"
             )
             self.signal.result.emit(
                 str(azimuth), str(inclination), str(bank), str(x), str(y), str(z)
@@ -67,7 +68,7 @@ class Simulator(QWidget):
     """
     def __init__(self) -> None:
         super().__init__()
-        self.threadPool = QThreadPool()
+        self.thread_pool = QThreadPool()
         self.runner = SimulatorRunner()
 
         layout = QHBoxLayout(self)
@@ -79,7 +80,7 @@ class Simulator(QWidget):
         layout.addWidget(self.canvas)
 
         self.runner.signal.result.connect(self.__update)
-        self.threadPool.start(self.runner)
+        self.thread_pool.start(self.runner)
 
         self.compass.update_declination(10.5)
         self.setWindowTitle("Simulator")

@@ -5,7 +5,7 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from PySide6.QtCore import QTimer
 
-from dmcview.accele3D_signal_manger import signal_manager
+from dmcview.accele_signal_manger import signal_manager
 
 
 class Accelaration3D(FigureCanvas):
@@ -91,9 +91,9 @@ class Accelaration3D(FigureCanvas):
         self.draw()
 
     def start_acceleration_timer(self) -> None:
-        self.Acceleration_timer = QTimer(self)
-        self.Acceleration_timer.timeout.connect(self.update_acceleration_vector)
-        self.Acceleration_timer.start(60)
+        self.acceleration_timer = QTimer(self)
+        self.acceleration_timer.timeout.connect(self.update_acceleration_vector)
+        self.acceleration_timer.start(60)
 
     def update_acceleration(self, x: float, y: float, z: float) -> None:
         self.y = round(y, 1)

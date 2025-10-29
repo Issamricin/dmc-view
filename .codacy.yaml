@@ -1,0 +1,11 @@
+engines:
+  pylint:
+    enabled: true
+    config:
+      file: .pylintrc
+
+exclude_paths:
+  - docs/source/conf.py
+  - lab/**
+  - .github/**
+  - scripts/**

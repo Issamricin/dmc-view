@@ -165,7 +165,7 @@ def main() -> None:
     else:
         start_input(args)
 
-
+# pylint: disable=too-many-statements
 def start_input(args: Namespace) -> None:
     azimuth: float = (
         args.a
