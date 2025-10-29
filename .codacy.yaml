@@ -2,8 +2,7 @@ engines:
   pylint:
     enabled: true
     config:
-      max-args: 10        # Increase from default 5
-      max-statements: 100  # Increase from default 50
+      file: .pylintrc
 
 exclude_paths:
   - docs/source/conf.py

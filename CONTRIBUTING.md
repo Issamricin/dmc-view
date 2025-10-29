@@ -136,13 +136,11 @@ Before you submit a pull request, check that it meets these guidelines:
 * Modularity
 * Composition over Inheritance
 
-
 ## Testing with tox
 
 Tox uses pytest under the hood, hence it supports the same syntax for selecting tests.
 
 For further information please consult the [pytest usage docs](http://pytest.org/en/latest/example/index.html).
-
 
 To run all tests using various versions of python in virtualenvs defined in tox.ini, just run tox:
 
@@ -182,7 +180,6 @@ Core committers, use this section to:
 
 * Modular Design
 * Aim for statelessness
-
 
 #### Fast and Focused
 
