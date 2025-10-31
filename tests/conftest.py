@@ -1,15 +1,12 @@
-# conftest.py (in your tests/ directory)
-import sys
-
+# tests/conftest.py
 import pytest
-from PySide6.QtWidgets import QApplication
-
+from unittest.mock import MagicMock, patch
 
 @pytest.fixture(scope="session", autouse=True)
-def qapp():
-    """Ensure only one QApplication exists during the test session."""
-    app = QApplication.instance()
-    if app is None:
-        app = QApplication(sys.argv)
-    yield app
-    app.quit()
+def mock_qapplication():
+    """
+    Mock QApplication globally so PySide6 code can be imported
+    without requiring a display or graphics libraries.
+    """
+    with patch("PySide6.QtWidgets.QApplication", MagicMock()):
+        yield
