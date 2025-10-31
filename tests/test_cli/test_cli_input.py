@@ -1,8 +1,7 @@
-import pytest
 from types import SimpleNamespace
-
-import builtins
 from unittest.mock import MagicMock, patch
+
+import pytest
 
 from dmcview.cli import start_input
 
@@ -25,8 +24,8 @@ def test_start_input_with_mocked_ui(
     mock_float_input,
     MockCompass,
     MockAccel,
-    MockLayout,
-    MockWidget,
+    _MockLayout,
+    _MockWidget,
     MockApp,
     fake_args,
 ):

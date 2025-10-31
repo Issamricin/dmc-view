@@ -1,6 +1,6 @@
+from unittest.mock import MagicMock
+
 import pytest
-from unittest.mock import MagicMock, patch
-import numpy as np
 
 from dmcview.acceleration import Accelaration3D
 
@@ -13,7 +13,7 @@ def mock_signal_manager(monkeypatch):
     return mock_signal
 
 @pytest.fixture
-def accel(mock_signal_manager, monkeypatch):
+def accel(monkeypatch):
     monkeypatch.setattr("dmcview.acceleration.QTimer", MagicMock())
     monkeypatch.setattr("dmcview.acceleration.Figure", MagicMock())
     instance = Accelaration3D()

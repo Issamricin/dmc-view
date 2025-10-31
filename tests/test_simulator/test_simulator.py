@@ -1,7 +1,8 @@
+from unittest.mock import MagicMock, patch
+
 import pytest
-from unittest.mock import patch, MagicMock
-from PySide6.QtWidgets import QApplication
-from dmcview.simulator import SimulatorRunner, Simulator
+
+from dmcview.simulator import Simulator, SimulatorRunner
 
 
 @pytest.fixture
@@ -51,7 +52,7 @@ def test_runner_run_once(monkeypatch):
     runner.signal.result.connect(mock_slot)
 
     # Make it run exactly one iteration
-    def stop_after_one_emit(*args, **kwargs):
+    def stop_after_one_emit():
         runner.running = False
     runner.signal.result.connect(stop_after_one_emit)
 

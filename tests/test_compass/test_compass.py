@@ -1,9 +1,11 @@
-import pytest
-from PySide6.QtWidgets import QApplication
-from dmcview.compass import Compass
 from unittest.mock import MagicMock, patch
+
+import pytest
 from PySide6.QtCore import QPointF
 from PySide6.QtGui import QPaintEvent
+
+from dmcview.compass import Compass
+
 
 @pytest.fixture
 def compass():
@@ -58,7 +60,7 @@ def test_declination_animation(compass):
     compass._Compass__animate_declination()
     assert compass.current_declination != 0.0
 
-def test_create_static_pixmap_no_crash(compass, qtbot):
+def test_create_static_pixmap_no_crash(compass):
     compass.resize(600, 420)
     compass.create_static_pixmap()
     assert compass.static_pixmap is not None
