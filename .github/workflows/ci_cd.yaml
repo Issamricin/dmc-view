@@ -152,6 +152,11 @@ jobs:
 
       - name: Do Type Checking
         run: tox -e type -v -s false  # do not skip missing interpreters don't install (config default)
+      
+      - name: Install Qt dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libegl1 libgl1 libxkbcommon-x11-0
 
       ###### TEST SUITE RUN against Edit and Sdist ######
       - name: Build and Test 'Edit' and 'Sdist' & Build Wheel(s)
