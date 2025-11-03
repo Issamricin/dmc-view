@@ -221,17 +221,23 @@ jobs:
           name: all_coverage_raw
           path: coverage-${{ matrix.platform }}-${{ matrix.python-version }}.xml
           if-no-files-found: error
+      - name: Get package version
+        id: version
+        run: |
+          PKG_VERSION=$(python -c "import importlib.metadata; print(importlib.metadata.version('dmcview'))")
+          echo "PKG_VERSION=$PKG_VERSION" >> $GITHUB_ENV
+          echo "PKG_VERSION=$PKG_VERSION" >> $GITHUB_OUTPUT
 
       - name: Check for compliance with Python Best Practices
         shell: bash
         env:
-          PKG_VERSION: ${{ steps.extract_wheel_info.outputs.PEP_VERSION }}
+          PKG_VERSION: ${{ steps.extract_wheel_info.outputs.PKG_VERSION }}
           WHEEL_PATH: ${{ env.WHEELS_PIP_DIR }}/${{ env.WHEEL_NAME }}
         run: |
           DIST_DIR=dist
           echo "DIST_DIR=${DIST_DIR}" >> $GITHUB_ENV
           mkdir ${DIST_DIR}
-          cp "${{ env.WHEELS_PIP_DIR }}/dmc_view-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
+          cp "${{ env.WHEELS_PIP_DIR }}/dmcview-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
           cp "${{ env.WHEEL_PATH }}" "${DIST_DIR}"
           tox -e check -v -s false
 
