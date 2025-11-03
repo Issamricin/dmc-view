@@ -15,7 +15,7 @@ server-1  | qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" eve
 server-1  | This application failed to start because no Qt platform plugin could be initialized.
 Reinstalling the application may fix this problem.
 server-1  |
-server-1  | Available platform plugins are: wayland-egl, vnc, linuxfb, vkkhrdisplay, eglfs, minimal, 
+server-1  | Available platform plugins are: wayland-egl, vnc, linuxfb, vkkhrdisplay, eglfs, minimal,
 offscreen, minimalegl, xcb, wayland.
 
 see issue: https://forum.qt.io/topic/154450/build-a-docker-for-pyside6
