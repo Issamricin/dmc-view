@@ -231,7 +231,7 @@ jobs:
           DIST_DIR=dist
           echo "DIST_DIR=${DIST_DIR}" >> $GITHUB_ENV
           mkdir ${DIST_DIR}
-          cp "{{env.WHEELS_PIP_DIR}}/dmc_view-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
+          cp "{{ env.WHEELS_PIP_DIR }}/dmc_view-${PKG_VERSION}.tar.gz" "${DIST_DIR}"
           cp "${{ env.WHEEL_PATH }}" "${DIST_DIR}"
           tox -e check -v -s false
 
