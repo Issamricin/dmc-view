@@ -3,7 +3,7 @@ import os
 import pytest
 
 
-def pytest_collection_modifyitems(_, items):
+def pytest_collection_modifyitems(config, items):  # noqa: ARG001
     """Skip ALL GUI tests in CI"""
     if os.getenv('CI'):
         skip_gui = pytest.mark.skip(reason="GUI tests skipped in CI")
