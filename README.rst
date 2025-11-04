@@ -12,7 +12,7 @@ COMMUNITY VERSION
 | |build| |release_version| |wheel| 
 | |docs| |pylint| |supported_versions|
 | |ruff| |gh-lic| |commits_since_specific_tag_on_main|
-| |codacy|
+| |codacy| |coveralls|
 
 
 |
@@ -125,6 +125,10 @@ License
 .. |codacy| image:: https://app.codacy.com/project/badge/Grade/9d883627ff974ff9a6721700c2909ac1
     :alt: Codacy
     :target: https://app.codacy.com/gh/Issamricin/dmc-view/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
+
+.. |coveralls| image:: https://coveralls.io/repos/github/Issamricin/dmc-view/badge.svg?branch=master
+    :alt: Coveralls
+    :target: https://coveralls.io/github/Issamricin/dmc-view?branch=master
 
 .. Local Image as link
 
